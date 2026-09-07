@@ -1,0 +1,1252 @@
+/*
+* Copyright 2025 NXP
+* NXP Proprietary. This software is owned or controlled by NXP and may only be used strictly in
+* accordance with the applicable license terms. By expressly accepting such terms or by downloading, installing,
+* activating and/or otherwise using the software, you are agreeing that you have read, and that you agree to
+* comply with and are bound by, such license terms.  If you do not agree to be bound by the applicable license
+* terms, then you may not retain, install, activate or otherwise use the software.
+*/
+
+#include "events_init.h"
+#include <stdio.h>
+#include "lvgl.h"
+
+#if LV_USE_GUIDER_SIMULATOR && LV_USE_FREEMASTER
+#include "freemaster_client.h"
+#endif
+
+#ifndef LV_USE_GUIDER_SIMULATOR
+void update_data_cb(lv_timer_t * timer);
+#endif
+extern lv_timer_t *update_data_timer;
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "weather.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "RTOS_tasks.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "nvs_helper.h"
+
+static void save_weather_settings()
+{
+    weather_config_t new_weather_config = {};
+    const char *temp;
+    temp = lv_textarea_get_text(guider_ui.weather_setting_screen_apikey_input);
+    memcpy(new_weather_config.api_key, temp, strlen(temp) + 1);
+    temp = lv_textarea_get_text(guider_ui.weather_setting_screen_host_input);
+    memcpy(new_weather_config.api_host, temp, strlen(temp) + 1);
+    temp = lv_textarea_get_text(guider_ui.weather_setting_screen_city_input);
+    memcpy(new_weather_config.city, temp, strlen(temp) + 1);
+    nvs_write(NVS_WRITE_WEATHER, &new_weather_config);
+}
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "backlight.h"
+
+uint8_t backlight;
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "wifi.h"
+#include "rgb_lcd.h"
+#include "nvs_helper.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+// 单实例网络信息消息框指针
+static lv_obj_t *network_info_msgbox = NULL;
+static lv_obj_t *network_info_msgbox_label = NULL;
+
+static void network_info_msgbox_event_cb(lv_event_t *e)
+{
+    if (lv_event_get_code(e) == LV_EVENT_DELETE) {
+        network_info_msgbox = NULL;
+        network_info_msgbox_label = NULL;
+    }
+}
+#endif
+void create_update_power_setting_screen_task();
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "nvs_helper.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "RTOS_tasks.h"
+#include "lpm.h"
+#endif
+void delete_update_power_setting_screen_task();
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "power_management.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "data_chart.h"
+#include "status_bar.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+void create_update_mqtt_screen_task();
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+void delete_update_mqtt_screen_task();
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "mqtt_user.h"
+#include "nvs_helper.h"
+
+static void save_mqtt_settings()
+{
+    const char *temp;
+    mqtt_user_config_t new_mqtt_user_config = {};
+    temp = lv_textarea_get_text(guider_ui.mqtt_setting_screen_address_input);
+    memcpy(new_mqtt_user_config.uri, temp, strlen(temp) + 1);
+    temp = lv_textarea_get_text(guider_ui.mqtt_setting_screen_username_input);
+    memcpy(new_mqtt_user_config.username, temp, strlen(temp) + 1);
+    temp = lv_textarea_get_text(guider_ui.mqtt_setting_screen_passwd_input);
+    memcpy(new_mqtt_user_config.password, temp, strlen(temp) + 1);
+    new_mqtt_user_config.port = atoi(lv_textarea_get_text(guider_ui.mqtt_setting_screen_port_input));
+    int idx = lv_dropdown_get_selected(guider_ui.mqtt_setting_screen_upload_interval_list);
+    switch (idx)
+    {
+    case 0:
+        new_mqtt_user_config.upload_interval = 5;
+        break;
+    case 1:
+        new_mqtt_user_config.upload_interval = 30;
+        break;
+    case 2:
+        new_mqtt_user_config.upload_interval = 60;
+        break;
+    }
+    new_mqtt_user_config.auto_conn = lv_obj_has_state(guider_ui.mqtt_setting_screen_auto_connect_switch, LV_STATE_CHECKED) ? 1 : 0;
+    nvs_write(NVS_WRITE_MQTT, &new_mqtt_user_config);
+}
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "mqtt_user.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+void create_update_ota_screen_task();
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+void delete_update_ota_screen_task();
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "ota.h"
+#include "wifi.h"
+#endif
+#ifndef LV_USE_GUIDER_SIMULATOR
+#include "nvs_helper.h"
+#endif
+
+static void main_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        if (update_data_timer == NULL)
+            update_data_timer = lv_timer_create(update_data_cb, 1000, 0);
+#endif
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        if (update_data_timer)
+        {
+            lv_timer_delete(update_data_timer);
+            update_data_timer = NULL;
+        }
+#endif
+        break;
+    }
+    case LV_EVENT_GESTURE:
+    {
+        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_active());
+        switch(dir) {
+        case LV_DIR_RIGHT:
+        {
+            lv_indev_wait_release(lv_indev_active());
+            ui_load_scr_animation(&guider_ui, &guider_ui.setting_screen, guider_ui.setting_screen_del, &guider_ui.main_screen_del, setup_scr_setting_screen, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 200, 0, false, false);
+            break;
+        }
+        case LV_DIR_LEFT:
+        {
+            lv_indev_wait_release(lv_indev_active());
+            ui_load_scr_animation(&guider_ui, &guider_ui.weather_screen, guider_ui.weather_screen_del, &guider_ui.main_screen_del, setup_scr_weather_screen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, false, false);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void main_screen_temp_container_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_chart_type = CHART_TYPE_TEMPERATURE;
+#endif
+        ui_load_scr_animation(&guider_ui, &guider_ui.data_chart_screen, guider_ui.data_chart_screen_del, &guider_ui.main_screen_del, setup_scr_data_chart_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void main_screen_co2_container_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_chart_type = CHART_TYPE_CO2;
+#endif
+        ui_load_scr_animation(&guider_ui, &guider_ui.data_chart_screen, guider_ui.data_chart_screen_del, &guider_ui.main_screen_del, setup_scr_data_chart_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void main_screen_humid_container_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_chart_type = CHART_TYPE_HUMIDITY;
+#endif
+        ui_load_scr_animation(&guider_ui, &guider_ui.data_chart_screen, guider_ui.data_chart_screen_del, &guider_ui.main_screen_del, setup_scr_data_chart_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void main_screen_voc_container_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_chart_type = CHART_TYPE_VOC;
+#endif
+        ui_load_scr_animation(&guider_ui, &guider_ui.data_chart_screen, guider_ui.data_chart_screen_del, &guider_ui.main_screen_del, setup_scr_data_chart_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_main_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->main_screen, main_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->main_screen_temp_container, main_screen_temp_container_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->main_screen_co2_container, main_screen_co2_container_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->main_screen_humid_container, main_screen_humid_container_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->main_screen_voc_container, main_screen_voc_container_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void weather_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        char temp_str[8];
+        char humid_str[8];
+        char wind_speed_str[8];
+        char feel_temp_str[8];
+        char pressure_str[8];
+        char visi_str[8];
+        char weather_str[16];
+        char precip_str[8];
+        if (weather_info == NULL)
+        {
+            return ;
+        }
+        snprintf(temp_str, sizeof(temp_str), "%d", (int)weather_info->temperature);
+        snprintf(humid_str, sizeof(humid_str), "%d", (int)weather_info->humidity);
+        snprintf(wind_speed_str, sizeof(wind_speed_str), "%d", (int)weather_info->wind_speed);
+        snprintf(feel_temp_str, sizeof(feel_temp_str), "%d", (int)weather_info->feels_like);
+        snprintf(pressure_str, sizeof(pressure_str), "%d", (int)weather_info->pressure);
+        snprintf(visi_str, sizeof(visi_str), "%d", (int)weather_info->visibility);
+        snprintf(weather_str, sizeof(weather_str), "%s", weather_info->weather);
+        snprintf(precip_str, sizeof(precip_str), "%.1fmm", weather_info->precip);
+        if (guider_ui.weather_screen_temp_value)
+        {
+            lv_label_set_text(guider_ui.weather_screen_temp_value, temp_str);
+            lv_label_set_text(guider_ui.weather_screen_humid_value, humid_str);
+            lv_label_set_text(guider_ui.weather_screen_wind_speed_value, wind_speed_str);
+            lv_label_set_text(guider_ui.weather_screen_feel_temp_value, feel_temp_str);
+            lv_label_set_text(guider_ui.weather_screen_pressure_value, pressure_str);
+            lv_label_set_text(guider_ui.weather_screen_visi_value, visi_str);
+            lv_label_set_text(guider_ui.weather_screen_weather_label, weather_str);
+            lv_label_set_text(guider_ui.weather_screen_precip_value, precip_str);
+        }
+#endif
+        break;
+    }
+    case LV_EVENT_GESTURE:
+    {
+        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_active());
+        switch(dir) {
+        case LV_DIR_RIGHT:
+        {
+            lv_indev_wait_release(lv_indev_active());
+            ui_load_scr_animation(&guider_ui, &guider_ui.main_screen, guider_ui.main_screen_del, &guider_ui.weather_screen_del, setup_scr_main_screen, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 200, 0, false, false);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void weather_screen_refresh_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        xTaskNotifyGive(weather_task_handle);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void weather_screen_setting_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.weather_setting_screen, guider_ui.weather_setting_screen_del, &guider_ui.weather_screen_del, setup_scr_weather_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_weather_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->weather_screen, weather_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->weather_screen_refresh_btn, weather_screen_refresh_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->weather_screen_setting_btn, weather_screen_setting_btn_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void weather_setting_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        char t[64];
+        nvs_read(NVS_READ_WEATHER);
+        sprintf(t, "%s", weather_config.api_host);
+        lv_textarea_set_text(guider_ui.weather_setting_screen_host_input, t);
+        sprintf(t, "%s", weather_config.city);
+        lv_textarea_set_text(guider_ui.weather_setting_screen_city_input, t);
+        sprintf(t, "%s", weather_config.api_key);
+        lv_textarea_set_text(guider_ui.weather_setting_screen_apikey_input, t);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void weather_setting_screen_save_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        save_weather_settings();
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void weather_setting_screen_return_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.weather_screen, guider_ui.weather_screen_del, &guider_ui.weather_setting_screen_del, setup_scr_weather_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_weather_setting_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->weather_setting_screen, weather_setting_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->weather_setting_screen_save_btn, weather_setting_screen_save_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->weather_setting_screen_return_btn, weather_setting_screen_return_btn_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void setting_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+        // 在这里对slider的值做调整
+#ifndef LV_USE_GUIDER_SIMULATOR
+        lcd_backlight_get_duty(&backlight);
+        lv_slider_set_value(guider_ui.setting_screen_backlight_slider, backlight, LV_ANIM_OFF);
+#endif
+
+        break;
+    }
+    case LV_EVENT_GESTURE:
+    {
+        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_active());
+        switch(dir) {
+        case LV_DIR_LEFT:
+        {
+            lv_indev_wait_release(lv_indev_active());
+            ui_load_scr_animation(&guider_ui, &guider_ui.main_screen, guider_ui.main_screen_del, &guider_ui.setting_screen_del, setup_scr_main_screen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, false, true);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void setting_screen_wifi_icon_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.wifi_setting_screen, guider_ui.wifi_setting_screen_del, &guider_ui.setting_screen_del, setup_scr_wifi_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void setting_screen_backlight_slider_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        lv_obj_t * slider = lv_event_get_target(e);
+        backlight_duty = lv_slider_get_value(slider);
+        lcd_backlight_set_duty(backlight_duty);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void setting_screen_ota_icon_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.ota_screen, guider_ui.ota_screen_del, &guider_ui.setting_screen_del, setup_scr_ota_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void setting_screen_power_save_icon_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.power_setting_screen, guider_ui.power_setting_screen_del, &guider_ui.setting_screen_del, setup_scr_power_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void setting_screen_mqtt_container_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void setting_screen_mqtt_icon_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.mqtt_setting_screen, guider_ui.mqtt_setting_screen_del, &guider_ui.setting_screen_del, setup_scr_mqtt_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_setting_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->setting_screen, setting_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->setting_screen_wifi_icon, setting_screen_wifi_icon_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->setting_screen_backlight_slider, setting_screen_backlight_slider_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->setting_screen_ota_icon, setting_screen_ota_icon_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->setting_screen_power_save_icon, setting_screen_power_save_icon_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->setting_screen_mqtt_container, setting_screen_mqtt_container_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->setting_screen_mqtt_icon, setting_screen_mqtt_icon_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void wifi_setting_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOADED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        if (wifi_sta_status == WIFI_CONNECTED)
+        {
+            lv_obj_set_style_text_color(guider_ui.wifi_setting_screen_connect_status_label, lv_color_hex(0x26c961), LV_PART_MAIN);
+        }
+        else if (wifi_sta_status == WIFI_DISCONNECTED )
+        {
+            lv_obj_set_style_text_color(guider_ui.wifi_setting_screen_connect_status_label, lv_color_hex(0xE8202D), LV_PART_MAIN);
+        }
+
+        if (wifi_pwr_status || is_wifi_connected())
+        {
+            lv_obj_add_state(guider_ui.wifi_setting_screen_wifi_switch, LV_STATE_CHECKED);
+        }
+        else
+        {
+            lv_obj_remove_state(guider_ui.wifi_setting_screen_wifi_switch, LV_STATE_CHECKED);
+        }
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void wifi_setting_screen_wifi_switch_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        lv_obj_t * status_obj = lv_event_get_target(e);
+        int status = lv_obj_has_state(status_obj, LV_STATE_CHECKED) ? true : false;
+        lv_obj_remove_flag(guider_ui.wifi_setting_screen_wifi_scan_spinner, LV_OBJ_FLAG_HIDDEN);
+
+        switch (status) {
+        case (true):
+        {
+#ifndef LV_USE_GUIDER_SIMULATOR
+            wifi_pwr_status = 1;
+            uint8_t t = wifi_pwr_status;
+            nvs_write(NVS_WRITE_WIFI, &t);
+            wifi_start();
+            wifi_scan();
+#endif
+            break;
+        }
+        case (false):
+        {
+#ifndef LV_USE_GUIDER_SIMULATOR
+            wifi_pwr_status = 0;
+            uint8_t t = wifi_pwr_status;
+            nvs_write(NVS_WRITE_WIFI, &t);
+            wifi_stop();
+            // 清空wifi列表
+            if (guider_ui.wifi_setting_screen_wifi_scan_list)
+            {
+                lv_obj_clean(guider_ui.wifi_setting_screen_wifi_scan_list);
+            }
+            esp_lcd_rgb_panel_set_pclk(panel_handle, 10 * 1000 * 1000);
+#endif
+            lv_obj_add_flag(guider_ui.wifi_setting_screen_wifi_scan_spinner, LV_OBJ_FLAG_HIDDEN);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void wifi_setting_screen_network_info_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        char t[96];
+        wifi_ip_info_t wifi_ip_info;
+        wifi_config_t wifi_config;
+        esp_wifi_get_config(ESP_IF_WIFI_STA, &wifi_config);
+        wifi_get_ip_info_str(&wifi_ip_info);
+        snprintf(t, 96, "%s\nIP: %s\nMask: %s\nGW: %s\n",
+                 wifi_config.sta.ssid, wifi_ip_info.ip, wifi_ip_info.netmask, wifi_ip_info.gw);
+        // 若已经存在，则更新内容并置顶，不再重复创建
+        if (network_info_msgbox)
+        {
+            if (network_info_msgbox_label)
+            {
+                lv_label_set_text(network_info_msgbox_label, t);
+            }
+            lv_obj_move_foreground(network_info_msgbox);
+            break;
+        }
+        network_info_msgbox = lv_msgbox_create(NULL);
+        lv_obj_set_style_bg_color(network_info_msgbox, lv_color_hex(0x282828), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(network_info_msgbox, 240, LV_PART_MAIN);
+        lv_obj_set_style_border_color(network_info_msgbox, lv_color_hex(0x4f4f4f), LV_PART_MAIN);
+        lv_obj_set_style_border_width(network_info_msgbox, 2, LV_PART_MAIN);
+        lv_obj_set_style_shadow_width(network_info_msgbox, 10, LV_PART_MAIN);
+        lv_obj_set_style_shadow_color(network_info_msgbox, lv_color_hex(0x000000), LV_PART_MAIN);
+        lv_obj_set_style_shadow_opa(network_info_msgbox, 150, LV_PART_MAIN);
+        lv_obj_set_size(network_info_msgbox, 280, 150);
+        lv_obj_t *title = lv_msgbox_add_title(network_info_msgbox, "Network Info");
+        lv_obj_set_style_text_color(title, lv_color_hex(0xffffff), LV_PART_MAIN);
+        network_info_msgbox_label = lv_msgbox_add_text(network_info_msgbox, t);
+        lv_obj_set_style_text_font(network_info_msgbox_label, &lv_font_siyuanheiti_16, LV_PART_MAIN);
+        lv_obj_set_style_text_color(network_info_msgbox_label, lv_color_hex(0xb2b2b2), LV_PART_MAIN);
+        lv_obj_align(network_info_msgbox, LV_ALIGN_CENTER, 0, 0);
+        lv_obj_t *close_btn = lv_msgbox_add_close_button(network_info_msgbox);
+        lv_obj_set_style_text_color(close_btn, lv_color_hex(0xffffff), LV_PART_MAIN);
+        lv_obj_set_style_bg_color(close_btn, lv_color_hex(0x0f4187), LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_set_style_shadow_width(close_btn, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+        lv_obj_set_style_radius(close_btn, 25, LV_PART_MAIN | LV_STATE_DEFAULT);
+        lv_obj_add_event_cb(network_info_msgbox, network_info_msgbox_event_cb, LV_EVENT_DELETE, NULL);
+        lv_obj_t *header = lv_msgbox_get_header(network_info_msgbox);
+        lv_obj_set_style_bg_color(header, lv_color_hex(0x3c3c3c), LV_PART_MAIN);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void wifi_setting_screen_return_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.setting_screen, guider_ui.setting_screen_del, &guider_ui.wifi_setting_screen_del, setup_scr_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, false);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_wifi_setting_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->wifi_setting_screen, wifi_setting_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->wifi_setting_screen_wifi_switch, wifi_setting_screen_wifi_switch_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->wifi_setting_screen_network_info_btn, wifi_setting_screen_network_info_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->wifi_setting_screen_return_btn, wifi_setting_screen_return_btn_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void wifi_connect_screen_conn_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        user_wifi_cfg *cfg = (user_wifi_cfg *)malloc(sizeof(user_wifi_cfg));
+        lv_memcpy(cfg->ssid, lv_label_get_text(guider_ui.wifi_connect_screen_ssid), 32);
+        lv_memcpy(cfg->password, lv_textarea_get_text(guider_ui.wifi_connect_screen_password_input), 64);
+        wifi_connect(cfg);
+        ui_load_scr_animation(&guider_ui, &guider_ui.wifi_setting_screen, guider_ui.wifi_setting_screen_del, &guider_ui.wifi_connect_screen_del, setup_scr_wifi_setting_screen, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 200, 0, false, true);
+#endif
+
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void wifi_connect_screen_cancel_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.wifi_setting_screen, guider_ui.wifi_setting_screen_del, &guider_ui.wifi_connect_screen_del, setup_scr_wifi_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_wifi_connect_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->wifi_connect_screen_conn_btn, wifi_connect_screen_conn_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->wifi_connect_screen_cancel_btn, wifi_connect_screen_cancel_btn_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void power_setting_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        create_update_power_setting_screen_task();
+        // 快速充电开关
+        uint16_t chg_current = 0;
+        aw32001_get_chg_current(&chg_current);
+        if (chg_current > 128)
+        {
+            lv_obj_add_state(guider_ui.power_setting_screen_fast_charge_sw, LV_STATE_CHECKED);
+        }
+        else
+        {
+            lv_obj_remove_state(guider_ui.power_setting_screen_fast_charge_sw, LV_STATE_CHECKED);
+        }
+
+        nvs_read(NVS_READ_PWR); // 读取保存在NVS的值
+        //省电模式开关
+        if (power_settings.power_save_mode)
+        {
+            lv_obj_add_state(guider_ui.power_setting_screen_pwr_save_mode_sw, LV_STATE_CHECKED);
+        }
+        else
+        {
+            lv_obj_remove_state(guider_ui.power_setting_screen_pwr_save_mode_sw, LV_STATE_CHECKED);
+        }
+        // 设置充电上限滑动条
+        lv_slider_set_value(guider_ui.power_setting_screen_charge_thresh_slider, power_settings.charge_limit, LV_ANIM_OFF);
+        // 设置充电上限数显
+        char t[5];
+        snprintf(t, sizeof(t), "%d%%", power_settings.charge_limit);
+        lv_label_set_text(guider_ui.power_setting_screen_charge_thresh_percent_label, t);
+#endif
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        delete_update_power_setting_screen_task();
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void power_setting_screen_fast_charge_sw_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+        lv_obj_t * status_obj = lv_event_get_target(e);
+        int status = lv_obj_has_state(status_obj, LV_STATE_CHECKED) ? true : false;
+
+        switch (status) {
+        case (true):
+        {
+#ifndef LV_USE_GUIDER_SIMULATOR
+            aw32001_set_chg_current(512);
+#endif
+            break;
+        }
+        case (false):
+        {
+#ifndef LV_USE_GUIDER_SIMULATOR
+            aw32001_set_chg_current(128); //128mA
+#endif
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void power_setting_screen_charge_thresh_slider_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_VALUE_CHANGED:
+    {
+
+        lv_obj_t * slider = lv_event_get_target(e);
+        uint8_t percecnt = lv_slider_get_value(slider);
+        char t[5];
+        snprintf(t, sizeof(t), "%d%%", percecnt);
+        lv_label_set_text(guider_ui.power_setting_screen_charge_thresh_percent_label, t);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void power_setting_screen_save_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        power_settings_t new_power_settings;
+        new_power_settings.power_save_mode = lv_obj_has_state(guider_ui.power_setting_screen_pwr_save_mode_sw, LV_STATE_CHECKED) ? 1 : 0;
+        if (new_power_settings.power_save_mode)
+        {
+            lpm_enable();
+        }
+        else
+        {
+            lpm_disable();
+        }
+        new_power_settings.charge_limit = lv_slider_get_value(guider_ui.power_setting_screen_charge_thresh_slider);
+        nvs_write(NVS_WRITE_PWR, &new_power_settings);
+        xTaskNotifyGive(bat_adc_task_handle);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void power_setting_screen_return_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.setting_screen, guider_ui.setting_screen_del, &guider_ui.power_setting_screen_del, setup_scr_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_power_setting_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->power_setting_screen, power_setting_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->power_setting_screen_fast_charge_sw, power_setting_screen_fast_charge_sw_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->power_setting_screen_charge_thresh_slider, power_setting_screen_charge_thresh_slider_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->power_setting_screen_save_btn, power_setting_screen_save_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->power_setting_screen_return_btn, power_setting_screen_return_btn_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void data_chart_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_time_frame = TIME_FRAME_1MIN;
+        create_chart();
+        status_bar_hide(false);
+#endif
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        delete_chart();
+        status_bar_show(false);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void data_chart_screen_btn_1min_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_time_frame = TIME_FRAME_1MIN;
+        xTaskNotifyGive(update_chart_task_handle);
+        set_x_tick_count();
+        update_chart_x_scale_text();
+#endif
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_1h, lv_color_hex(0x5b5b5b), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_1h, 107, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_24h, lv_color_hex(0x5b5b5b), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_24h, 106, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_1min, lv_color_hex(0x0f4187), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_1min, 255, LV_PART_MAIN);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void data_chart_screen_btn_1h_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_time_frame = TIME_FRAME_1HOUR;
+        xTaskNotifyGive(update_chart_task_handle);
+        set_x_tick_count();
+        update_chart_x_scale_text();
+#endif
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_1min, lv_color_hex(0x5b5b5b), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_1min, 107, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_24h, lv_color_hex(0x5b5b5b), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_24h, 107, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_1h, lv_color_hex(0x0f4187), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_1h, 255, LV_PART_MAIN);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void data_chart_screen_btn_24h_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        current_time_frame = TIME_FRAME_1DAY;
+        xTaskNotifyGive(update_chart_task_handle);
+        set_x_tick_count();
+        update_chart_x_scale_text();
+#endif
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_1h, lv_color_hex(0x5b5b5b), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_1h, 107, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_1min, lv_color_hex(0x5b5b5b), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_1min, 107, LV_PART_MAIN);
+        lv_obj_set_style_bg_color(guider_ui.data_chart_screen_btn_24h, lv_color_hex(0x0f4187), LV_PART_MAIN);
+        lv_obj_set_style_bg_opa(guider_ui.data_chart_screen_btn_24h, 255, LV_PART_MAIN);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void data_chart_screen_btn_back_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.main_screen, guider_ui.main_screen_del, &guider_ui.data_chart_screen_del, setup_scr_main_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_data_chart_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->data_chart_screen, data_chart_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->data_chart_screen_btn_1min, data_chart_screen_btn_1min_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->data_chart_screen_btn_1h, data_chart_screen_btn_1h_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->data_chart_screen_btn_24h, data_chart_screen_btn_24h_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->data_chart_screen_btn_back, data_chart_screen_btn_back_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void mqtt_setting_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        nvs_read(NVS_READ_MQTT);
+        lv_textarea_set_text(guider_ui.mqtt_setting_screen_address_input, mqtt_user_config.uri);
+        lv_textarea_set_text(guider_ui.mqtt_setting_screen_username_input, mqtt_user_config.username);
+        lv_textarea_set_text(guider_ui.mqtt_setting_screen_passwd_input, mqtt_user_config.password);
+        char t[6];
+        sprintf(t, "%lu", mqtt_user_config.port);
+        lv_textarea_set_text(guider_ui.mqtt_setting_screen_port_input, t);
+        if (mqtt_user_config.auto_conn)
+        {
+            lv_obj_add_state(guider_ui.mqtt_setting_screen_auto_connect_switch, LV_STATE_CHECKED);
+        }
+        else
+        {
+            lv_obj_remove_state(guider_ui.mqtt_setting_screen_auto_connect_switch, LV_STATE_CHECKED);
+        }
+        if (mqtt_user_config.upload_interval == 30)
+        {
+            lv_dropdown_set_selected(guider_ui.mqtt_setting_screen_upload_interval_list, 1);
+        }
+        else if (mqtt_user_config.upload_interval == 60)
+        {
+            lv_dropdown_set_selected(guider_ui.mqtt_setting_screen_upload_interval_list, 2);
+        }
+        else
+        {
+            lv_dropdown_set_selected(guider_ui.mqtt_setting_screen_upload_interval_list, 0);
+        }
+        create_update_mqtt_screen_task();
+#endif
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        delete_update_mqtt_screen_task();
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void mqtt_setting_screen_save_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        save_mqtt_settings();
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void mqtt_setting_screen_return_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.setting_screen, guider_ui.setting_screen_del, &guider_ui.mqtt_setting_screen_del, setup_scr_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void mqtt_setting_screen_connect_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        if (mqtt_get_status() == 1)
+            mqtt_stop();
+        else if (is_wifi_connected())
+        {
+            save_mqtt_settings();
+            mqtt_start();
+        }
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_mqtt_setting_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->mqtt_setting_screen, mqtt_setting_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->mqtt_setting_screen_save_btn, mqtt_setting_screen_save_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->mqtt_setting_screen_return_btn, mqtt_setting_screen_return_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->mqtt_setting_screen_connect_btn, mqtt_setting_screen_connect_btn_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void ota_screen_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        create_update_ota_screen_task();
+#endif
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOAD_START:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        delete_update_ota_screen_task();
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void ota_screen_update_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        if (!is_wifi_connected())
+        {
+            lv_label_set_text(guider_ui.ota_screen_hint_label, "网络未连接");
+            ota_status = OTA_STATUS_IDLE;
+            return ;
+        }
+        switch (ota_status)
+        {
+        case OTA_STATUS_CHECKING_UPDATE:
+        case OTA_STATUS_DOWNLOADING:
+            break;
+        case OTA_STATUS_IDLE:
+        case OTA_STATUS_NO_UPDATE:
+        case OTA_STATUS_FAILED:
+            ota_check_for_update();
+            ota_status = OTA_STATUS_CHECKING_UPDATE;
+            break;
+        case OTA_STATUS_FOUND_UPDATE:
+            ota_start();
+            ota_status = OTA_STATUS_DOWNLOADING;
+            break;
+        }
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void ota_screen_return_btn_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.setting_screen, guider_ui.setting_screen_del, &guider_ui.ota_screen_del, setup_scr_setting_screen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, false, true);
+#ifndef LV_USE_GUIDER_SIMULATOR
+        const char *temp;
+        ota_settings_t new_ota_settings;
+        temp = lv_textarea_get_text(guider_ui.ota_screen_url_input);
+        memcpy(new_ota_settings.info_url, temp, strlen(temp) + 1);
+        nvs_write(NVS_WRITE_OTA, &new_ota_settings);
+        ota_status = OTA_STATUS_IDLE;
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static void ota_screen_btn_1_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+#ifndef LV_USE_GUIDER_SIMULATOR
+        lv_textarea_set_text(guider_ui.ota_screen_url_input, DEFAULT_OTA_URL);
+#endif
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_ota_screen (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->ota_screen, ota_screen_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->ota_screen_update_btn, ota_screen_update_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->ota_screen_return_btn, ota_screen_return_btn_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->ota_screen_btn_1, ota_screen_btn_1_event_handler, LV_EVENT_ALL, ui);
+}
+
+
+void events_init(lv_ui *ui)
+{
+
+}

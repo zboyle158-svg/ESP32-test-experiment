@@ -1,0 +1,6 @@
+source "I:/esp/v5.2.7/esp-idf/components/bootloader/Kconfig.projbuild"
+source "I:/esp/v5.2.7/esp-idf/components/esp_app_format/Kconfig.projbuild"
+source "I:/esp/v5.2.7/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "I:/esp/v5.2.7/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "I:/esp/v5.2.7/esp-idf/components/partition_table/Kconfig.projbuild"
+source "J:/github/ESP32-test-experiment/iot_environment_monitor-main/main/Kconfig.projbuild"

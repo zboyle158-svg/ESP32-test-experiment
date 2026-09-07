@@ -1,0 +1,13 @@
+#pragma once
+#include <stdbool.h>
+
+/** @file status_bar.h @brief Status bar API. */
+
+/** @brief Create status bar widgets. */
+void status_bar_create(void);
+void status_bar_set_time(const char *time_str);
+void status_bar_set_wifi_state(bool connected);
+void status_bar_set_battery_level(float level);
+void status_bar_set_charge_state(bool charging);
+void status_bar_show(bool need_api_lock);
+void status_bar_hide(bool need_api_lock);

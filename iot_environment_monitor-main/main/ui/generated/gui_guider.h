@@ -1,0 +1,254 @@
+/*
+* Copyright 2025 NXP
+* NXP Proprietary. This software is owned or controlled by NXP and may only be used strictly in
+* accordance with the applicable license terms. By expressly accepting such terms or by downloading, installing,
+* activating and/or otherwise using the software, you are agreeing that you have read, and that you agree to
+* comply with and are bound by, such license terms.  If you do not agree to be bound by the applicable license
+* terms, then you may not retain, install, activate or otherwise use the software.
+*/
+
+#ifndef GUI_GUIDER_H
+#define GUI_GUIDER_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "lvgl.h"
+
+
+typedef struct
+{
+  
+	lv_obj_t *main_screen;
+	bool main_screen_del;
+	lv_obj_t *main_screen_temp_container;
+	lv_obj_t *main_screen_temp_value;
+	lv_obj_t *main_screen_temp_label;
+	lv_obj_t *main_screen_temp_bar;
+	lv_obj_t *main_screen_co2_container;
+	lv_obj_t *main_screen_co2_value;
+	lv_obj_t *main_screen_co2_label;
+	lv_obj_t *main_screen_co2_bar;
+	lv_obj_t *main_screen_humid_container;
+	lv_obj_t *main_screen_humid_value;
+	lv_obj_t *main_screen_humid_label;
+	lv_obj_t *main_screen_humid_bar;
+	lv_obj_t *main_screen_voc_container;
+	lv_obj_t *main_screen_voc_value;
+	lv_obj_t *main_screen_voc_label;
+	lv_obj_t *main_screen_voc_bar;
+	lv_obj_t *main_screen_time_container;
+	lv_obj_t *main_screen_time_hour;
+	lv_obj_t *main_screen_time_minute;
+	lv_obj_t *main_screen_time_month_day;
+	lv_obj_t *weather_screen;
+	bool weather_screen_del;
+	lv_obj_t *weather_screen_cont_1;
+	lv_obj_t *weather_screen_precip_value;
+	lv_obj_t *weather_screen_weather_label;
+	lv_obj_t *weather_screen_temp_cont;
+	lv_obj_t *weather_screen_temp_value;
+	lv_obj_t *weather_screen_label_1;
+	lv_obj_t *weather_screen_humid_cont;
+	lv_obj_t *weather_screen_humid_value;
+	lv_obj_t *weather_screen_label_3;
+	lv_obj_t *weather_screen_wind_speed_cont;
+	lv_obj_t *weather_screen_wind_speed_value;
+	lv_obj_t *weather_screen_label_5;
+	lv_obj_t *weather_screen_feel_temp_cont;
+	lv_obj_t *weather_screen_feel_temp_value;
+	lv_obj_t *weather_screen_label_11;
+	lv_obj_t *weather_screen_pressure_cont;
+	lv_obj_t *weather_screen_pressure_value;
+	lv_obj_t *weather_screen_label_9;
+	lv_obj_t *weather_screen_visi_cont;
+	lv_obj_t *weather_screen_visi_value;
+	lv_obj_t *weather_screen_label_7;
+	lv_obj_t *weather_screen_refresh_btn;
+	lv_obj_t *weather_screen_refresh_btn_label;
+	lv_obj_t *weather_screen_setting_btn;
+	lv_obj_t *weather_screen_setting_btn_label;
+	lv_obj_t *weather_setting_screen;
+	bool weather_setting_screen_del;
+	lv_obj_t *weather_setting_screen_cont_1;
+	lv_obj_t *weather_setting_screen_label_14;
+	lv_obj_t *weather_setting_screen_host_input;
+	lv_obj_t *weather_setting_screen_label_15;
+	lv_obj_t *weather_setting_screen_label_16;
+	lv_obj_t *weather_setting_screen_apikey_input;
+	lv_obj_t *weather_setting_screen_label_17;
+	lv_obj_t *weather_setting_screen_city_input;
+	lv_obj_t *weather_setting_screen_label_18;
+	lv_obj_t *weather_setting_screen_save_btn;
+	lv_obj_t *weather_setting_screen_save_btn_label;
+	lv_obj_t *weather_setting_screen_return_btn;
+	lv_obj_t *weather_setting_screen_return_btn_label;
+	lv_obj_t *setting_screen;
+	bool setting_screen_del;
+	lv_obj_t *setting_screen_wifi_icon_container;
+	lv_obj_t *setting_screen_wifi_icon;
+	lv_obj_t *setting_screen_backlight_container;
+	lv_obj_t *setting_screen_backlight_icon;
+	lv_obj_t *setting_screen_backlight_slider;
+	lv_obj_t *setting_screen_ota_container;
+	lv_obj_t *setting_screen_ota_icon;
+	lv_obj_t *setting_screen_power_save_container;
+	lv_obj_t *setting_screen_power_save_icon;
+	lv_obj_t *setting_screen_mqtt_container;
+	lv_obj_t *setting_screen_mqtt_icon;
+	lv_obj_t *wifi_setting_screen;
+	bool wifi_setting_screen_del;
+	lv_obj_t *wifi_setting_screen_wifi_container;
+	lv_obj_t *wifi_setting_screen_label_wifi;
+	lv_obj_t *wifi_setting_screen_wifi_switch;
+	lv_obj_t *wifi_setting_screen_wifi_scan_spinner;
+	lv_obj_t *wifi_setting_screen_network_info_btn;
+	lv_obj_t *wifi_setting_screen_network_info_btn_label;
+	lv_obj_t *wifi_setting_screen_connect_status_label;
+	lv_obj_t *wifi_setting_screen_wifi_scan_list;
+	lv_obj_t *wifi_setting_screen_return_btn;
+	lv_obj_t *wifi_setting_screen_return_btn_label;
+	lv_obj_t *wifi_connect_screen;
+	bool wifi_connect_screen_del;
+	lv_obj_t *wifi_connect_screen_wifi_container;
+	lv_obj_t *wifi_connect_screen_ssid;
+	lv_obj_t *wifi_connect_screen_password_input;
+	lv_obj_t *wifi_connect_screen_cont_1;
+	lv_obj_t *wifi_connect_screen_conn_btn;
+	lv_obj_t *wifi_connect_screen_conn_btn_label;
+	lv_obj_t *wifi_connect_screen_cancel_btn;
+	lv_obj_t *wifi_connect_screen_cancel_btn_label;
+	lv_obj_t *power_setting_screen;
+	bool power_setting_screen_del;
+	lv_obj_t *power_setting_screen_cont_1;
+	lv_obj_t *power_setting_screen_label_3;
+	lv_obj_t *power_setting_screen_pwr_save_mode_label;
+	lv_obj_t *power_setting_screen_pwr_save_mode_sw;
+	lv_obj_t *power_setting_screen_fast_charge_sw;
+	lv_obj_t *power_setting_screen_fast_charge_label;
+	lv_obj_t *power_setting_screen_charge_thresh_label;
+	lv_obj_t *power_setting_screen_charge_thresh_slider;
+	lv_obj_t *power_setting_screen_charge_thresh_percent_label;
+	lv_obj_t *power_setting_screen_label_1;
+	lv_obj_t *power_setting_screen_charge_status_label;
+	lv_obj_t *power_setting_screen_label_5;
+	lv_obj_t *power_setting_screen_power_status_label;
+	lv_obj_t *power_setting_screen_save_btn;
+	lv_obj_t *power_setting_screen_save_btn_label;
+	lv_obj_t *power_setting_screen_return_btn;
+	lv_obj_t *power_setting_screen_return_btn_label;
+	lv_obj_t *data_chart_screen;
+	bool data_chart_screen_del;
+	lv_obj_t *data_chart_screen_btn_1min;
+	lv_obj_t *data_chart_screen_btn_1min_label;
+	lv_obj_t *data_chart_screen_btn_1h;
+	lv_obj_t *data_chart_screen_btn_1h_label;
+	lv_obj_t *data_chart_screen_btn_24h;
+	lv_obj_t *data_chart_screen_btn_24h_label;
+	lv_obj_t *data_chart_screen_btn_back;
+	lv_obj_t *data_chart_screen_btn_back_label;
+	lv_obj_t *data_chart_screen_title_label;
+	lv_obj_t *data_chart_screen_date_label;
+	lv_obj_t *data_chart_screen_time_label;
+	lv_obj_t *data_chart_screen_data_label;
+	lv_obj_t *mqtt_setting_screen;
+	bool mqtt_setting_screen_del;
+	lv_obj_t *mqtt_setting_screen_cont_1;
+	lv_obj_t *mqtt_setting_screen_label_14;
+	lv_obj_t *mqtt_setting_screen_label_13;
+	lv_obj_t *mqtt_setting_screen_auto_connect_switch;
+	lv_obj_t *mqtt_setting_screen_label_11;
+	lv_obj_t *mqtt_setting_screen_label_7;
+	lv_obj_t *mqtt_setting_screen_mqtt_status_label;
+	lv_obj_t *mqtt_setting_screen_label_15;
+	lv_obj_t *mqtt_setting_screen_upload_interval_list;
+	lv_obj_t *mqtt_setting_screen_label_16;
+	lv_obj_t *mqtt_setting_screen_port_input;
+	lv_obj_t *mqtt_setting_screen_address_input;
+	lv_obj_t *mqtt_setting_screen_label_18;
+	lv_obj_t *mqtt_setting_screen_username_input;
+	lv_obj_t *mqtt_setting_screen_label_17;
+	lv_obj_t *mqtt_setting_screen_passwd_input;
+	lv_obj_t *mqtt_setting_screen_save_btn;
+	lv_obj_t *mqtt_setting_screen_save_btn_label;
+	lv_obj_t *mqtt_setting_screen_return_btn;
+	lv_obj_t *mqtt_setting_screen_return_btn_label;
+	lv_obj_t *mqtt_setting_screen_connect_btn;
+	lv_obj_t *mqtt_setting_screen_connect_btn_label;
+	lv_obj_t *ota_screen;
+	bool ota_screen_del;
+	lv_obj_t *ota_screen_ota_container;
+	lv_obj_t *ota_screen_label_1;
+	lv_obj_t *ota_screen_progress_bar;
+	lv_obj_t *ota_screen_url_input;
+	lv_obj_t *ota_screen_label_2;
+	lv_obj_t *ota_screen_current_version_hint_label;
+	lv_obj_t *ota_screen_current_version_label;
+	lv_obj_t *ota_screen_newest_version_hint_label;
+	lv_obj_t *ota_screen_newest_version_label;
+	lv_obj_t *ota_screen_hint_label;
+	lv_obj_t *ota_screen_progress_label;
+	lv_obj_t *ota_screen_cont_1;
+	lv_obj_t *ota_screen_update_btn;
+	lv_obj_t *ota_screen_update_btn_label;
+	lv_obj_t *ota_screen_return_btn;
+	lv_obj_t *ota_screen_return_btn_label;
+	lv_obj_t *ota_screen_btn_1;
+	lv_obj_t *ota_screen_btn_1_label;
+	lv_obj_t *g_kb_top_layer;
+}lv_ui;
+
+typedef void (*ui_setup_scr_t)(lv_ui * ui);
+
+void ui_init_style(lv_style_t * style);
+
+void ui_load_scr_animation(lv_ui *ui, lv_obj_t ** new_scr, bool new_scr_del, bool * old_scr_del, ui_setup_scr_t setup_scr,
+                           lv_screen_load_anim_t anim_type, uint32_t time, uint32_t delay, bool is_clean, bool auto_del);
+
+void ui_animation(void * var, uint32_t duration, int32_t delay, int32_t start_value, int32_t end_value, lv_anim_path_cb_t path_cb,
+                  uint32_t repeat_cnt, uint32_t repeat_delay, uint32_t playback_time, uint32_t playback_delay,
+                  lv_anim_exec_xcb_t exec_cb, lv_anim_start_cb_t start_cb, lv_anim_completed_cb_t ready_cb, lv_anim_deleted_cb_t deleted_cb);
+
+
+void init_scr_del_flag(lv_ui *ui);
+
+void setup_bottom_layer(void);
+
+void setup_ui(lv_ui *ui);
+
+void video_play(lv_ui *ui);
+
+void init_keyboard(lv_ui *ui);
+
+extern lv_ui guider_ui;
+
+
+void setup_scr_main_screen(lv_ui *ui);
+void setup_scr_weather_screen(lv_ui *ui);
+void setup_scr_weather_setting_screen(lv_ui *ui);
+void setup_scr_setting_screen(lv_ui *ui);
+void setup_scr_wifi_setting_screen(lv_ui *ui);
+void setup_scr_wifi_connect_screen(lv_ui *ui);
+void setup_scr_power_setting_screen(lv_ui *ui);
+void setup_scr_data_chart_screen(lv_ui *ui);
+void setup_scr_mqtt_setting_screen(lv_ui *ui);
+void setup_scr_ota_screen(lv_ui *ui);
+LV_IMAGE_DECLARE(_WIFI_RGB565A8_48x48);
+LV_IMAGE_DECLARE(_backlight_RGB565A8_32x32);
+LV_IMAGE_DECLARE(_OTA_RGB565A8_40x40);
+LV_IMAGE_DECLARE(_power_save_mode_RGB565A8_48x48);
+LV_IMAGE_DECLARE(_MQTT_RGB565A8_48x48);
+
+LV_FONT_DECLARE(lv_font_JetBrainsMono_Medium_40)
+LV_FONT_DECLARE(lv_font_montserratMedium_16)
+LV_FONT_DECLARE(lv_font_siyuanheiti_16)
+LV_FONT_DECLARE(lv_font_JetBrainsMono_Medium_24)
+LV_FONT_DECLARE(lv_font_siyuanheiti_24)
+LV_FONT_DECLARE(lv_font_montserratMedium_12)
+LV_FONT_DECLARE(lv_font_siyuanheiti_14)
+
+
+#ifdef __cplusplus
+}
+#endif
+#endif

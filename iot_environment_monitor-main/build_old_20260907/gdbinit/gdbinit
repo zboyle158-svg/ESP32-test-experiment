@@ -1,0 +1,2 @@
+source J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/gdbinit/symbols
+source J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/gdbinit/connect
