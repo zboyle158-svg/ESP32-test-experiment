@@ -36,21 +36,54 @@ int16_t MapConv::levelMin = 0;
 int16_t MapConv::levelMax = 19;
 bool MapConv::coordTransformEnable = false;
 
+/**
+ * @brief Construct or destroy the MapConv object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 MapConv::MapConv()
 {
     priv.level = 16;
     priv.tileSize = 256;
 }
 
+/**
+ * @brief Change the Level configuration of the object.
+ * @param level Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void MapConv::SetLevel(int level)
 {
     priv.level = constrain(level, levelMin, levelMax);
 }
 
+/**
+ * @brief Read MapTile from the current object state.
+ * @param longitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param latitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param mapTile Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void MapConv::GetMapTile(double longitude, double latitude, MapTile_t* mapTile)
 {
+/**
+ * @brief Own and retain the y state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     int32_t x, y;
+/**
+ * @brief Convert map or coordinate data between the supported representations.
+ * @param longitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param latitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param x Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ConvertMapCoordinate(longitude, latitude, &x, &y);
+/**
+ * @brief Convert map or coordinate data between the supported representations.
+ * @param x Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param mapTile Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ConvertPosToTile(x, y, mapTile);
 }
 
@@ -59,10 +92,23 @@ void MapConv::ConvertMapCoordinate(
     int32_t* mapX, int32_t* mapY
 )
 {
+/**
+ * @brief Own and retain the pixelY state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     int pixelX, pixelY;
 
     if (coordTransformEnable)
     {
+/**
+ * @brief Execute the GPS_Transform operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param latitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param longitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param latitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param longitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         GPS_Transform(latitude, longitude, &latitude, &longitude);
     }
 
@@ -83,6 +129,10 @@ void MapConv::ConvertMapLevelPos(
     int32_t srcX, int32_t srcY, int srcLevel
 )
 {
+/**
+ * @brief Read Level from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     int diffLevel = srcLevel - GetLevel();
     if (diffLevel >= 0)
     {
@@ -96,9 +146,25 @@ void MapConv::ConvertMapLevelPos(
     }
 }
 
+/**
+ * @brief Convert map or coordinate data between the supported representations.
+ * @param x Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param path Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param len Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 int MapConv::ConvertMapPath(int32_t x, int32_t y, char* path, uint32_t len)
 {
+/**
+ * @brief Own and retain the tileX state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     int32_t tileX = x / priv.tileSize;
+/**
+ * @brief Own and retain the tileY state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     int32_t tileY = y / priv.tileSize;
     int ret = snprintf(
                   path, len,
@@ -110,9 +176,19 @@ int MapConv::ConvertMapPath(int32_t x, int32_t y, char* path, uint32_t len)
                   extName
               );
 
+/**
+ * @brief Own and retain the ret state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return ret;
 }
 
+/**
+ * @brief Convert map or coordinate data between the supported representations.
+ * @param x Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param mapTile Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void MapConv::ConvertPosToTile(int32_t x, int32_t y, MapTile_t* mapTile)
 {
     mapTile->tileX = x / priv.tileSize;

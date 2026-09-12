@@ -4,10 +4,14 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+/** @brief AW32001 驱动日志标签。 */
 #define TAG "AW32001"
+/** @brief AW32001 在 I2C 总线上的设备句柄。 */
 static i2c_master_dev_handle_t dev_handle = NULL;
+/** @brief 最近一次读取的电源系统状态，供中断任务和界面读取。 */
 aw32001_sys_status_t pwr_sys_status = {};
 
+/** @brief 将 AW32001 添加到指定 I2C 主总线。 */
 esp_err_t aw32001_init(i2c_master_bus_handle_t bus_handle)
 {
     // 创建I2C设备句柄
@@ -22,6 +26,7 @@ esp_err_t aw32001_init(i2c_master_bus_handle_t bus_handle)
     return ESP_OK;
 }
 
+/** @brief 读取 AW32001 一个 8 位寄存器。 */
 esp_err_t aw32001_read_reg(uint8_t reg_addr, uint8_t *reg_val)
 {
     if (dev_handle == NULL || reg_val == NULL)
@@ -47,6 +52,7 @@ esp_err_t aw32001_read_reg(uint8_t reg_addr, uint8_t *reg_val)
     return ESP_OK;
 }
 
+/** @brief 向 AW32001 一个 8 位寄存器写入数据。 */
 esp_err_t aw32001_write_reg(uint8_t reg_addr, uint8_t reg_val)
 {
     if (dev_handle == NULL)
@@ -69,6 +75,7 @@ esp_err_t aw32001_write_reg(uint8_t reg_addr, uint8_t reg_val)
     return ESP_OK;
 }
 
+/** @brief 清除充电安全定时器配置以关闭看门狗。 */
 esp_err_t aw32001_disable_watchdog()
 {
     uint8_t reg_val;
@@ -109,6 +116,7 @@ esp_err_t aw32001_disable_watchdog()
     }
 }
 
+/** @brief 设置充电电流，范围 8~512 mA，步进 8 mA。 */
 esp_err_t aw32001_set_chg_current(uint16_t chg_current)
 {
     // 检查充电电流范围
@@ -145,6 +153,7 @@ esp_err_t aw32001_set_chg_current(uint16_t chg_current)
     return ESP_OK;
 }
 
+/** @brief 读取充电电流配置，输出单位为 mA。 */
 esp_err_t aw32001_get_chg_current(uint16_t *chg_current)
 {
     if (chg_current == NULL)
@@ -170,6 +179,7 @@ esp_err_t aw32001_get_chg_current(uint16_t *chg_current)
     return ESP_OK;
 }
 
+/** @brief 设置电池满充电压，范围 3.6~4.545 V。 */
 esp_err_t aw32001_set_chg_voltage(float chg_voltage)
 {
     // 检查充电电压范围
@@ -207,6 +217,7 @@ esp_err_t aw32001_set_chg_voltage(float chg_voltage)
     return ESP_OK;
 }
 
+/** @brief 设置放电限流，范围 200~3200 mA，步进 200 mA。 */
 esp_err_t aw32001_set_dischg_current(uint16_t dischg_current)
 {
     // 检查放电电流范围
@@ -240,6 +251,7 @@ esp_err_t aw32001_set_dischg_current(uint16_t dischg_current)
     return ESP_OK;
 }
 
+/** @brief 使能 AW32001 充电功能。 */
 esp_err_t aw32001_enable_charge()
 {
     uint8_t reg_val;
@@ -263,6 +275,7 @@ esp_err_t aw32001_enable_charge()
     return ESP_OK;
 }
 
+/** @brief 禁止 AW32001 充电功能。 */
 esp_err_t aw32001_disable_charge()
 {
     uint8_t reg_val;
@@ -286,6 +299,7 @@ esp_err_t aw32001_disable_charge()
     return ESP_OK;
 }
 
+/** @brief 读取并解析系统状态寄存器。 */
 esp_err_t aw32001_read_sys_status(aw32001_sys_status_t *sys_status)
 {
     if (sys_status == NULL)
@@ -325,6 +339,7 @@ esp_err_t aw32001_read_sys_status(aw32001_sys_status_t *sys_status)
     return ESP_OK;
 }
 
+/** @brief 读取并解析输入、电池、温度等故障状态。 */
 esp_err_t aw32001_read_fault_status(aw32001_fault_status_t *fault_status)
 {
     if (fault_status == NULL)
@@ -362,6 +377,7 @@ esp_err_t aw32001_read_fault_status(aw32001_fault_status_t *fault_status)
     return ESP_OK;
 }
 
+/** @brief 使能 NTC 温度保护输入。 */
 esp_err_t aw32001_enable_ntc()
 {
     uint8_t reg_val;
@@ -385,6 +401,7 @@ esp_err_t aw32001_enable_ntc()
     return ESP_OK;
 }
 
+/** @brief 禁止 NTC 温度保护输入。 */
 esp_err_t aw32001_disable_ntc()
 {
     uint8_t reg_val;
@@ -408,6 +425,7 @@ esp_err_t aw32001_disable_ntc()
     return ESP_OK;
 }
 
+/** @brief 配置芯片进入运输/船运低功耗模式。 */
 esp_err_t aw32001_enter_shipping_mode()
 {
     uint8_t reg_val;
@@ -444,6 +462,7 @@ esp_err_t aw32001_enter_shipping_mode()
     return ESP_OK;
 }
 
+/** @brief 设置系统稳压输出电压，范围 4.2~4.95 V。 */
 esp_err_t aw32001_set_vsys_reg(float sys_reg_voltage)
 {
     // 检查系统电压范围

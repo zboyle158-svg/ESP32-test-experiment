@@ -3,17 +3,23 @@
 #include "stcc4.h"
 #include "sgp4x.h"
 
+/** @brief MQTT 模块日志标签。 */
 #define TAG "MQTT"
 
+/** @brief MQTT 客户端句柄。 */
 esp_mqtt_client_handle_t client = NULL;
+/** @brief MQTT 发布任务句柄。 */
 TaskHandle_t mqtt_publish_task_handle = NULL;
+/** @brief MQTT 停止清理任务句柄。 */
 TaskHandle_t mqtt_stop_task_handle = NULL;
 extern TaskHandle_t update_mqtt_screen_task_handle;
 extern STCC4_t stcc4;
 extern int32_t voc_index;
 
-volatile uint8_t mqtt_status = 0; // 0:未连接 1:已连接 2: 连接失败
+/** @brief MQTT 状态：0 未连接，1 已连接，2 连接失败。 */
+volatile uint8_t mqtt_status = 0;
 
+/** @brief 处理 MQTT 连接、断开、错误及数据事件。 */
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -61,6 +67,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     }
 }
 
+/** @brief 周期读取传感器数据并发布 JSON 格式 MQTT 消息。 */
 void mqtt_publish_data_task(void *args)
 {
     char json_data[128];
@@ -85,6 +92,7 @@ void mqtt_publish_data_task(void *args)
     }
 }
 
+/** @brief 读取 NVS 配置并启动 MQTT 客户端。 */
 void mqtt_start()
 {
     if (client == NULL)
@@ -107,6 +115,7 @@ void mqtt_start()
     }
 }
 
+/** @brief 停止发布任务、断开并销毁 MQTT 客户端。 */
 static void mqtt_stop_task(void *args)
 {
     if (mqtt_publish_task_handle)
@@ -132,12 +141,14 @@ static void mqtt_stop_task(void *args)
     vTaskDeleteWithCaps(NULL);
 }
 
+/** @brief 创建异步 MQTT 清理任务。 */
 void mqtt_stop()
 {
     if (mqtt_stop_task_handle == NULL)
         xTaskCreateWithCaps(mqtt_stop_task, "mqtt_stop_task", 4 * 1024, NULL, 5, &mqtt_stop_task_handle, MALLOC_CAP_SPIRAM);
 }
 
+/** @brief 获取当前 MQTT 状态值。 */
 uint8_t mqtt_get_status()
 {
     return mqtt_status;

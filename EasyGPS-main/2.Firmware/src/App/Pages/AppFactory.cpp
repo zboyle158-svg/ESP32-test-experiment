@@ -51,20 +51,96 @@
  * @note A new page requires both an `APP_CLASS_MATCH` line here and an
  * `Install()` call in App_Init(). Missing either half causes navigation failure.
  */
+/**
+ * @brief Execute the CreatePage operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param name Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 PageBase *AppFactory::CreatePage(const char *name)
 {
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param Template Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(Template);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param Dialplate Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(Dialplate);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param SystemInfos Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(SystemInfos);
     // APP_CLASS_MATCH(Startup);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param Popcat Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(Popcat);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param LaunchOut Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(LaunchOut);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param WaveTable Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(WaveTable);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param Settings Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(Settings);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param SmartAssistant Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(SmartAssistant);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param Compass Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(Compass);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param LiveMap Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(LiveMap);
+/**
+ * @brief Execute the APP_CLASS_MATCH operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param BLEKeyboard Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     APP_CLASS_MATCH(BLEKeyboard);
 
+/**
+ * @brief Own and retain the nullptr state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return nullptr;
 }

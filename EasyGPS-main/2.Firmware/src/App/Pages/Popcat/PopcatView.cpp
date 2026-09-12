@@ -4,6 +4,11 @@
 
 using namespace Page;
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void PopcatView::Create(lv_obj_t *root)
 {
     /* screen layout */
@@ -26,7 +31,15 @@ void PopcatView::Create(lv_obj_t *root)
 
     ui.popcatInfo.imgPopCat = img;
 
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;                       // lv_style_transition_dsc_t用于描述样式过渡的属性。这个数据结构用于定义样式过渡的动画效果，包括过渡的时间、延迟、缓动函数等属性
+/**
+ * @brief Own and retain the prop state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static const lv_style_prop_t prop[] = {LV_STYLE_BG_IMG_SRC}; // lv_style_prop_t枚举类型，用于表示样式的属性。这个枚举类型定义了一系列的样式属性，例如背景颜色、边框宽度、文本颜色等
     lv_style_transition_dsc_init(
         &tran,
@@ -58,6 +71,9 @@ void PopcatView::Create(lv_obj_t *root)
     lv_anim_timeline_add_wrapper(ui.anim_timeline, wrapper);
 }
 
+/**
+ * @brief Delete LVGL objects owned by PopcatView.
+ */
 void PopcatView::Delete()
 {
     if (ui.anim_timeline)
@@ -67,6 +83,11 @@ void PopcatView::Delete()
     }
 }
 
+/**
+ * @brief Execute the AppearAnimStart operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param reverse Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void PopcatView::AppearAnimStart(bool reverse) // 开始开场动画
 {
     lv_anim_timeline_set_reverse(ui.anim_timeline, reverse);

@@ -6,8 +6,14 @@
 #include "time.h"
 #include "wifi.h"
 
+/** @brief NTP 同步任务句柄，用于 IP 获取事件通知立即同步时间。 */
 TaskHandle_t ntp_sync_task_handle = NULL;
 
+/**
+ * @brief 配置中国标准时区并初始化 SNTP 客户端。
+ * @details 使用中国科学院和阿里云公共时间服务器作为主备服务器。
+ * @note 只应初始化一次；重复调用前需先停止已有 SNTP 服务。
+ */
 void ntp_init()
 {
     // 设置时区为中国标准时间
@@ -19,6 +25,11 @@ void ntp_init()
     esp_netif_sntp_init(&config);
 }
 
+/**
+ * @brief NTP 周期同步任务。
+ * @param[in] arg FreeRTOS 任务参数，当前未使用。
+ * @details 任务启动时初始化 SNTP，之后等待 IP 事件通知或最长 30 分钟，再在 Wi-Fi 已连接时等待同步完成。
+ */
 void ntp_sync_task(void *arg)
 {
     ntp_init();

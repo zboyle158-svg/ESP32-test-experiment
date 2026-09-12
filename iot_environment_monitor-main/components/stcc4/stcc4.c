@@ -2,12 +2,16 @@
 #include "esp_log.h"
 #include "sdkconfig.h"
 
+/** @brief STCC4 使用的 I2C 时钟频率。 */
 #define I2C_MASTER_FREQ_HZ CONFIG_I2C_MASTER_FREQUENCY
 
+/** @brief STCC4 驱动日志标签。 */
 #define LOG_TAG "STCC4"
 
+/** @brief STCC4 在 I2C 总线上的设备句柄。 */
 static i2c_master_dev_handle_t stcc4_i2c_dev_handle = NULL;
 
+/** @brief 初始化 STCC4 I2C 设备并注册到主总线。 */
 esp_err_t stcc4_i2c_init(i2c_master_bus_handle_t bus_handle)
 {
     i2c_device_config_t stcc4_i2c_dev_config = {
@@ -22,6 +26,7 @@ esp_err_t stcc4_i2c_init(i2c_master_bus_handle_t bus_handle)
     return ESP_OK;
 }
 
+/** @brief 从 I2C 主总线移除 STCC4 设备。 */
 esp_err_t stcc4_i2c_deinit(i2c_master_bus_handle_t bus_handle)
 {
     ESP_ERROR_CHECK(i2c_master_bus_rm_device(stcc4_i2c_dev_handle));
@@ -31,7 +36,7 @@ esp_err_t stcc4_i2c_deinit(i2c_master_bus_handle_t bus_handle)
     return ESP_OK;
 }
 
-// CRC8 check
+/** @brief 按 STCC4 多项式计算一段数据的 CRC-8。 */
 static uint8_t crcCheck(uint8_t *ptr, uint8_t len)
 {
     uint8_t crc = 0xFF;
@@ -55,6 +60,7 @@ static uint8_t crcCheck(uint8_t *ptr, uint8_t len)
     return crc ^ 0x00; // Final XOR
 }
 
+/** @brief 将 STCC4 原始温度转换为摄氏度。 */
 static float signalTemperature(uint16_t rawTemperature)
 {
     float temperature = 0.0;
@@ -62,6 +68,7 @@ static float signalTemperature(uint16_t rawTemperature)
     return temperature;
 }
 
+/** @brief 将 STCC4 原始湿度转换为相对湿度百分比。 */
 static float signalRelativeHumidity(uint16_t rawRelativeHumidity)
 {
     float relativeHumidity = 0.0;
@@ -69,6 +76,7 @@ static float signalRelativeHumidity(uint16_t rawRelativeHumidity)
     return relativeHumidity;
 }
 
+/** @brief 读取一次测量并转换为 CO2、温度和湿度工程值。 */
 esp_err_t stcc4_read_measurement(int16_t *co2Concentration, float *temperature,
                                  float *relativeHumidity, uint16_t *sensorStatus)
 {
@@ -87,6 +95,7 @@ esp_err_t stcc4_read_measurement(int16_t *co2Concentration, float *temperature,
     return ESP_OK;
 }
 
+/** @brief 启动 STCC4 连续测量模式。 */
 esp_err_t stcc4_start_continuous_measurement()
 {
     uint8_t buf[2] = {0x21, 0x8b};
@@ -97,6 +106,7 @@ esp_err_t stcc4_start_continuous_measurement()
     return ESP_OK;
 }
 
+/** @brief 停止 STCC4 连续测量并等待芯片完成状态切换。 */
 esp_err_t stcc4_stop_continuous_measurement()
 {
     uint8_t buf[2] = {0x3f, 0x86};
@@ -108,6 +118,7 @@ esp_err_t stcc4_stop_continuous_measurement()
     return ESP_OK;
 }
 
+/** @brief 读取 STCC4 原始数据并逐字段校验 CRC。 */
 esp_err_t stcc4_read_measurement_raw(int16_t *co2ConcentrationRaw, uint16_t *temperatureRaw,
                                      uint16_t *relativeHumidityRaw, uint16_t *sensorStatusRaw)
 {
@@ -145,6 +156,7 @@ esp_err_t stcc4_read_measurement_raw(int16_t *co2ConcentrationRaw, uint16_t *tem
     return ESP_OK;
 }
 
+/** @brief 设置气压补偿值，输入单位为 hPa。 */
 esp_err_t stcc4_set_pressure_compensation(uint16_t pressure)
 {
     pressure /= 2;
@@ -157,6 +169,7 @@ esp_err_t stcc4_set_pressure_compensation(uint16_t pressure)
     return ESP_OK;
 }
 
+/** @brief 设置温湿度原始补偿值。 */
 esp_err_t stcc4_set_rht_compensation(uint16_t rawTemperature, uint16_t rawHumidity)
 {
     uint8_t buf[8] = {0xe0, 0x00};
@@ -171,6 +184,7 @@ esp_err_t stcc4_set_rht_compensation(uint16_t rawTemperature, uint16_t rawHumidi
     return ESP_OK;
 }
 
+/** @brief 触发一次单次测量并等待结果准备。 */
 esp_err_t stcc4_measure_single_shot()
 {
     uint8_t buf[2] = {0x21, 0x9D};
@@ -179,6 +193,7 @@ esp_err_t stcc4_measure_single_shot()
     return ESP_OK;
 }
 
+/** @brief 让 STCC4 进入睡眠模式以降低功耗。 */
 esp_err_t stcc4_enter_sleep_mode()
 {
     uint8_t buf[2] = {0x36, 0x50};
@@ -190,6 +205,7 @@ esp_err_t stcc4_enter_sleep_mode()
     return ESP_OK;
 }
 
+/** @brief 唤醒处于睡眠状态的 STCC4。 */
 esp_err_t stcc4_exit_sleep_mode()
 {
     uint8_t buf[2] = {0x00, 0x00};
@@ -208,6 +224,7 @@ esp_err_t stcc4_exit_sleep_mode()
     return ESP_OK;
 }
 
+/** @brief 执行传感器调理流程，首次使用或长期停机后调用。 */
 esp_err_t stcc4_perform_conditioning()
 {
     uint8_t buf[2] = {0x29, 0xBC};
@@ -219,6 +236,7 @@ esp_err_t stcc4_perform_conditioning()
     return ESP_OK;
 }
 
+/** @brief 执行工厂复位并返回复位结果码。 */
 esp_err_t stcc4_perform_factory_reset(uint16_t *factoryResetResult)
 {
     uint8_t buf[2] = {0x36, 0x32};
@@ -230,6 +248,7 @@ esp_err_t stcc4_perform_factory_reset(uint16_t *factoryResetResult)
     return ESP_OK;
 }
 
+/** @brief 执行 STCC4 自检并返回自检结果。 */
 esp_err_t stcc4_perform_self_test(uint16_t *testResult)
 {
     uint8_t buf[2] = {0x27, 0x8c};
@@ -249,6 +268,7 @@ esp_err_t stcc4_perform_self_test(uint16_t *testResult)
     return ESP_OK;
 }
 
+/** @brief 进入 STCC4 测试模式。 */
 esp_err_t stcc4_enable_testing_mode()
 {
     uint8_t buf[2] = {0x3F, 0xBC};
@@ -259,6 +279,7 @@ esp_err_t stcc4_enable_testing_mode()
     return ESP_OK;
 }
 
+/** @brief 退出 STCC4 测试模式。 */
 esp_err_t stcc4_disable_testing_mode()
 {
     uint8_t buf[2] = {0x3F, 0x3D};
@@ -269,6 +290,7 @@ esp_err_t stcc4_disable_testing_mode()
     return ESP_OK;
 }
 
+/** @brief 按目标 CO2 浓度执行强制重新校准。 */
 esp_err_t stcc4_perform_forced_recalibration(int16_t targetCO2Concentration, int16_t *frcCorrection)
 {
     uint8_t buf[5] = {0x36, 0x2F};
@@ -290,6 +312,7 @@ esp_err_t stcc4_perform_forced_recalibration(int16_t targetCO2Concentration, int
     return ESP_OK;
 }
 
+/** @brief 读取 STCC4 产品 ID 和 64 位序列号。 */
 esp_err_t stcc4_get_product_id(uint32_t *productId, uint64_t *serialNumber)
 {
     uint8_t buf[2] = {0x36, 0x5b};

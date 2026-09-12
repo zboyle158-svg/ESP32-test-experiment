@@ -6,14 +6,21 @@
 #include "esp_log.h"
 #include <stdio.h>
 
+/** @brief 状态栏时间文本控件。 */
 static lv_obj_t *time_label;
+/** @brief Wi-Fi 状态图标控件。 */
 static lv_obj_t *wifi_icon;
+/** @brief 电池图标控件。 */
 static lv_obj_t *battery_icon;
+/** @brief 电池百分比文本控件。 */
 static lv_obj_t *battery_level_label;
+/** @brief 充电状态图标控件。 */
 static lv_obj_t *charge_status_icon;
+/** @brief 系统层状态栏根对象。 */
 lv_obj_t *status_bar;
 extern _lock_t lvgl_api_lock;
 
+/** @brief 显示状态栏；need_api_lock 指示是否由函数内部获取 LVGL 锁。 */
 void status_bar_show(bool need_api_lock)
 {
     if (status_bar && need_api_lock == false)
@@ -28,6 +35,7 @@ void status_bar_show(bool need_api_lock)
     }
 }
 
+/** @brief 隐藏状态栏；need_api_lock 指示是否由函数内部获取 LVGL 锁。 */
 void status_bar_hide(bool need_api_lock)
 {
     if (status_bar && need_api_lock == false)
@@ -42,6 +50,7 @@ void status_bar_hide(bool need_api_lock)
     }
 }
 
+/** @brief 创建状态栏及其时间、网络、电池和充电控件。 */
 void status_bar_create()
 {
     _lock_acquire(&lvgl_api_lock);
@@ -90,6 +99,7 @@ void status_bar_create()
     _lock_release(&lvgl_api_lock);
 }
 
+/** @brief 设置时间文本。 @param[in] time_str 已格式化的时间字符串。 */
 void status_bar_set_time(const char *time_str)
 {
     if (time_label)
@@ -100,6 +110,7 @@ void status_bar_set_time(const char *time_str)
     }
 }
 
+/** @brief 设置 Wi-Fi 图标。 @param[in] connected true 表示已连接。 */
 void status_bar_set_wifi_state(bool connected)
 {
     if (wifi_icon)
@@ -118,6 +129,7 @@ void status_bar_set_wifi_state(bool connected)
     }
 }
 
+/** @brief 设置电池百分比和图标。 @param[in] level 电量百分比，单位为 %。 */
 void status_bar_set_battery_level(float level)
 {
     if (battery_icon && battery_level_label)
@@ -151,6 +163,7 @@ void status_bar_set_battery_level(float level)
     }
 }
 
+/** @brief 设置充电图标。 @param[in] charging true 表示正在充电。 */
 void status_bar_set_charge_state(bool charging)
 {
     if (charge_status_icon)

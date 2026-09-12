@@ -13,6 +13,7 @@ extern int32_t voc_index;
  * window, twelve minute summaries form the hour window, and twenty-four hour
  * summaries form the day window. LVGL is notified after the cache changes.
  */
+/** @brief 每 $5\text{ s}$ 触发传感器采样，并维护分钟/小时/天历史数据窗口。 */
 void get_data_task(void *arg)
 {
     uint16_t cnt = 0;

@@ -83,6 +83,10 @@ void lv_obj_add_anim(
     lv_anim_ready_cb_t ready_cb,
     lv_anim_path_cb_t path_cb)
 {
+/**
+ * @brief Own and retain the anim_temp state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_anim_t anim_temp;
 
     if (a == NULL)
@@ -142,8 +146,16 @@ lv_indev_t *lv_get_indev(lv_indev_type_t type)
 
         if (cur_indev->driver->type == type)
         {
+/**
+ * @brief Own and retain the cur_indev state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
             return cur_indev;
         }
     }
+/**
+ * @brief Own and retain the NULL state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return NULL;
 }

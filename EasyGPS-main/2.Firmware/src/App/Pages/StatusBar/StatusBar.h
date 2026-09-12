@@ -28,6 +28,12 @@
 namespace Page
 {
 
+/**
+ * @brief Create and register the LVGL objects owned by StatusBar_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t* StatusBar_Create(lv_obj_t* par);
 
 }

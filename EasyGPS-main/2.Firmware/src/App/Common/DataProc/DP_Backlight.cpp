@@ -2,10 +2,21 @@
 #include "../HAL/HAL.h"
 #include "App/Config/Config.h"
 
+/**
+ * @brief Process the periodic timer or FreeRTOS task callback.
+ * @param account Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void onTimer(Account *account)
 {
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param account Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param param Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 static int onEvent(Account *account, Account::EventParam_t *param)
 {
 
@@ -37,6 +48,12 @@ static int onEvent(Account *account, Account::EventParam_t *param)
     {
         uint16_t *info = (uint16_t *)param->data_p;
 
+/**
+ * @brief Execute the Backlight_SetValue operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param info Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         HAL::Backlight_SetValue(constrain(*info, 10, 255)); // 限制最低亮度为10，不要完全黑屏
 
         printf("[DP] BacklightNOTOFIY\r\n");
@@ -45,6 +62,12 @@ static int onEvent(Account *account, Account::EventParam_t *param)
     return Account::RES_OK;
 }
 
+/**
+ * @brief Execute the DATA_PROC_INIT_DEF operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param Backlight Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 DATA_PROC_INIT_DEF(Backlight)
 {
     account->SetEventCallback(onEvent);

@@ -2,8 +2,17 @@
 
 using namespace Page;
 
+/**
+ * @brief Initialize CompassModel state and hardware or data resources.
+ */
 void CompassModel::Init()
 {
+/**
+ * @brief Execute the Account operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param this Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     account = new Account("CompassModel", DataProc::Center(), 0, this); // 创建一个账户，注意这里把this传给了userdata
 
     account->Subscribe("StatusBar");
@@ -12,10 +21,17 @@ void CompassModel::Init()
     account->SetEventCallback(onEvent); // 设置回调函数，好忙啊
 }
 
+/**
+ * @brief Release or reset resources managed by CompassModel.
+ */
 void CompassModel::Deinit() // 恢复缺省
 {
     if (account)
     {
+/**
+ * @brief Own and retain the account state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         delete account; // 删除类
         account = nullptr;
     }
@@ -28,6 +44,10 @@ void CompassModel::GetMAGInfo(
     int *z,
     bool *isCalibrated)
 {
+/**
+ * @brief Own and retain the mag state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     HAL::MAG_Info_t mag = {0};
 
     account->Pull("MAG", &mag, sizeof(mag));
@@ -39,8 +59,15 @@ void CompassModel::GetMAGInfo(
     *isCalibrated = mag.isCalibrated;
 }
 
+/**
+ * @brief Change the MAGCalibration configuration of the object.
+ */
 void CompassModel::SetMAGCalibration(void) 
 {
+/**
+ * @brief Own and retain the mag state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     HAL::MAG_Info_t mag = {0};
 
     mag.isCalibrated = true;
@@ -48,6 +75,13 @@ void CompassModel::SetMAGCalibration(void)
     account->Notify("MAG", &mag, sizeof(mag));
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param account Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param param Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 int CompassModel::onEvent(Account *account, Account::EventParam_t *param)
 {
     if (param->event != Account::EVENT_PUB_PUBLISH) // 如果发行人/出版社没有发布数据
@@ -65,9 +99,23 @@ int CompassModel::onEvent(Account *account, Account::EventParam_t *param)
     return Account::RES_OK;
 }
 
+/**
+ * @brief Change the StatusBarStyle configuration of the object.
+ * @param style Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void CompassModel::SetStatusBarStyle(DataProc::StatusBar_Style_t style)
 {
+/**
+ * @brief Own and retain the info state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     DataProc::StatusBar_Info_t info;
+/**
+ * @brief Execute the DATA_PROC_INIT_STRUCT operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param info Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     DATA_PROC_INIT_STRUCT(info);
 
     info.cmd = DataProc::STATUS_BAR_CMD_SET_STYLE;

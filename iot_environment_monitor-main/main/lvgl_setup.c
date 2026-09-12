@@ -1,21 +1,37 @@
 #include "lvgl_setup.h"
 
+/** @brief LVGL 模块日志标签。 */
 #define TAG "lvgl_setup"
 
+/** @brief RGB565 每个像素占用的字节数。 */
 #define PIXEL_SIZE 2
+/** @brief 当前显示面板使用的 LVGL 颜色格式。 */
 #define LV_COLOR_FORMAT LV_COLOR_FORMAT_RGB565
-#define LVGL_DRAW_BUF_LINES 50 // number of display lines in each draw buffer
+/** @brief 非帧缓冲模式下单个绘图缓冲区包含的行数。 */
+#define LVGL_DRAW_BUF_LINES 50
+/** @brief LVGL 系统节拍定时器周期，单位为毫秒。 */
 #define LVGL_TICK_PERIOD_MS 1
+/** @brief LVGL 服务任务栈大小，单位为字节。 */
 #define LVGL_TASK_STACK_SIZE (16 * 1024)
+/** @brief LVGL 服务任务优先级。 */
 #define LVGL_TASK_PRIORITY 2
 
 // LVGL library is not thread-safe, this example will call LVGL APIs from different tasks, so use a mutex to protect it
+/** @brief 保护 LVGL API 的递归锁；所有任务访问界面对象前必须持有该锁。 */
 _lock_t lvgl_api_lock;
 
+/** @brief LVGL 显示对象句柄，初始化后由界面和刷新回调共享。 */
 lv_display_t *display = NULL;
+/** @brief SquareLine 生成的界面对象集合。 */
 extern i2c_master_bus_handle_t bus_handle;
 lv_ui guider_ui;
 
+/**
+ * @brief 从 GT911 读取一次触摸坐标并转换为 LVGL 输入状态。
+ * @param[in] indev LVGL 输入设备对象。
+ * @param[out] data 本次采样得到的坐标和按键状态。
+ * @note 由 LVGL 输入设备线程调用，不应在中断服务函数中直接调用。
+ */
 static void lvgl_touch_cb(lv_indev_t *indev, lv_indev_data_t *data)
 {
     uint16_t touchpad_x[1] = {0};
@@ -39,6 +55,13 @@ static void lvgl_touch_cb(lv_indev_t *indev, lv_indev_data_t *data)
     }
 }
 
+/**
+ * @brief RGB LCD VSYNC 到来时通知 LVGL 当前帧已经可以继续提交。
+ * @param[in] panel LCD 面板句柄（由驱动提供）。
+ * @param[in] event_data VSYNC 事件数据，当前实现不使用。
+ * @param[in] user_ctx LVGL 显示对象指针。
+ * @return false 表示不要求高优先级任务切换。
+ */
 static bool notify_lvgl_flush_ready(esp_lcd_panel_handle_t panel, const esp_lcd_rgb_panel_event_data_t *event_data, void *user_ctx)
 {
     lv_display_t *disp = (lv_display_t *)user_ctx;
@@ -46,6 +69,13 @@ static bool notify_lvgl_flush_ready(esp_lcd_panel_handle_t panel, const esp_lcd_
     return false;
 }
 
+/**
+ * @brief 将 LVGL 渲染出的像素区域提交给 RGB LCD 驱动。
+ * @param[in] disp LVGL 显示对象。
+ * @param[in] area 待刷新的矩形区域，坐标包含边界。
+ * @param[in] px_map RGB565 像素缓冲区。
+ * @note 该回调可能在 LVGL 任务中执行，不能在此处阻塞等待应用任务。
+ */
 static void lvgl_flush_cb(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
 {
     esp_lcd_panel_handle_t panel_handle = lv_display_get_user_data(disp);
@@ -57,12 +87,21 @@ static void lvgl_flush_cb(lv_display_t *disp, const lv_area_t *area, uint8_t *px
     esp_lcd_panel_draw_bitmap(panel_handle, offsetx1, offsety1, offsetx2 + 1, offsety2 + 1, px_map);
 }
 
+/**
+ * @brief 周期性增加 LVGL 内部时基。
+ * @param[in] arg esp_timer 回调参数，当前未使用。
+ */
 static void increase_lvgl_tick(void *arg)
 {
     /* Tell LVGL how many milliseconds has elapsed */
     lv_tick_inc(LVGL_TICK_PERIOD_MS);
 }
 
+/**
+ * @brief LVGL 后台服务任务，负责执行定时器和动画处理。
+ * @param[in] arg FreeRTOS 任务参数，当前未使用。
+ * @note 任务独占 LVGL 锁后调用 lv_timer_handler，每 10 ms 调度一次。
+ */
 static void lvgl_port_task(void *arg)
 {
     ESP_LOGI(TAG, "Starting LVGL task");
@@ -75,6 +114,11 @@ static void lvgl_port_task(void *arg)
     }
 }
 
+/**
+ * @brief 初始化 LVGL、显示缓冲区、VSYNC 回调和 LVGL 服务任务。
+ * @details 创建 RGB565 显示对象，并将 ESP LCD 面板绑定为 LVGL 的刷新后端；最后加载生成的 UI。
+ * @note 必须在 rgb_lcd_init() 完成且 panel_handle 有效后调用。
+ */
 void lvgl_init(void)
 {
     ESP_LOGI(TAG, "Initialize LVGL library");
@@ -133,6 +177,11 @@ void lvgl_init(void)
     _lock_release(&lvgl_api_lock);
 }
 
+/**
+ * @brief 初始化 GT911 触摸控制器并注册为 LVGL 指针输入设备。
+ * @details 触摸控制器通过公共 I2C 总线访问，坐标范围与 LCD 分辨率一致。
+ * @note 必须在 lvgl_init() 和 I2C 总线初始化后调用。
+ */
 void lvgl_touch_init()
 {
     ESP_LOGI(TAG, "Initialize GT911 touch panel");

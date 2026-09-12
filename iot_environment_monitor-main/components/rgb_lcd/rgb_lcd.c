@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include "rgb_lcd.h"
 
+/** @brief RGB LCD 模块日志标签。 */
 #define TAG "rgb_lcd"
 
+/** @brief RGB LCD 面板句柄。 */
 esp_lcd_panel_handle_t panel_handle = NULL;
+/** @brief LCD 像素时钟恢复任务句柄。 */
 TaskHandle_t rgb_lcd_restart_panel_task_handle = NULL;
 
+/** @brief 设置 LCD 像素时钟频率，单位 Hz。 */
 void rgb_lcd_set_pclk(uint32_t pclk_hz)
 {
     if (panel_handle)
@@ -14,6 +18,7 @@ void rgb_lcd_set_pclk(uint32_t pclk_hz)
     }
 }
 
+/** @brief 响应通知并恢复 LCD 正常像素时钟。 */
 static void rgb_lcd_restart_panel_task(void *args)
 {
     while (1)
@@ -27,6 +32,7 @@ static void rgb_lcd_restart_panel_task(void *args)
     }
 }
 
+/** @brief 配置 RGB 数据线、时序和帧缓冲并初始化 LCD。 */
 void rgb_lcd_init(void)
 {
     ESP_LOGI(TAG, "Install RGB LCD panel driver");

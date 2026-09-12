@@ -16,6 +16,7 @@ extern i2c_master_bus_handle_t bus_handle;
  * The task waits for a notification from the data aggregator, performs one
  * compensated measurement, and publishes the result through voc_index.
  */
+/** @brief SGP4x 采样任务：等待通知、读取原始 VOC 信号并计算 VOC 指数。 */
 void sgp4x_task(void *arg)
 {
     sgp4x_config_t sgp4x_cfg = I2C_SGP40_CONFIG_DEFAULT;

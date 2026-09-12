@@ -4,20 +4,88 @@
 
 using namespace Page;
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void WaveTableView::Create(lv_obj_t *root)
 {
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnCont_Create(root);
 
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnA Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnA, "SystemInfos", ResourcePool::GetImage("start"));
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnB Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_DRIVE Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnB, "Dialplate", LV_SYMBOL_DRIVE);
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnC Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_SETTINGS Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnC, "Settings", LV_SYMBOL_SETTINGS);
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnG Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_BLUETOOTH Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnG, "BLEKeyboard", LV_SYMBOL_BLUETOOTH);
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnD Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnD, "Popcat", ResourcePool::GetImage("menu"));
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnE Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_BELL Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnE, "SmartAssistant", LV_SYMBOL_BELL);
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnF Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_AUDIO Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Btn_Create(ui.cont, &ui.btnF, "Compass", LV_SYMBOL_AUDIO);
 
 }
 
+/**
+ * @brief Delete LVGL objects owned by WaveTableView.
+ */
 void WaveTableView::Delete()
 {
     // if (ui.anim_timeline)
@@ -27,12 +95,22 @@ void WaveTableView::Delete()
     // }
 }
 
+/**
+ * @brief Execute the AppearAnimStart operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param reverse Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void WaveTableView::AppearAnimStart(bool reverse) // 开始开场动画
 {
     // lv_anim_timeline_set_reverse(ui.anim_timeline, reverse);
     // lv_anim_timeline_start(ui.anim_timeline);
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void WaveTableView::BtnCont_Create(lv_obj_t *par) // 按钮容器画布的创建
 {
     lv_obj_t *cont = lv_obj_create(par);
@@ -53,6 +131,14 @@ void WaveTableView::BtnCont_Create(lv_obj_t *par) // 按钮容器画布的创建
     ui.cont = cont;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param name Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param img_src Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void WaveTableView::Btn_Create(lv_obj_t *par, btnCont *cont, const char *name, const void *img_src)
 {
     // btn
@@ -90,7 +176,15 @@ void WaveTableView::Btn_Create(lv_obj_t *par, btnCont *cont, const char *name, c
     lv_obj_align_to(label, img, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
 
     // anim
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;                                                      // lv_style_transition_dsc_t用于描述样式过渡的属性。这个数据结构用于定义样式过渡的动画效果，包括过渡的时间、延迟、缓动函数等属性
+/**
+ * @brief Own and retain the prop state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static const lv_style_prop_t prop[] = {LV_STYLE_WIDTH, LV_STYLE_HEIGHT, LV_STYLE_PROP_INV}; // lv_style_prop_t枚举类型，用于表示样式的属性。这个枚举类型定义了一系列的样式属性，例如背景颜色、边框宽度、文本颜色等
     lv_style_transition_dsc_init(
         &tran,

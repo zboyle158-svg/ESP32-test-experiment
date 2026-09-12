@@ -19,19 +19,23 @@
 #include "rgb_lcd.h"
 #include "nvs_helper.h"
 
-#define OTA_WRITE_BUFFSIZE 4096
+#define OTA_WRITE_BUFFSIZE 4096 /**< @brief OTA 固件下载写缓冲区大小，单位字节。 */
+/** @brief OTA 固件数据临时缓冲区。 */
 static char* ota_write_data = NULL;
+/** @brief OTA 模块日志标签。 */
 static const char *TAG = "ota";
 static volatile double ota_download_progress = 0; // OTA下载进度
 volatile uint8_t ota_status = OTA_STATUS_IDLE; // OTA状态
 /*an ota data write buffer ready to write to the flash*/
 
+/** @brief 关闭并释放 HTTP 客户端。 */
 static void http_cleanup(esp_http_client_handle_t client)
 {
     esp_http_client_close(client);
     esp_http_client_cleanup(client);
 }
 
+/** @brief 清理 OTA 资源并标记失败。 */
 static void delete_ota_task()
 {
     ota_download_progress = 0;
@@ -45,6 +49,7 @@ static void delete_ota_task()
     vTaskDelete(NULL);
 }
 
+/** @brief 下载、校验并安装 OTA 固件。 */
 static void ota_task(void *pvParameter)
 {
     ota_write_data = malloc(OTA_WRITE_BUFFSIZE + 1);
@@ -236,6 +241,7 @@ static void ota_task(void *pvParameter)
 
 #define MAX_HTTP_RECV_BUFFER 1024
 
+/** @brief 请求 OTA 版本信息并判断是否有新版本。 */
 static void get_ota_info_task(void *args)
 {
     ota_status = OTA_STATUS_CHECKING_UPDATE;
@@ -314,16 +320,19 @@ static void get_ota_info_task(void *args)
     vTaskDelete(NULL);
 }
 
+/** @brief 创建 OTA 固件下载任务。 */
 void ota_start(void)
 {
     xTaskCreate(&ota_task, "ota_task", 16384, NULL, 5, NULL);
 }
 
+/** @brief 创建 OTA 版本检查任务。 */
 void ota_check_for_update(void)
 {
     xTaskCreate(&get_ota_info_task, "get_ota_info_task", 8192, NULL, 5, NULL);
 }
 
+/** @brief 获取当前运行固件版本字符串。 */
 void ota_get_current_version(char ota_version[])
 {
     const esp_partition_t *running = esp_ota_get_running_partition();
@@ -335,6 +344,7 @@ void ota_get_current_version(char ota_version[])
     }
 }
 
+/** @brief 返回 OTA 下载进度百分比。 */
 double ota_get_download_progress(void)
 {
     return ota_download_progress;

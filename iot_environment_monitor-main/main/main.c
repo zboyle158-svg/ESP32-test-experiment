@@ -38,6 +38,7 @@ i2c_master_bus_handle_t bus_handle;
  * @param[out] bus_handle Receives the created bus handle.
  * @return ESP_OK on success; ESP-IDF error code otherwise.
  */
+/** @brief 创建所有 I2C 设备共享的主机总线。 @param[out] bus_handle 输出总线句柄。 */
 static esp_err_t i2c_master_init(i2c_master_bus_handle_t *bus_handle)
 {
 
@@ -59,6 +60,7 @@ static esp_err_t i2c_master_init(i2c_master_bus_handle_t *bus_handle)
  * Initializes hardware in dependency order: backlight, I2C, LCD/LVGL,
  * power management, Wi-Fi, and finally the sensor/UI FreeRTOS tasks.
  */
+/** @brief ESP-IDF 应用入口，按硬件依赖顺序初始化系统并创建所有任务。 */
 void app_main(void)
 {
     // 初始化背光

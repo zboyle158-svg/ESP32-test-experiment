@@ -4,12 +4,14 @@
 #include "nvs_helper.h"
 
 // 位置信息字段
+/** @brief 天气 API 返回的省份和城市信息。 */
 typedef struct {
     char *province;        // 省份
     char *city;            // 城市
 } location_info_t;
 
 // 天气信息结构体
+/** @brief 当前天气完整数据，字符串成员由 weather_get 分配并由 weather_info_free 释放。 */
 typedef struct {
     char* weather;          // 天气现象
     float temperature;      // 温度
@@ -41,6 +43,7 @@ extern weather_info_t *weather_info;
  * @param config    配置信息
  * @return weather_info_t*
  */
+/** @brief 请求并解析天气数据。 @param config API 配置。 @return 成功时返回堆内存结构体。 */
 weather_info_t* weather_get(weather_config_t *config);
 
 /**
@@ -48,6 +51,7 @@ weather_info_t* weather_get(weather_config_t *config);
  * 
  * @param info  天气信息 weather_info_t*
  */
+/** @brief 将天气结构体内容输出到日志。 @param info 待读取的天气结构体。 */
 void weather_print_info(const weather_info_t *info);
 
 /**
@@ -55,6 +59,7 @@ void weather_print_info(const weather_info_t *info);
  * 
  * @param location_info  位置信息 location_info_t*
  */
+/** @brief 释放位置结构体及其字符串成员。 @param location_info 待释放指针。 */
 void location_info_free(location_info_t *location_info);
 
 /**
@@ -62,5 +67,5 @@ void location_info_free(location_info_t *location_info);
  * 
  * @param info  天气信息 weather_info_t*
  */
+/** @brief 释放天气结构体及其嵌套成员。 @param info 待释放指针。 */
 void weather_info_free(weather_info_t *info);
-

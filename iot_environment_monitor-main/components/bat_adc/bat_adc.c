@@ -12,6 +12,7 @@
 #define RESISTOR_LOWER (110)
 
 adc_battery_estimation_handle_t adc_battery_estimation_handle = NULL;
+/** @brief 初始化 ADC 电池容量估算器和电阻分压参数。 */
 void bat_adc_init()
 {
     adc_battery_estimation_t config = {
@@ -27,6 +28,7 @@ void bat_adc_init()
     adc_battery_estimation_handle = adc_battery_estimation_create(&config);
 }
 
+/** @brief 读取校准后的电池容量百分比。 @param[out] bat_level 输出容量指针。 */
 void bat_adc_get_battery_level(float *bat_level)
 {
     if (adc_battery_estimation_handle == NULL) {

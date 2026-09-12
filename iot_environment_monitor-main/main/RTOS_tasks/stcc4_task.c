@@ -16,6 +16,7 @@ STCC4_t stcc4 = {0};
  * Sensor access is notification-driven so the I2C bus is used only when a
  * new data point is required by the data aggregation task.
  */
+/** @brief STCC4 采样任务：等待通知并更新 CO2、温度和湿度共享数据。 */
 void stcc4_task(void *arg)
 {
     if (i2c_master_probe(bus_handle, STCC4_I2C_ADDR_64, 1000) == ESP_OK)

@@ -15,6 +15,7 @@ extern _lock_t lvgl_api_lock;
  * Network requests are kept in this task instead of the LVGL thread so a
  * slow or unavailable network cannot block display rendering.
  */
+/** @brief 天气任务：联网请求天气数据并在持有 LVGL 锁时刷新天气页面。 */
 void weather_task(void *arg)
 {
     char temp_str[8];

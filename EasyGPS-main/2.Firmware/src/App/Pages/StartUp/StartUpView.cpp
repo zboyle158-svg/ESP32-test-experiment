@@ -5,6 +5,11 @@ using namespace Page;
 
 #define COLOR_ORANGE    lv_color_hex(0xff931e)
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void StartupView::Create(lv_obj_t* root)
 {
     lv_obj_t* cont = lv_obj_create(root);
@@ -40,6 +45,9 @@ void StartupView::Create(lv_obj_t* root)
     lv_anim_timeline_add_wrapper(ui.anim_timeline, wrapper);
 }
 
+/**
+ * @brief Delete LVGL objects owned by StartUpView.
+ */
 void StartupView::Delete()
 {
     if(ui.anim_timeline)

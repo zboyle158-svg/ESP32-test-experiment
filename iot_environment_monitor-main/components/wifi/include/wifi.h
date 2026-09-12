@@ -5,6 +5,7 @@
 /** @file wifi.h @brief Wi-Fi STA 模式管理和扫描接口。 */
 
 /** @brief 用户输入的 Wi-Fi 凭据，字段长度与 ESP-IDF STA 配置兼容。 */
+/** @brief Wi-Fi STA 凭据，长度匹配 ESP-IDF 配置字段。 */
 typedef struct
 {
     uint8_t ssid[32];
@@ -12,6 +13,7 @@ typedef struct
 } user_wifi_cfg;
 
 /** @brief 以字符串形式保存 IPv4 地址、掩码和网关。 */
+/** @brief IPv4 地址、掩码和网关的字符串表示。 */
 typedef struct 
 {
     char ip[16];
@@ -21,6 +23,7 @@ typedef struct
 
 
 /** @brief Wi-Fi 连接状态机状态。 */
+/** @brief Wi-Fi STA 生命周期状态。 */
 enum WIFISTATUS{
     WIFI_DISCONNECTED,
     WIFI_CONNECTING,

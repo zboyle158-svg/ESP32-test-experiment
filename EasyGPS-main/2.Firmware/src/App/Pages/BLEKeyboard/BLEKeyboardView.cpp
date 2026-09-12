@@ -4,6 +4,11 @@
 
 using namespace Page;
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboardView::Create(lv_obj_t *root)
 {
     lv_obj_t *cont = lv_obj_create(root);
@@ -21,35 +26,216 @@ void BLEKeyboardView::Create(lv_obj_t *root)
     // lv_obj_clear_flag(cont, LV_OBJ_FLAG_SCROLLABLE);
     ui.cont = cont;
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param xb9aacc Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.musicCtrlCont.cont = BtnCont_Create(ui.cont, 0xb9aacc);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnPrevTrack Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_PREV Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnPrevTrack, "Prev", LV_SYMBOL_PREV);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnPause Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_PAUSE Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnPause, "Pause", LV_SYMBOL_PAUSE);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnNextTrack Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_NEXT Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnNextTrack, "Next", LV_SYMBOL_NEXT);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnVolumeDown Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_VOLUME_MID Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnVolumeDown, "Vol<", LV_SYMBOL_VOLUME_MID);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnMute Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_MUTE Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnMute, "Mute", LV_SYMBOL_MUTE);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnVolumeUp Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_VOLUME_MAX Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnVolumeUp, "Vol>", LV_SYMBOL_VOLUME_MAX);
     // BtnKeyboard_Create(ui.musicCtrlCont.cont, &ui.musicCtrlCont.btnVolumeDown, "Vol<", ResourcePool::GetImage("start"));
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param xf4a460 Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.directionCtrlCont.cont = BtnCont_Create(ui.cont, 0xf4a460);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnCopy Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_COPY Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.directionCtrlCont.cont, &ui.directionCtrlCont.btnCopy, "Copy", LV_SYMBOL_COPY);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnDirUp Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_UP Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.directionCtrlCont.cont, &ui.directionCtrlCont.btnDirUp, "Up", LV_SYMBOL_UP);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnCut Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_CUT Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.directionCtrlCont.cont, &ui.directionCtrlCont.btnCut, "Cut", LV_SYMBOL_CUT);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnPaste Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_PASTE Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.directionCtrlCont.cont, &ui.directionCtrlCont.btnPaste, "Paste", LV_SYMBOL_PASTE);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnDirDown Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_DOWN Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.directionCtrlCont.cont, &ui.directionCtrlCont.btnDirDown, "Down", LV_SYMBOL_DOWN);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnWithdraw Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_LOOP Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.directionCtrlCont.cont, &ui.directionCtrlCont.btnWithdraw, "Back", LV_SYMBOL_LOOP);
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param xcfdcae Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.mouseMoveCtrlCont.cont = BtnCont_Create(ui.cont, 0xcfdcae);
+/**
+ * @brief Create and register the LVGL objects owned by MouseCircle_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.mouseMoveCtrlCont.btnMouse = MouseCircle_Create(ui.mouseMoveCtrlCont.cont);
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param xcfdcae Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.mouseClickCtrlCont.cont = BtnCont_Create(ui.cont, 0xcfdcae);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnBack Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_PREV Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.mouseClickCtrlCont.cont, &ui.mouseClickCtrlCont.btnBack, "Back", LV_SYMBOL_PREV);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnPageUp Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_UP Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.mouseClickCtrlCont.cont, &ui.mouseClickCtrlCont.btnPageUp, "Up", LV_SYMBOL_UP);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnForward Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_NEXT Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.mouseClickCtrlCont.cont, &ui.mouseClickCtrlCont.btnForward, "Forward", LV_SYMBOL_NEXT);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnLeft Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_LEFT Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.mouseClickCtrlCont.cont, &ui.mouseClickCtrlCont.btnLeft, "Left", LV_SYMBOL_LEFT);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnPageDown Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_DOWN Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.mouseClickCtrlCont.cont, &ui.mouseClickCtrlCont.btnPageDown, "Down", LV_SYMBOL_DOWN);
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param btnRight Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_RIGHT Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnKeyboard_Create(ui.mouseClickCtrlCont.cont, &ui.mouseClickCtrlCont.btnRight, "Right", LV_SYMBOL_RIGHT);
 }
 
+/**
+ * @brief Delete LVGL objects owned by BLEKeyboardView.
+ */
 void BLEKeyboardView::Delete()
 {
     if (ui.anim_timeline)
@@ -59,6 +245,11 @@ void BLEKeyboardView::Delete()
     }
 }
 
+/**
+ * @brief Execute the AppearAnimStart operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param reverse Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboardView::AppearAnimStart(bool reverse) // 开始开场动画
 {
     lv_anim_timeline_set_reverse(ui.anim_timeline, reverse);
@@ -66,6 +257,13 @@ void BLEKeyboardView::AppearAnimStart(bool reverse) // 开始开场动画
 }
 
 // 按钮容器画布的创建
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param c Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *BLEKeyboardView::BtnCont_Create(lv_obj_t *par, uint32_t c)
 {
     lv_obj_t *cont = lv_obj_create(par);
@@ -86,9 +284,21 @@ lv_obj_t *BLEKeyboardView::BtnCont_Create(lv_obj_t *par, uint32_t c)
         LV_FLEX_ALIGN_CENTER,
         LV_FLEX_ALIGN_CENTER);
 
+/**
+ * @brief Own and retain the cont state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return cont;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnKeyboard_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param name Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param img_src Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboardView::BtnKeyboard_Create(lv_obj_t *par, btnCont *cont, const char *name, const void *img_src)
 {
     // btn
@@ -119,7 +329,15 @@ void BLEKeyboardView::BtnKeyboard_Create(lv_obj_t *par, btnCont *cont, const cha
     lv_obj_set_style_text_color(label, lv_color_hex(0xaeac9d), LV_PART_MAIN);
 
     // anim
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;                                                      // lv_style_transition_dsc_t用于描述样式过渡的属性。这个数据结构用于定义样式过渡的动画效果，包括过渡的时间、延迟、缓动函数等属性
+/**
+ * @brief Own and retain the prop state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static const lv_style_prop_t prop[] = {LV_STYLE_WIDTH, LV_STYLE_HEIGHT, LV_STYLE_PROP_INV}; // lv_style_prop_t枚举类型，用于表示样式的属性。这个枚举类型定义了一系列的样式属性，例如背景颜色、边框宽度、文本颜色等
     lv_style_transition_dsc_init(
         &tran,
@@ -139,6 +357,12 @@ void BLEKeyboardView::BtnKeyboard_Create(lv_obj_t *par, btnCont *cont, const cha
 }
 
 
+/**
+ * @brief Create and register the LVGL objects owned by MouseCircle_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *BLEKeyboardView::MouseCircle_Create(lv_obj_t *par)
 {
     // btn
@@ -157,7 +381,15 @@ lv_obj_t *BLEKeyboardView::MouseCircle_Create(lv_obj_t *par)
     lv_obj_set_style_radius(btn, LV_RADIUS_CIRCLE, 0);                        // 按钮画圆角
 
     // anim
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;                                                      // lv_style_transition_dsc_t用于描述样式过渡的属性。这个数据结构用于定义样式过渡的动画效果，包括过渡的时间、延迟、缓动函数等属性
+/**
+ * @brief Own and retain the prop state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static const lv_style_prop_t prop[] = {LV_STYLE_WIDTH, LV_STYLE_HEIGHT, LV_STYLE_PROP_INV}; // lv_style_prop_t枚举类型，用于表示样式的属性。这个枚举类型定义了一系列的样式属性，例如背景颜色、边框宽度、文本颜色等
     lv_style_transition_dsc_init(
         &tran,
@@ -170,5 +402,9 @@ lv_obj_t *BLEKeyboardView::MouseCircle_Create(lv_obj_t *par)
 
     lv_obj_update_layout(btn);
 
+/**
+ * @brief Own and retain the btn state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return btn;
 }

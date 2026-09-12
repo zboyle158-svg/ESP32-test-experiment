@@ -6,19 +6,26 @@
 #include "esp_err.h"
 #include <string.h>
 
+/** @brief Wi-Fi 模块日志标签。 */
 #define TAG "wifi"
 
+/** @brief Wi-Fi 扫描任务句柄。 */
 TaskHandle_t wifi_scan_task_handle = NULL;
 
+/** @brief 扫描结果缓存，最多保存 16 个接入点。 */
 wifi_ap_record_t ap_info[16];
 
+/** @brief STA 网络接口句柄。 */
 esp_netif_t *sta_netif = NULL;
 
+/** @brief 当前 Wi-Fi STA 连接状态。 */
 volatile uint8_t wifi_sta_status = WIFI_DISCONNECTED;
+/** @brief Wi-Fi 电源状态标志，供低功耗逻辑读取。 */
 volatile uint8_t wifi_pwr_status = 0; 
 
 void wifi_connect_task(void *args);
 
+/** @brief 等待通知并执行异步 Wi-Fi 扫描。 */
 void wifi_scan_task(void *args)
 {
     if (sta_netif == NULL)
@@ -41,6 +48,7 @@ void wifi_scan_task(void *args)
     }
 }
 
+/** @brief 初始化并启动 ESP-IDF Wi-Fi STA 驱动。 */
 void wifi_start()
 {
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
@@ -49,6 +57,7 @@ void wifi_start()
     ESP_ERROR_CHECK(esp_wifi_start());
 }
 
+/** @brief 断开当前连接并停止 Wi-Fi 驱动。 */
 void wifi_stop()
 {
     if (is_wifi_connected())
@@ -58,11 +67,13 @@ void wifi_stop()
     ESP_ERROR_CHECK(esp_wifi_stop());
 }
 
+/** @brief 主动断开当前 Wi-Fi 连接。 */
 void wifi_disconnect(void)
 {
     ESP_ERROR_CHECK(esp_wifi_disconnect());
 }
 
+/** @brief 通知扫描任务开始一次扫描。 */
 void wifi_scan()
 {
     if (wifi_scan_task_handle != NULL)
@@ -77,6 +88,7 @@ void wifi_scan()
     }
 }
 
+/** @brief 使用指定 SSID/密码异步连接 Wi-Fi。 */
 void wifi_connect(user_wifi_cfg *cfg)
 {
     if(is_wifi_connected())
@@ -91,6 +103,7 @@ void wifi_connect(user_wifi_cfg *cfg)
     }
 }
 
+/** @brief 读取并连接 ESP-IDF 保存的上次 AP 配置。 */
 bool wifi_connect_to_saved_ap(void)
 {
     wifi_start();
@@ -115,6 +128,7 @@ bool wifi_connect_to_saved_ap(void)
     return true;
 }
 
+/** @brief 初始化 NVS、网络接口、默认事件循环和 Wi-Fi 扫描任务。 */
 void wifi_init()
 {
     // 初始化wifi前需要初始化NVS
@@ -136,6 +150,7 @@ void wifi_init()
     }
 }
 
+/** @brief 将 STA 接口的 IP、掩码和网关格式化为字符串。 */
 void wifi_get_ip_info_str(wifi_ip_info_t *wifi_ip_info)
 {
     if (sta_netif != NULL)
@@ -149,6 +164,7 @@ void wifi_get_ip_info_str(wifi_ip_info_t *wifi_ip_info)
     }
 }
 
+/** @brief 判断当前 STA 是否处于已连接状态。 */
 bool is_wifi_connected(void)
 {
     return wifi_sta_status == WIFI_CONNECTED ? true : false;

@@ -1,24 +1,38 @@
 #include "data_chart.h"
 
+/** @brief 历史环境数据缓存。 */
 chart_data_t chart_data = {0};
 extern _lock_t lvgl_api_lock;
+/** @brief 当前图表时间范围。 */
 time_frame_t current_time_frame = TIME_FRAME_1MIN;
+/** @brief 当前图表数据类型。 */
 chart_type_t current_chart_type = CHART_TYPE_TEMPERATURE;
 
+/** @brief 图表刷新任务句柄。 */
 TaskHandle_t update_chart_task_handle = NULL;
+/** @brief 数据采集任务句柄。 */
 TaskHandle_t get_data_task_handle = NULL;
 
+/** @brief Y 轴刻度文本缓存。 */
 static char str0[12], str1[12], str2[12];
 static const char *y_scale[] = {str0, str1, str2, NULL}; // Y轴刻度
 
+/** @brief LVGL 折线图对象。 */
 static lv_obj_t *chart;
+/** @brief 折线图数据序列。 */
 static lv_chart_series_t *ser1;
+/** @brief 左侧 Y 轴刻度对象。 */
 static lv_obj_t *scale_left;
+/** @brief 底部 X 轴刻度对象。 */
 static lv_obj_t *scale_bottom;
+/** @brief 图表布局容器。 */
 static lv_obj_t *wrapper;
+/** @brief 数据点选中时显示的数值标签。 */
 static lv_obj_t *value_label = NULL;
+/** @brief 图表主容器。 */
 static lv_obj_t *main_cont;
 
+/** @brief 计算数组尾部窗口内的最大值。 */
 static int32_t get_max_value(int32_t *array, int8_t total_size, int8_t size)
 {
     int32_t max = array[total_size - 1];
@@ -32,6 +46,7 @@ static int32_t get_max_value(int32_t *array, int8_t total_size, int8_t size)
     return max;
 }
 
+/** @brief 计算数组尾部窗口内的最小值。 */
 static int32_t get_min_value(int32_t *array, int8_t total_size, int8_t size)
 {
     int32_t min = array[total_size - 1];
@@ -46,6 +61,7 @@ static int32_t get_min_value(int32_t *array, int8_t total_size, int8_t size)
 }
 
 // 图表事件回调函数
+/** @brief 处理图表数据点按下和释放事件。 */
 static void chart_event_cb(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -149,6 +165,7 @@ static void chart_event_cb(lv_event_t *e)
     }
 }
 
+/** @brief 根据时间范围更新 X 轴刻度文本。 */
 void update_chart_x_scale_text()
 {
     switch (current_time_frame)
@@ -174,6 +191,7 @@ void update_chart_x_scale_text()
     }
 }
 
+/** @brief 根据时间范围设置图表点数和 X 轴刻度数。 */
 void set_x_tick_count()
 {
     switch (current_time_frame)
@@ -193,6 +211,7 @@ void set_x_tick_count()
     }
 }
 
+/** @brief 后台刷新图表曲线、坐标范围和标签。 */
 void update_chart_task(void *arg)
 {
     int32_t max = 0, min = 0, mid = 0;
@@ -384,6 +403,7 @@ void update_chart_task(void *arg)
     }
 }
 
+/** @brief 创建图表控件、坐标轴和刷新任务。 */
 void create_chart()
 {
     main_cont = lv_obj_create(guider_ui.data_chart_screen);
@@ -476,6 +496,7 @@ void create_chart()
     }
 }
 
+/** @brief 删除图表控件并停止刷新任务。 */
 void delete_chart()
 {
     if (update_chart_task_handle != NULL)

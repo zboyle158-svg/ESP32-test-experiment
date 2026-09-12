@@ -9,7 +9,13 @@ namespace Page
 class SystemInfosModel
 {
 public:
+/**
+ * @brief Initialize SystemInfosModel state and hardware or data resources.
+ */
     void Init();
+/**
+ * @brief Release or reset resources managed by SystemInfosModel.
+ */
     void Deinit();
 
     void GetSportInfo(
@@ -55,7 +61,15 @@ public:
         char* size, uint32_t len
     );
 
+/**
+ * @brief Change the StatusBarStyle configuration of the object.
+ * @param style Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     void SetStatusBarStyle(DataProc::StatusBar_Style_t style);
+/**
+ * @brief Change the StatusBarAppear configuration of the object.
+ * @param en Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     void SetStatusBarAppear(bool en);
 
 private:

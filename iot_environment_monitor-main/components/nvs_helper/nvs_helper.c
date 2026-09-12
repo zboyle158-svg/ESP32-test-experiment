@@ -4,11 +4,15 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+/** @brief NVS 辅助模块日志标签。 */
 #define TAG "nvs_helper"
 
+/** @brief 当前待处理的 NVS 读取类别。 */
 volatile nvs_read_idx_t nvs_read_idx;
+/** @brief 当前待处理的 NVS 写入类别。 */
 volatile nvs_write_idx_t nvs_write_idx;
 
+/** @brief 打开 NVS 命名空间并记录失败原因。 */
 static void nvs_open_handle(const char *namespace, nvs_open_mode_t mode, nvs_handle_t *handle)
 {
     esp_err_t err = nvs_open(namespace, mode, handle);
@@ -18,6 +22,7 @@ static void nvs_open_handle(const char *namespace, nvs_open_mode_t mode, nvs_han
     }
 }
 
+/** @brief 初始化 NVS Flash，必要时擦除损坏或旧版本分区后重试。 */
 void nvs_init(void)
 {
     esp_err_t err = nvs_flash_init();
@@ -31,7 +36,9 @@ void nvs_init(void)
     ESP_LOGI(TAG, "NVS initialized successfully");
 }
 
+/** @brief 当前生效的电源管理配置。 */
 power_settings_t power_settings = {};
+/** @brief 读取电源配置，不存在时写入默认值。 */
 static void nvs_read_power_settings(void)
 {
     nvs_handle_t handle;
@@ -54,6 +61,7 @@ static void nvs_read_power_settings(void)
     nvs_close(handle);
 }
 
+/** @brief 保存变化后的电源管理配置。 */
 static void nvs_write_power_settings(power_settings_t new_power_settings)
 {
     nvs_handle_t handle;
@@ -71,7 +79,9 @@ static void nvs_write_power_settings(power_settings_t new_power_settings)
     nvs_close(handle);
 }
 
+/** @brief 当前 MQTT 连接及上报配置。 */
 mqtt_user_config_t mqtt_user_config = {};
+/** @brief 读取 MQTT 配置。 */
 static void mqtt_read_settings()
 {
     nvs_handle_t handle;
@@ -133,6 +143,7 @@ static void mqtt_read_settings()
     nvs_close(handle);
 }
 
+/** @brief 保存 MQTT 配置。 */
 static void mqtt_write_settings(mqtt_user_config_t new_mqtt_user_config)
 {
     nvs_handle_t handle;
@@ -167,7 +178,9 @@ static void mqtt_write_settings(mqtt_user_config_t new_mqtt_user_config)
     nvs_close(handle);
 }
 
+/** @brief 当前 OTA 信息地址和下载信息。 */
 ota_settings_t ota_settings = {.info_url= DEFAULT_OTA_URL};
+/** @brief 读取 OTA 配置。 */
 static void ota_read_settings()
 {
     nvs_handle_t handle;
@@ -189,6 +202,7 @@ static void ota_read_settings()
     nvs_close(handle);
 }
 
+/** @brief 保存 OTA 配置。 */
 static void ota_write_settings(ota_settings_t new_ota_settings)
 {
     nvs_handle_t handle;
@@ -203,7 +217,9 @@ static void ota_write_settings(ota_settings_t new_ota_settings)
     nvs_close(handle);
 }
 
+/** @brief 当前天气 API 配置。 */
 weather_config_t weather_config = {};
+/** @brief 读取天气 API 配置。 */
 static void weather_read_settings()
 {
     nvs_handle_t handle;
@@ -247,6 +263,7 @@ static void weather_read_settings()
     nvs_close(handle);
 }
 
+/** @brief 保存天气 API 配置。 */
 static void weather_write_settings(weather_config_t new_weather_config)
 {
     nvs_handle_t handle;
@@ -269,7 +286,9 @@ static void weather_write_settings(weather_config_t new_weather_config)
     nvs_close(handle);
 }
 
+/** @brief Wi-Fi 自动连接开关，0 表示关闭。 */
 uint8_t wifi_auto_connect = 0;
+/** @brief 读取 Wi-Fi 自动连接开关。 */
 static void wifi_read_settings()
 {
     nvs_handle_t handle;
@@ -285,6 +304,7 @@ static void wifi_read_settings()
     nvs_close(handle);
 }
 
+/** @brief 保存 Wi-Fi 自动连接开关。 */
 static void wifi_write_settings(uint8_t new_auto_connect)
 {
     nvs_handle_t handle;
@@ -294,7 +314,9 @@ static void wifi_write_settings(uint8_t new_auto_connect)
     nvs_close(handle);
 }
 
+/** @brief 异步 NVS 写任务句柄。 */
 static TaskHandle_t nvs_write_task_handle = NULL;
+/** @brief 根据写入索引执行一次配置保存。 */
 static void nvs_write_task(void *arg)
 {
     switch (nvs_write_idx)
@@ -319,7 +341,9 @@ static void nvs_write_task(void *arg)
     vTaskDelete(NULL);
 }
 
+/** @brief 异步 NVS 读任务句柄。 */
 static TaskHandle_t nvs_read_task_handle = NULL;
+/** @brief 根据读取索引执行一次配置加载。 */
 static void nvs_read_task(void *arg)
 {
     switch (nvs_read_idx)
@@ -344,6 +368,7 @@ static void nvs_read_task(void *arg)
     vTaskDelete(NULL);
 }
 
+/** @brief 异步读取指定类别配置。 */
 void nvs_read(nvs_read_idx_t idx)
 {
     nvs_read_idx = idx;
@@ -355,6 +380,7 @@ void nvs_read(nvs_read_idx_t idx)
     xTaskCreate(nvs_read_task, "nvs_read_task", 8 * 1024, NULL, 10, &nvs_read_task_handle);
 }
 
+/** @brief 异步保存指定类别配置；arg 可指向待保存的新结构体。 */
 void nvs_write(nvs_write_idx_t idx, void *arg)
 {
     switch (idx)

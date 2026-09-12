@@ -32,6 +32,11 @@
 
 static Account *actStatusBar;
 
+/**
+ * @brief Execute the StatusBar_AnimCreate operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param contBatt Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_AnimCreate(lv_obj_t *contBatt); // Batt油页，cont容器，可以理解成就是覆盖在cont容器上的容器
 
 struct
@@ -42,6 +47,10 @@ struct
     {
         lv_obj_t *img;
         lv_obj_t *label;
+/**
+ * @brief Own and retain the satellite state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     } satellite;
 
     lv_obj_t *imgSD;
@@ -55,23 +64,64 @@ struct
         lv_obj_t *img;
         lv_obj_t *objUsage;
         lv_obj_t *label;
+/**
+ * @brief Own and retain the battery state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     } battery;
+/**
+ * @brief Own and retain the ui state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
 } ui;
 
+/**
+ * @brief Execute the StatusBar_ConBattSetOpa operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param opa Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_ConBattSetOpa(lv_obj_t *obj, int32_t opa)
 {
     lv_obj_set_style_opa(obj, opa, 0);
 }
 
+/**
+ * @brief Execute the StatusBar_onAnimOpaFinish operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param a Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_onAnimOpaFinish(lv_anim_t *a)
 {
     lv_obj_t *obj = (lv_obj_t *)a->var;
+/**
+ * @brief Execute the StatusBar_ConBattSetOpa operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_OPA_COVER Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     StatusBar_ConBattSetOpa(obj, LV_OPA_COVER);
+/**
+ * @brief Execute the StatusBar_AnimCreate operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     StatusBar_AnimCreate(obj);
 }
 
+/**
+ * @brief Execute the StatusBar_onAnimHeightFinish operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param a Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_onAnimHeightFinish(lv_anim_t *a)
 {
+/**
+ * @brief Own and retain the a_opa state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_anim_t a_opa;
     lv_anim_init(&a_opa);
     lv_anim_set_var(&a_opa, a->var);
@@ -84,8 +134,17 @@ static void StatusBar_onAnimHeightFinish(lv_anim_t *a)
     lv_anim_start(&a_opa);
 }
 
+/**
+ * @brief Execute the StatusBar_AnimCreate operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param contBatt Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_AnimCreate(lv_obj_t *contBatt)
 {
+/**
+ * @brief Own and retain the a state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_anim_t a;
     lv_anim_init(&a);
     lv_anim_set_var(&a, contBatt);
@@ -97,8 +156,18 @@ static void StatusBar_AnimCreate(lv_obj_t *contBatt)
     lv_anim_start(&a);
 }
 
+/**
+ * @brief Execute the StatusBar_RecAnimLabelCreate operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 static lv_obj_t *StatusBar_RecAnimLabelCreate(lv_obj_t *par)
 {
+/**
+ * @brief Own and retain the style_label state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_t style_label;
     lv_style_init(&style_label);
     lv_style_set_text_color(&style_label, lv_color_white());
@@ -116,6 +185,10 @@ static lv_obj_t *StatusBar_RecAnimLabelCreate(lv_obj_t *par)
     // lv_obj_set_style_border_color(alabel, lv_color_white(), 0);
     // lv_obj_set_style_border_width(alabel, 1, 0);
 
+/**
+ * @brief Own and retain the a_enter state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_anim_t a_enter;
     lv_anim_init(&a_enter);
     lv_anim_set_early_apply(&a_enter, true);
@@ -124,24 +197,45 @@ static lv_obj_t *StatusBar_RecAnimLabelCreate(lv_obj_t *par)
                         { lv_obj_set_style_opa((lv_obj_t *)var, v, 0); });
     lv_anim_set_time(&a_enter, 300);
 
+/**
+ * @brief Own and retain the a_exit state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_anim_t a_exit = a_enter;
     lv_anim_set_values(&a_exit, LV_OPA_COVER, LV_OPA_TRANSP);
 
     lv_anim_label_set_custom_enter_anim(alabel, &a_enter);
     lv_anim_label_set_custom_exit_anim(alabel, &a_exit);
 
+/**
+ * @brief Own and retain the alabel state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return alabel;
 }
 
+/**
+ * @brief Refresh the StatusBar state without blocking the scheduler.
+ * @details The function consumes the latest cached DataProc/HAL snapshot and updates presentation state; it does not own or free the source data.
+ * @param timer Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_Update(lv_timer_t *timer)
 {
     /* satellite */
+/**
+ * @brief Own and retain the gps state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        HAL::GPS_Info_t gps;
        if(actStatusBar->Pull("GPS", &gps, sizeof(gps)) == Account::RES_OK)
        {
            lv_label_set_text_fmt(ui.satellite.label, "%d", gps.satellites);
        }
 
+/**
+ * @brief Own and retain the sdInfo state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        DataProc::Storage_Basic_Info_t sdInfo;
        if(actStatusBar->Pull("Storage", &sdInfo, sizeof(sdInfo)) == Account::RES_OK)
        {
@@ -149,6 +243,10 @@ static void StatusBar_Update(lv_timer_t *timer)
        }
 
        /* clock */
+/**
+ * @brief Own and retain the clock state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        HAL::Clock_Info_t clock;
        if(actStatusBar->Pull("Clock", &clock, sizeof(clock)) == Account::RES_OK)
        {
@@ -156,19 +254,41 @@ static void StatusBar_Update(lv_timer_t *timer)
        }
 
        /* battery */
+/**
+ * @brief Own and retain the power state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        HAL::Power_Info_t power = {0};
        if(actStatusBar->Pull("Power", &power, sizeof(power)) == Account::RES_OK)
        {
            lv_label_set_text_fmt(ui.battery.label, "%d", power.usage);
        }
 
+/**
+ * @brief Own and retain the Is_BattCharging state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        bool Is_BattCharging = power.isCharging;
+/**
+ * @brief Own and retain the contBatt state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        lv_obj_t* contBatt = ui.battery.objUsage;
+/**
+ * @brief Own and retain the Is_BattChargingAnimActive state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
        static bool Is_BattChargingAnimActive = false;
        if(Is_BattCharging)
        {
            if(!Is_BattChargingAnimActive)
            {
+/**
+ * @brief Execute the StatusBar_AnimCreate operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param contBatt Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                StatusBar_AnimCreate(contBatt);
                Is_BattChargingAnimActive = true;
            }
@@ -178,6 +298,13 @@ static void StatusBar_Update(lv_timer_t *timer)
            if(Is_BattChargingAnimActive)
            {
                lv_anim_del(contBatt, nullptr);
+/**
+ * @brief Execute the StatusBar_ConBattSetOpa operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param contBatt Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_OPA_COVER Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                StatusBar_ConBattSetOpa(contBatt, LV_OPA_COVER);
                Is_BattChargingAnimActive = false;
            }
@@ -186,6 +313,11 @@ static void StatusBar_Update(lv_timer_t *timer)
        }
 }
 
+/**
+ * @brief Execute the StatusBar_StyleInit operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_StyleInit(lv_obj_t *cont)
 {
     /* style1 */
@@ -198,6 +330,10 @@ static void StatusBar_StyleInit(lv_obj_t *cont)
     lv_obj_set_style_shadow_color(cont, lv_color_black(), LV_STATE_USER_1);
     lv_obj_set_style_shadow_width(cont, 10, LV_STATE_USER_1);
 
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;
     static const lv_style_prop_t prop[] =
         {
@@ -214,6 +350,12 @@ static void StatusBar_StyleInit(lv_obj_t *cont)
     lv_obj_set_style_transition(cont, &tran, LV_STATE_USER_1);
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by StatusBar_SdCardImage_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 static lv_obj_t *StatusBar_SdCardImage_Create(lv_obj_t *par)
 {
     lv_obj_t *img = lv_img_create(par);
@@ -222,6 +364,10 @@ static lv_obj_t *StatusBar_SdCardImage_Create(lv_obj_t *par)
 
     lv_obj_set_style_translate_y(img, -STATUS_BAR_HEIGHT, LV_STATE_DISABLED);
 
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;
     static const lv_style_prop_t prop[] =
         {
@@ -237,9 +383,18 @@ static lv_obj_t *StatusBar_SdCardImage_Create(lv_obj_t *par)
     lv_obj_set_style_transition(img, &tran, LV_STATE_DISABLED);
     lv_obj_set_style_transition(img, &tran, LV_STATE_DEFAULT);
 
+/**
+ * @brief Own and retain the img state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return img;
 }
 
+/**
+ * @brief Execute the StatusBar_SetStyle operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param style Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_SetStyle(DataProc::StatusBar_Style_t style)
 {
     lv_obj_t *cont = ui.cont;
@@ -257,6 +412,12 @@ static void StatusBar_SetStyle(DataProc::StatusBar_Style_t style)
     }
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by StatusBar_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *Page::StatusBar_Create(lv_obj_t *par)
 {
     lv_obj_t *cont = lv_obj_create(par);
@@ -264,9 +425,19 @@ lv_obj_t *Page::StatusBar_Create(lv_obj_t *par)
 
     lv_obj_set_size(cont, LV_HOR_RES, STATUS_BAR_HEIGHT);
     lv_obj_set_y(cont, -STATUS_BAR_HEIGHT);
+/**
+ * @brief Execute the StatusBar_StyleInit operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     StatusBar_StyleInit(cont);
     ui.cont = cont;
 
+/**
+ * @brief Own and retain the style_label state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_t style_label;
     lv_style_init(&style_label);
     lv_style_set_text_color(&style_label, lv_color_white());
@@ -285,6 +456,12 @@ lv_obj_t *Page::StatusBar_Create(lv_obj_t *par)
     ui.satellite.label = label;
 
     /* sd card */
+/**
+ * @brief Create and register the LVGL objects owned by StatusBar_SdCardImage_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.imgSD = StatusBar_SdCardImage_Create(cont);
 
     /* clock */
@@ -295,6 +472,12 @@ lv_obj_t *Page::StatusBar_Create(lv_obj_t *par)
     ui.labelClock = label;
 
     /* recorder */
+/**
+ * @brief Execute the StatusBar_RecAnimLabelCreate operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.labelRec = StatusBar_RecAnimLabelCreate(cont);
 
     /* battery */
@@ -320,6 +503,12 @@ lv_obj_t *Page::StatusBar_Create(lv_obj_t *par)
     lv_label_set_text(label, "99%");
     ui.battery.label = label;
 
+/**
+ * @brief Execute the StatusBar_SetStyle operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param STATUS_BAR_STYLE_TRANSP Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     StatusBar_SetStyle(DataProc::STATUS_BAR_STYLE_TRANSP);
 
     lv_timer_t *timer = lv_timer_create(StatusBar_Update, 1000, nullptr);
@@ -328,18 +517,39 @@ lv_obj_t *Page::StatusBar_Create(lv_obj_t *par)
     return ui.cont;
 }
 
+/**
+ * @brief Execute the StatusBar_Appear operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param en Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void StatusBar_Appear(bool en)
 {
+/**
+ * @brief Own and retain the start state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     int32_t start = -STATUS_BAR_HEIGHT;
+/**
+ * @brief Own and retain the end state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     int32_t end = 0;
 
     if (!en)
     {
+/**
+ * @brief Own and retain the temp state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         int32_t temp = start;
         start = end;
         end = temp;
     }
 
+/**
+ * @brief Own and retain the a state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_anim_t a;
     lv_anim_init(&a);
     lv_anim_set_var(&a, ui.cont);
@@ -352,6 +562,13 @@ static void StatusBar_Appear(bool en)
     lv_anim_start(&a);
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param account Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param param Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 static int onEvent(Account *account, Account::EventParam_t *param)
 {
        if (param->event != Account::EVENT_NOTIFY)
@@ -369,9 +586,21 @@ static int onEvent(Account *account, Account::EventParam_t *param)
        switch(info->cmd)
        {
        case DataProc::STATUS_BAR_CMD_APPEAR:
+/**
+ * @brief Execute the StatusBar_Appear operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param appear Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
            StatusBar_Appear(info->param.appear);
            break;
        case DataProc::STATUS_BAR_CMD_SET_STYLE:
+/**
+ * @brief Execute the StatusBar_SetStyle operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param style Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
            StatusBar_SetStyle(info->param.style);
            break;
        case DataProc::STATUS_BAR_CMD_SET_LABEL_REC:
@@ -384,6 +613,12 @@ static int onEvent(Account *account, Account::EventParam_t *param)
     return Account::RES_OK;
 }
 
+/**
+ * @brief Execute the DATA_PROC_INIT_DEF operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param StatusBar Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 DATA_PROC_INIT_DEF(StatusBar)
 {
        account->Subscribe("GPS");

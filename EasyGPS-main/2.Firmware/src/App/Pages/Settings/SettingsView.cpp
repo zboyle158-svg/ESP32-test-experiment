@@ -6,6 +6,11 @@
 
 using namespace Page;
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void SettingsView::Create(lv_obj_t *root) // 初始化画布
 {
     lv_obj_t *cont = lv_obj_create(root);
@@ -24,21 +29,84 @@ void SettingsView::Create(lv_obj_t *root) // 初始化画布
     lv_obj_set_scrollbar_mode(cont, LV_SCROLLBAR_MODE_ON); // 设置滚动条是否显示：是
     // lv_obj_clear_flag(cont, LV_OBJ_FLAG_SCROLLABLE);
 
+/**
+ * @brief Create and register the LVGL objects owned by ContentBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.wifiInfo.labelName = ContentBox_Create(cont, "WiFi Name", "none");
+/**
+ * @brief Create and register the LVGL objects owned by ContentBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.wifiInfo.labelConnect = ContentBox_Create(cont, "WiFi State", "Disconneccted");
+/**
+ * @brief Create and register the LVGL objects owned by ContentBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.wifiInfo.labelIP = ContentBox_Create(cont, "WiFi IP", "none");
+/**
+ * @brief Create and register the LVGL objects owned by SwitchBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.wifiInfo.swSTA = SwitchBox_Create(cont, "WiFi Mode");
+/**
+ * @brief Create and register the LVGL objects owned by SwitchBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.wifiInfo.swAP = SwitchBox_Create(cont, "AP Mode");
 
+/**
+ * @brief Create and register the LVGL objects owned by ContentBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.bleInfo.labelName = ContentBox_Create(cont, "BLE Name", "none");
+/**
+ * @brief Create and register the LVGL objects owned by ContentBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.bleInfo.labelConnect = ContentBox_Create(cont, "BLE State", "Disconneccted");
+/**
+ * @brief Create and register the LVGL objects owned by SwitchBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.bleInfo.sw = SwitchBox_Create(cont, "BLE Enable");
 
+/**
+ * @brief Create and register the LVGL objects owned by SliderBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.displayInfo.brig = SliderBox_Create(cont, "Bright");
 
+/**
+ * @brief Create and register the LVGL objects owned by SwitchBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.powInfo.swAutoPowOff = SwitchBox_Create(cont, "AutoPowOff");
 }
 
+/**
+ * @brief Delete LVGL objects owned by SettingsView.
+ */
 void SettingsView::Delete()
 {
     // if (ui.anim_timeline)
@@ -48,6 +116,13 @@ void SettingsView::Delete()
     // }
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by SwitchBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param title Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *SettingsView::SwitchBox_Create(lv_obj_t *par, const char *title)
 {
     lv_obj_t *obj = lv_obj_create(par);
@@ -65,11 +140,32 @@ lv_obj_t *SettingsView::SwitchBox_Create(lv_obj_t *par, const char *title)
     lv_obj_set_style_text_font(tt, ResourcePool::GetFont("bahnschrift_17"), 0);
     lv_obj_align(tt, LV_ALIGN_LEFT_MID, 10, 0);
 
+/**
+ * @brief Create and register the LVGL objects owned by Switch_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param false Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     lv_obj_t *sw = Switch_Create(obj, false, 70, 0);
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by SliderBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param title Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param min Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param max Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param val Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *SettingsView::SliderBox_Create(lv_obj_t *par, const char *title, int32_t min, int32_t max, int32_t val)
 {
     lv_obj_t *obj = lv_obj_create(par);
@@ -87,11 +183,30 @@ lv_obj_t *SettingsView::SliderBox_Create(lv_obj_t *par, const char *title, int32
     lv_obj_set_style_text_font(tt, ResourcePool::GetFont("bahnschrift_17"), 0);
     lv_obj_align(tt, LV_ALIGN_LEFT_MID, 10, 0);
 
+/**
+ * @brief Create and register the LVGL objects owned by Slider_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param LV_SYMBOL_SETTINGS Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     lv_obj_t *slider = Slider_Create(obj, LV_SYMBOL_SETTINGS, 40, 0);
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by ContentBox_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param title Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param content Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *SettingsView::ContentBox_Create(lv_obj_t *par, const char *title, const char *content)
 {
     lv_obj_t *obj = lv_obj_create(par);
@@ -123,9 +238,22 @@ lv_obj_t *SettingsView::ContentBox_Create(lv_obj_t *par, const char *title, cons
     lv_obj_set_style_text_color(ct, lv_color_white(), LV_PART_MAIN);
     lv_obj_align(ct, LV_ALIGN_RIGHT_MID, -20, 0);
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by Switch_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param state Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param x_ofs Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y_ofs Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *SettingsView::Switch_Create(lv_obj_t *par, bool state, lv_coord_t x_ofs, lv_coord_t y_ofs)
 {
     lv_obj_t *obj = lv_switch_create(par);
@@ -153,9 +281,25 @@ lv_obj_t *SettingsView::Switch_Create(lv_obj_t *par, bool state, lv_coord_t x_of
 
     lv_obj_add_state(obj, state ? LV_STATE_CHECKED : 0);
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by Slider_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param img_src Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param x_ofs Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y_ofs Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param min Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param max Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param val Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *SettingsView::Slider_Create(lv_obj_t *par, const void *img_src, lv_coord_t x_ofs, lv_coord_t y_ofs, int32_t min, int32_t max, int32_t val)
 {
     lv_obj_t *obj = lv_slider_create(par);
@@ -191,9 +335,21 @@ lv_obj_t *SettingsView::Slider_Create(lv_obj_t *par, const void *img_src, lv_coo
         // lv_obj_set_style_img_recolor(img, lv_color_white(), LV_PART_MAIN);
     }
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param img_src Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param x_ofs Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *SettingsView::Btn_Create(lv_obj_t *par, const void *img_src, lv_coord_t x_ofs)
 {
     lv_obj_t *obj = lv_obj_create(par);
@@ -212,7 +368,15 @@ lv_obj_t *SettingsView::Btn_Create(lv_obj_t *par, const void *img_src, lv_coord_
     lv_obj_set_style_bg_color(obj, lv_color_hex(0xff931e), LV_STATE_FOCUSED); // 设置按钮在被聚焦时的颜色
     lv_obj_set_style_radius(obj, 9, 0);                                       // 按钮画圆角
 
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;                                                      // lv_style_transition_dsc_t用于描述样式过渡的属性。这个数据结构用于定义样式过渡的动画效果，包括过渡的时间、延迟、缓动函数等属性
+/**
+ * @brief Own and retain the prop state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static const lv_style_prop_t prop[] = {LV_STYLE_WIDTH, LV_STYLE_HEIGHT, LV_STYLE_PROP_INV}; // lv_style_prop_t枚举类型，用于表示样式的属性。这个枚举类型定义了一系列的样式属性，例如背景颜色、边框宽度、文本颜色等
     lv_style_transition_dsc_init(
         &tran,
@@ -226,9 +390,18 @@ lv_obj_t *SettingsView::Btn_Create(lv_obj_t *par, const void *img_src, lv_coord_
 
     lv_obj_update_layout(obj); // 真伟大，但是看不懂，没有循环刷新，怎么改变layout？
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Execute the AppearAnimStart operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param reverse Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void SettingsView::AppearAnimStart(bool reverse) // 开始开场动画
 {
     lv_anim_timeline_set_reverse(ui.anim_timeline, reverse);

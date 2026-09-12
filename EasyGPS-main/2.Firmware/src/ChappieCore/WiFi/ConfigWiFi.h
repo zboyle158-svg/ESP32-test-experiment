@@ -8,31 +8,103 @@
 #include <ESPmDNS.h>     //用于设备域名 MDNS.begin("esp32")
 #include <Preferences.h> //用于参数数据的
 
+/**
+ * @brief Own and retain the WiFi_Name state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
 static String WiFi_Name = "none";
+/**
+ * @brief Own and retain the WiFi_Pass state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
 static String WiFi_Pass = "none";
 class ConfigWiFi
 {
 public:
+/**
+ * @brief Own and retain the AutoTime state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     bool AutoTime = true;
+/**
+ * @brief Own and retain the wifiEnabled state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     bool wifiEnabled = false;
+/**
+ * @brief Own and retain the OnAP state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     bool OnAP = false;
     const char *AP_SSID = "Hugo@kkl-AP";
+/**
+ * @brief Construct or destroy the ConfigWiFi object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ConfigWiFi();
     ~ConfigWiFi();
+/**
+ * @brief Initialize ConfigWiFi state and hardware or data resources.
+ */
     void Init();
+/**
+ * @brief Change the enableWiFi configuration of the object.
+ */
     void enableWiFi();
+/**
+ * @brief Change the disableWiFi configuration of the object.
+ */
     void disableWiFi();
+/**
+ * @brief Read isWiFiEnabled from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     bool isWiFiEnabled() const;
+/**
+ * @brief Read isConnected from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     bool isConnected() const;
+/**
+ * @brief Execute the APMode operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
     void APMode();
+/**
+ * @brief Execute the APClose operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     bool APClose();
+/**
+ * @brief Execute the NtpTimeCorr operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
     void NtpTimeCorr();
     void WiFiloop();
+/**
+ * @brief Change the enableIPv6 configuration of the object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     bool enableIPv6();
     char *WiFiN();
     char *WiFiMac();
+/**
+ * @brief Execute the LocalIP operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     char *LocalIP();
+/**
+ * @brief Execute the GateWay operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     char *GateWay();
+/**
+ * @brief Read IPv6 from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     String GetIPv6();
 
 private:

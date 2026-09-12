@@ -12,9 +12,11 @@
 #include <ctype.h>
 #include "zlib.h"
 #include "nvs_helper.h"
+/** @brief 天气模块日志标签。 */
 static const char *TAG = "WEATHER";
 
 // 定义安全释放宏
+/** @brief 安全释放堆内存并将指针清零，避免重复释放。 */
 #define SAFE_FREE(ptr)  \
     do                  \
     {                   \
@@ -26,16 +28,21 @@ static const char *TAG = "WEATHER";
     } while (0)
 
 // 内部使用的缓冲区
+/** @brief HTTP 响应数据接收缓存。 */
 static char weather_buffer[2048];
+/** @brief 当前缓存中已经写入的字节数。 */
 static size_t weather_len = 0;
 
 // 用于存储 Content-Encoding 头部值
+/** @brief HTTP Content-Encoding 首部值，用于判断是否需要 gzip 解压。 */
 static char content_encoding_value[32] = {0};
 
 // 全局存储的天气信息
+/** @brief 最近一次成功解析的天气数据指针。 */
 weather_info_t *weather_info = NULL;
 
 // URL编码函数
+/** @brief 将城市名称编码为 URL 安全字符串。 */
 static void url_encode(char *dest, const char *src, size_t max_len)
 {
     size_t i = 0, j = 0;
@@ -59,6 +66,7 @@ static void url_encode(char *dest, const char *src, size_t max_len)
 }
 
 // HTTP事件处理器
+/** @brief 收集天气 HTTP 客户端的响应头和响应体数据。 */
 static esp_err_t weather_http_handler(esp_http_client_event_t *evt)
 {
     switch (evt->event_id)
@@ -88,6 +96,7 @@ static esp_err_t weather_http_handler(esp_http_client_event_t *evt)
 }
 
 // 解压 gzip 数据
+/** @brief 解压 gzip 编码的 HTTP 响应，返回需由调用者释放的字符串。 */
 static char *decompress_gzip_data(const char *compressed_data, int compressed_len)
 {
     z_stream strm;
@@ -134,6 +143,7 @@ static char *decompress_gzip_data(const char *compressed_data, int compressed_le
 }
 
 // 执行HTTP请求
+/** @brief 向和风天气接口发送 HTTPS GET 请求并返回响应文本。 */
 static char *weather_http_request(const char *url, const char *api_key)
 {
     esp_http_client_config_t config = {
@@ -188,6 +198,7 @@ static char *weather_http_request(const char *url, const char *api_key)
 }
 
 // 获取和风天气的城市ID
+/** @brief 根据城市名调用地理编码接口获取和风 location ID。 */
 static char *get_hefeng_location_id(const char *city_name, const char *api_host, const char *api_key)
 {
     char url[256];
@@ -231,6 +242,7 @@ static char *get_hefeng_location_id(const char *city_name, const char *api_host,
 }
 
 // 解析和风天气
+/** @brief 解析和风天气 JSON，构造天气信息结构体。 */
 static weather_info_t *parse_hefeng(const char *json)
 {
     cJSON *root = cJSON_Parse(json);
@@ -273,6 +285,7 @@ static weather_info_t *parse_hefeng(const char *json)
     return info;
 }
 
+/** @brief 获取指定城市的实时天气并返回动态分配的数据结构。 */
 weather_info_t *weather_get(weather_config_t *config)
 {
 
@@ -322,6 +335,7 @@ weather_info_t *weather_get(weather_config_t *config)
     return weather_info;
 }
 
+/** @brief 将天气结构体格式化打印到串口日志。 */
 void weather_print_info(const weather_info_t *info)
 {
     if (!info)
@@ -430,6 +444,7 @@ void weather_print_info(const weather_info_t *info)
     printf("\n");
 }
 
+/** @brief 释放位置结构体及其字符串成员。 */
 void location_info_free(location_info_t *location_info)
 {
     if (!location_info)
@@ -440,6 +455,7 @@ void location_info_free(location_info_t *location_info)
     SAFE_FREE(location_info);
 }
 
+/** @brief 释放天气结构体及所有嵌套动态字符串。 */
 void weather_info_free(weather_info_t *info)
 {
     if (!info)

@@ -35,62 +35,161 @@ class MapConv
 public:
     typedef struct
     {
+/**
+ * @brief Own and retain the tileX state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         uint32_t tileX;
+/**
+ * @brief Own and retain the tileY state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         uint32_t tileY;
+/**
+ * @brief Own and retain the subX state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         uint32_t subX;
+/**
+ * @brief Own and retain the subY state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         uint32_t subY;
+/**
+ * @brief Own and retain the MapTile_t state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     } MapTile_t;
 
 public:
+/**
+ * @brief Construct or destroy the MapConv object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     MapConv();
     ~MapConv() {}
 
+/**
+ * @brief Change the Level configuration of the object.
+ * @param level Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     void SetLevel(int level);
+/**
+ * @brief Change the LevelUp configuration of the object.
+ */
     void SetLevelUp()
     {
+/**
+ * @brief Change the Level configuration of the object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         SetLevel(GetLevel() + 1);
     }
+/**
+ * @brief Change the LevelDown configuration of the object.
+ */
     void SetLevelDown()
     {
+/**
+ * @brief Change the Level configuration of the object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         SetLevel(GetLevel() - 1);
     }
+/**
+ * @brief Change the DirPath configuration of the object.
+ * @param path Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     static void SetDirPath(const char* path)
     {
         strncpy(dirPath, path, sizeof(dirPath));
         dirPath[sizeof(dirPath) - 1] = '\0';
     }
+/**
+ * @brief Change the ExtName configuration of the object.
+ * @param name Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     static void SetExtName(const char* name)
     {
         strncpy(extName, name, sizeof(extName));
         extName[sizeof(extName) - 1] = '\0';
     }
 
+/**
+ * @brief Change the CoordTransformEnable configuration of the object.
+ * @param en Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     static void SetCoordTransformEnable(bool en)
     {
         coordTransformEnable = en;
     }
 
+/**
+ * @brief Change the LevelRange configuration of the object.
+ * @param min Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param max Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     static void SetLevelRange(int16_t min, int16_t max)
     {
         levelMin = min;
         levelMax = max;
     }
 
+/**
+ * @brief Read Level from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     int16_t GetLevel()
     {
         return priv.level;
     }
+/**
+ * @brief Read LevelMax from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     static int16_t GetLevelMax()
     {
+/**
+ * @brief Own and retain the levelMax state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         return levelMax;
     }
+/**
+ * @brief Read LevelMin from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     static int16_t GetLevelMin()
     {
+/**
+ * @brief Own and retain the levelMin state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         return levelMin;
     }
 
+/**
+ * @brief Read MapTile from the current object state.
+ * @param longitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param latitude Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param mapTile Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     void GetMapTile(double longitude, double latitude, MapTile_t* mapTile);
+/**
+ * @brief Convert map or coordinate data between the supported representations.
+ * @param x Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param mapTile Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     void ConvertPosToTile(int32_t x, int32_t y, MapTile_t* mapTile);
+/**
+ * @brief Convert map or coordinate data between the supported representations.
+ * @param x Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param path Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param len Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     int ConvertMapPath(int32_t x, int32_t y, char* path, uint32_t len);
     void ConvertMapCoordinate(
         double longitude, double latitude,
@@ -104,14 +203,46 @@ public:
 protected:
     struct
     {
+/**
+ * @brief Own and retain the level state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         int16_t level;
+/**
+ * @brief Own and retain the tileSize state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         uint16_t tileSize;
+/**
+ * @brief Own and retain the priv state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     } priv;
 
+/**
+ * @brief Own and retain the dirPath state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static char dirPath[MAP_CONV_DIR_PATH_MAX];
+/**
+ * @brief Own and retain the extName state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static char extName[MAP_CONV_EXT_NAME_MAX];
+/**
+ * @brief Own and retain the levelMin state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static int16_t levelMin;
+/**
+ * @brief Own and retain the levelMax state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static int16_t levelMax;
+/**
+ * @brief Own and retain the coordTransformEnable state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static bool coordTransformEnable;
 };
 

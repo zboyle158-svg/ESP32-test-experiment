@@ -6,10 +6,33 @@
 
 using namespace Page;
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void DialplateView::Create(lv_obj_t *root) // 初始化画布
 {
+/**
+ * @brief Create and register the LVGL objects owned by BottomInfo_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BottomInfo_Create(root); // 三个大块，分成三个初始化
+/**
+ * @brief Create and register the LVGL objects owned by TopInfo_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     TopInfo_Create(root);
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     BtnCont_Create(root);
 
     ui.anim_timeline = lv_anim_timeline_create(); // lv_anim_timeline_create用于创建一个时间轴动画。时间轴动画是一种基于时间的动画，可以通过在一定时间内对对象属性进行逐步修改来实现
@@ -39,6 +62,9 @@ void DialplateView::Create(lv_obj_t *root) // 初始化画布
     lv_anim_timeline_add_wrapper(ui.anim_timeline, wrapper);
 }
 
+/**
+ * @brief Delete LVGL objects owned by DialplateView.
+ */
 void DialplateView::Delete()
 {
     if (ui.anim_timeline)
@@ -48,6 +74,11 @@ void DialplateView::Delete()
     }
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by TopInfo_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void DialplateView::TopInfo_Create(lv_obj_t *par)
 {
     lv_obj_t *cont = lv_obj_create(par);    // par传进来的是大画布，所以cont这里以大画布作为父对象
@@ -76,6 +107,11 @@ void DialplateView::TopInfo_Create(lv_obj_t *par)
     ui.topInfo.labelUint = label;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by BottomInfo_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void DialplateView::BottomInfo_Create(lv_obj_t *par)
 {
     lv_obj_t *cont = lv_obj_create(par);
@@ -110,6 +146,13 @@ void DialplateView::BottomInfo_Create(lv_obj_t *par)
     }
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by SubInfoGrp_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param info Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param unitText Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void DialplateView::SubInfoGrp_Create(lv_obj_t *par, SubInfo_t *info, const char *unitText) // 创建信息标签（gps、time、卡路里）等
 {
     lv_obj_t *cont = lv_obj_create(par);
@@ -137,6 +180,11 @@ void DialplateView::SubInfoGrp_Create(lv_obj_t *par, SubInfo_t *info, const char
     info->cont = cont;
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by BtnCont_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void DialplateView::BtnCont_Create(lv_obj_t *par) // 按钮容器画布的创建
 {
     lv_obj_t *cont = lv_obj_create(par);
@@ -154,11 +202,37 @@ void DialplateView::BtnCont_Create(lv_obj_t *par) // 按钮容器画布的创建
 
     ui.btnCont.cont = cont;
 
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.btnCont.btnMap = Btn_Create(cont, ResourcePool::GetImage("locate"), -80); // 创建三个button
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.btnCont.btnRec = Btn_Create(cont, ResourcePool::GetImage("start"), 0);
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param cont Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     ui.btnCont.btnMenu = Btn_Create(cont, ResourcePool::GetImage("menu"), 80);
 }
 
+/**
+ * @brief Create and register the LVGL objects owned by Btn_Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param par Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param img_src Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param x_ofs Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 lv_obj_t *DialplateView::Btn_Create(lv_obj_t *par, const void *img_src, lv_coord_t x_ofs)
 {
     lv_obj_t *obj = lv_obj_create(par);
@@ -177,7 +251,15 @@ lv_obj_t *DialplateView::Btn_Create(lv_obj_t *par, const void *img_src, lv_coord
     lv_obj_set_style_bg_color(obj, lv_color_hex(0xff931e), LV_STATE_FOCUSED); // 设置按钮在被聚焦时的颜色
     lv_obj_set_style_radius(obj, 9, 0);                                       // 按钮画圆角
 
+/**
+ * @brief Own and retain the tran state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t tran;                                                      // lv_style_transition_dsc_t用于描述样式过渡的属性。这个数据结构用于定义样式过渡的动画效果，包括过渡的时间、延迟、缓动函数等属性
+/**
+ * @brief Own and retain the prop state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static const lv_style_prop_t prop[] = {LV_STYLE_WIDTH, LV_STYLE_HEIGHT, LV_STYLE_PROP_INV}; // lv_style_prop_t枚举类型，用于表示样式的属性。这个枚举类型定义了一系列的样式属性，例如背景颜色、边框宽度、文本颜色等
     lv_style_transition_dsc_init(
         &tran,
@@ -191,9 +273,18 @@ lv_obj_t *DialplateView::Btn_Create(lv_obj_t *par, const void *img_src, lv_coord
 
     lv_obj_update_layout(obj); // 真伟大，但是看不懂，没有循环刷新，怎么改变layout？
 
+/**
+ * @brief Own and retain the obj state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     return obj;
 }
 
+/**
+ * @brief Execute the AppearAnimStart operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param reverse Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void DialplateView::AppearAnimStart(bool reverse) // 开始开场动画
 {
     lv_anim_timeline_set_reverse(ui.anim_timeline, reverse);

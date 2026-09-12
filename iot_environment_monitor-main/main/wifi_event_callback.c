@@ -13,11 +13,17 @@
 extern TaskHandle_t update_wifi_icon_task_handle;
 extern TaskHandle_t wifi_status_change_task_handle;
 extern TaskHandle_t weather_task_handle;
+/** @brief Wi-Fi 断线后重连任务句柄。 */
 static TaskHandle_t wifi_reconnect_task_handle = NULL;
 
 void wifi_add_list_task(void *args);
 void wifi_status_change_task(void *args);
 
+/**
+ * @brief Wi-Fi 断线重连任务。
+ * @param[in] args FreeRTOS 任务参数，当前未使用。
+ * @details 收到事件任务通知后临时降低 LCD 像素时钟，等待一帧稳定后发起连接。
+ */
 static void wifi_reconnect_task(void *args)
 {
     while (1)
@@ -33,6 +39,14 @@ static void wifi_reconnect_task(void *args)
     }
 }
 
+/**
+ * @brief 统一处理 Wi-Fi/IP 事件并通知各业务任务。
+ * @param[in] arg 事件回调用户参数，当前未使用。
+ * @param[in] event_base 事件所属事件基。
+ * @param[in] event_id 具体事件编号。
+ * @param[in] event_data 事件附加数据，如扫描结果或断开原因。
+ * @note 该函数由 ESP-IDF 事件循环调用；任务通知使用 ISR 版本 API 以兼容高优先级唤醒路径。
+ */
 void wifi_event_callback(void *arg, esp_event_base_t event_base,
                          int32_t event_id, void *event_data)
 {
@@ -123,6 +137,10 @@ void wifi_event_callback(void *arg, esp_event_base_t event_base,
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
+/**
+ * @brief 注册 Wi-Fi/IP 事件回调并创建重连任务。
+ * @note 应在默认事件循环、Wi-Fi 驱动和网络接口初始化后调用一次。
+ */
 void wifi_event_init()
 {
     // 绑定wifi连接相关事件的回调函数

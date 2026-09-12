@@ -4,8 +4,16 @@ void lv_anim_timeline_add_wrapper(lv_anim_timeline_t* at, const lv_anim_timeline
 {
     for(uint32_t i = 0; wrapper[i].obj != NULL; i++)
     {
+/**
+ * @brief Own and retain the atw state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         const lv_anim_timeline_wrapper_t* atw = &wrapper[i];
 
+/**
+ * @brief Own and retain the a state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         lv_anim_t a;
         lv_anim_init(&a);
         lv_anim_set_var(&a, atw->obj);

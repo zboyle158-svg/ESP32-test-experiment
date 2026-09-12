@@ -4,15 +4,26 @@
 #include "freertos/task.h"
 
 #define TAG "AW32001"
+/** @brief 电源管理芯片中断任务使用的任务句柄。 */
 extern TaskHandle_t update_battery_task;
 
+/** @brief AW32001 GPIO 中断处理任务句柄。 */
 TaskHandle_t aw32001_interrupt_task_handle = NULL;
 
+/**
+ * @brief AW32001 充电状态 GPIO 中断服务函数。
+ * @param[in] arg GPIO 驱动传递的用户参数，当前未使用。
+ * @note ISR 中只发送任务通知，避免在中断上下文执行 I2C 访问。
+ */
 void aw32001_isr_handler(void *arg)
 {
     xTaskNotifyGive(aw32001_interrupt_task_handle);
 }
 
+/**
+ * @brief 读取 AW32001 状态并向电池任务转发电源变化事件。
+ * @param[in] arg FreeRTOS 任务参数，当前未使用。
+ */
 void aw32001_interrupt_task(void *arg)
 {
     aw32001_read_sys_status(&pwr_sys_status);
@@ -57,6 +68,10 @@ void aw32001_interrupt_task(void *arg)
     }
 }
 
+/**
+ * @brief 配置 AW32001 中断 GPIO 并创建状态处理任务。
+ * @details GPIO5 下降沿表示充电器或电源路径状态变化；重复调用不会重复创建任务。
+ */
 void aw32001_interrupt_init()
 {
     gpio_config_t io_conf = {};

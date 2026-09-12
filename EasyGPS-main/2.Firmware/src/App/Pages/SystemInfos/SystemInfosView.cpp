@@ -5,6 +5,11 @@ using namespace Page;
 #define ITEM_HEIGHT_MIN 100
 #define ITEM_PAD ((LV_VER_RES - ITEM_HEIGHT_MIN) / 2)
 
+/**
+ * @brief Create and register the LVGL objects owned by Create.
+ * @details Allocated widgets are children of the supplied parent and are released by the page's Delete/unload lifecycle.  The caller retains ownership of the parent object.
+ * @param root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void SystemInfosView::Create(lv_obj_t *root)
 {
     lv_obj_remove_style_all(root);
@@ -20,6 +25,11 @@ void SystemInfosView::Create(lv_obj_t *root)
         LV_FLEX_ALIGN_START,
         LV_FLEX_ALIGN_CENTER);
 
+/**
+ * @brief Execute the Style_Init operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Style_Init();
 
     /* Item Sport */
@@ -121,9 +131,18 @@ void SystemInfosView::Create(lv_obj_t *root)
         "Compiler\n\n"
         "Build\n");
 
+/**
+ * @brief Execute the Group_Init operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Group_Init();
 }
 
+/**
+ * @brief Execute the Group_Init operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
 void SystemInfosView::Group_Init()
 {
     lv_group_t *group = lv_group_get_default();
@@ -141,20 +160,43 @@ void SystemInfosView::Group_Init()
     lv_group_focus_obj(item_grp[0].icon);
 }
 
+/**
+ * @brief Delete LVGL objects owned by SystemInfosView.
+ */
 void SystemInfosView::Delete()
 {
     // lv_group_set_focus_cb(lv_group_get_default(), nullptr);
+/**
+ * @brief Execute the Style_Reset operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Style_Reset();
 }
 
+/**
+ * @brief Change the ScrollToY configuration of the object.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param y Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param en Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void SystemInfosView::SetScrollToY(lv_obj_t *obj, lv_coord_t y, lv_anim_enable_t en)
 {
     lv_coord_t scroll_y = lv_obj_get_scroll_y(obj); 
+/**
+ * @brief Own and retain the diff state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     lv_coord_t diff = -y + scroll_y;
 
     lv_obj_scroll_by(obj, 0, diff, en);
 }
 
+/**
+ * @brief Execute the onFocus operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param g Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void SystemInfosView::onFocus(lv_group_t *g)
 {
     lv_obj_t *icon = lv_group_get_focused(g);
@@ -163,6 +205,10 @@ void SystemInfosView::onFocus(lv_group_t *g)
     lv_obj_scroll_to_y(lv_obj_get_parent(cont), y, LV_ANIM_ON);
 }
 
+/**
+ * @brief Execute the Style_Init operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
 void SystemInfosView::Style_Init()
 {
     lv_style_init(&style.icon);
@@ -183,6 +229,10 @@ void SystemInfosView::Style_Init()
             LV_STYLE_WIDTH,
             LV_STYLE_PROP_INV};
 
+/**
+ * @brief Own and retain the trans state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     static lv_style_transition_dsc_t trans;
     lv_style_transition_dsc_init( // 锟斤拷锟斤拷式锟斤拷锟斤拷一锟斤拷母谋洌�锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷图片锟斤拷锟斤拷
         &trans,
@@ -203,6 +253,10 @@ void SystemInfosView::Style_Init()
     lv_style_set_text_color(&style.data, lv_color_white());
 }
 
+/**
+ * @brief Execute the Style_Reset operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
 void SystemInfosView::Style_Reset()
 {
     lv_style_reset(&style.icon);
@@ -274,6 +328,13 @@ void SystemInfosView::Item_Create(
     /* get real max height */
     lv_obj_update_layout(item->labelInfo);
     lv_coord_t height = lv_obj_get_height(item->labelInfo);
+/**
+ * @brief Execute the LV_MAX operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param height Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param ITEM_HEIGHT_MIN Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     height = LV_MAX(height, ITEM_HEIGHT_MIN);
     lv_obj_set_height(cont, height);
     lv_obj_set_height(icon, height);

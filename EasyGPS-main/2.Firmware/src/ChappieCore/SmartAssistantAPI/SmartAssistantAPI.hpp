@@ -21,7 +21,15 @@
 class SmartAssistantAPI
 {
 private:
+/**
+ * @brief Own and retain the _task_handler state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     TaskHandle_t _task_handler;
+/**
+ * @brief Own and retain the _task_inited state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     bool _task_inited;
 
     /**
@@ -29,6 +37,10 @@ private:
      * false -> idie
      * true -> running
      */
+/**
+ * @brief Own and retain the _task_running state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     bool _task_running = false;
 
     /**
@@ -36,6 +48,10 @@ private:
      * false -> idie
      * true -> listening
      */
+/**
+ * @brief Own and retain the _task_listening state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     bool _task_listening = false;
 
     /**
@@ -43,6 +59,10 @@ private:
      *
      * @param param
      */
+/**
+ * @brief Process the periodic timer or FreeRTOS task callback.
+ * @param param Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     static void task_handler(void *param)
     {
         SmartAssistantAPI *saa = (SmartAssistantAPI *)param;
@@ -52,6 +72,10 @@ private:
             if (ulTaskNotifyTake(pdTRUE, portMAX_DELAY))
             {
                 // prepare for task
+/**
+ * @brief Own and retain the timeRecord state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
                 int timeRecord = 0;
 
                 saa->_inputText = "none";
@@ -71,20 +95,50 @@ private:
                 /* Mic，麦克风采集语音 */
                 _LOG("[Mic] Record begin!\n");
                 saa->_task_listening = true;
+/**
+ * @brief Own and retain the recordCount state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
                 int recordCount = 0;  // 记录for循环轮次
+/**
+ * @brief Own and retain the voiceBegin state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
                 int voiceBegin = 0;   // 是否开始说话
+/**
+ * @brief Own and retain the voiceChunks state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
                 int voiceChunks = 0;  // 检测到说话几次
+/**
+ * @brief Own and retain the silentChunks state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
                 int silentChunks = 0; // 检测到安静几次
                 for (uint16_t i = 0; i < (saa->_samples / 1024); i++)
                 {
+/**
+ * @brief Own and retain the micResult state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
                     bool micResult = false; // Mic的录制情况
 
+/**
+ * @brief Execute the saa->_mic->record operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                     micResult = saa->_mic->record((int16_t *)(saa->_rawData + i * 1024), 1024);  // 录制声音
                     _LOG("[Mic] record: %s count: %d\n", (micResult == true ? "true" : "false"), i); // 打印信息
                     while (saa->_mic->isRecording())
                         vTaskDelay(1); // 等待录制完成
 
                     // 计算均方根，检测说话
+/**
+ * @brief Execute the saa->_mic->calculateRMS operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                     float rms = saa->_mic->calculateRMS((int16_t *)(saa->_rawData + i * 1024), 256);
                     _LOG("[Mic] rms:%.2f\n", rms);
 
@@ -119,7 +173,18 @@ private:
 
                 /* SST，语音转文字 */
                 _LOG("[ASR] Begin!\n");
+/**
+ * @brief Execute the millis operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                 timeRecord = millis();
+/**
+ * @brief Execute the saa->asr.getRecognitionResult operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param _rawData Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                 saa->_inputText = saa->asr.getRecognitionResult(saa->_rawData, recordCount * 1024 * 2);
                 // 防止语音识别失败
                 if (strcmp(saa->_inputText.c_str(), "<error>") == 0)
@@ -130,7 +195,18 @@ private:
 
                 /* GPT，内容对话 */
                 _LOG("[GPT] Begin!\n");
+/**
+ * @brief Execute the millis operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                 timeRecord = millis();
+/**
+ * @brief Execute the saa->bot.getResponse operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param _inputText Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
                 saa->_outputText = saa->bot.getResponse(saa->_inputText); // Baidu
                 // saa->_outputText = saa->mml.getResponse(saa->_inputText); // MiniMax
 
@@ -163,6 +239,11 @@ private:
     }
 
 public:
+/**
+ * @brief Construct or destroy the SmartAssistantAPI object.
+ * @param false Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     SmartAssistantAPI() : _task_inited(false) {}
     ~SmartAssistantAPI() {}
 
@@ -174,6 +255,12 @@ public:
      * @param speaker
      * @param payLoad
      */
+/**
+ * @brief Initialize SmartAssistantAPI state and hardware or data resources.
+ * @param mic Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param speaker Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param payLoad Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     inline void init(EmmaMicPDM *mic, EmmaSpeaker *speaker, char *payLoad)
     {
         _mic = mic;
@@ -194,6 +281,11 @@ public:
         }
     }
 
+/**
+ * @brief Initialize SmartAssistantAPI state and hardware or data resources.
+ * @param mic Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param speaker Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
     inline void init(EmmaMicPDM *mic, EmmaSpeaker *speaker)
     {
         _mic = mic;
@@ -228,6 +320,10 @@ public:
         }
     }
 
+/**
+ * @brief Execute the begin operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
     inline void begin(void)
     {
         if (_task_running == false)
@@ -236,24 +332,54 @@ public:
         }
     }
 
+/**
+ * @brief Read isRunning from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     inline bool isRunning(void) { return _task_running; }
 
+/**
+ * @brief Read isListening from the current object state.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     inline bool isListening(void)
     {
         if (_task_running == false)
+/**
+ * @brief Own and retain the _task_running state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
             return _task_running;
         else
+/**
+ * @brief Own and retain the _task_listening state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
             return _task_listening;
     }
 
+/**
+ * @brief Execute the getInputText operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     inline char *getInputText(void) { return (char *)_inputText.c_str(); }
 
+/**
+ * @brief Execute the getOutputText operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     inline char *getOutputText(void) { return (char *)_outputText.c_str(); }
 
 private:
     /* buff */
     char *_payLoad = nullptr;
     int16_t *_rawData = nullptr;
+/**
+ * @brief Own and retain the _samples state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     const uint32_t _samples = 131072; // This value MUST ALWAYS be a power of 2 // 这个值必须总是2的幂
 
     /* hal */
@@ -261,13 +387,37 @@ private:
     EmmaSpeaker *_speaker = nullptr;
 
     /* web api */
+/**
+ * @brief Own and retain the asr state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     BaiduASR asr;
+/**
+ * @brief Own and retain the tts state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     BaiduTTS tts;
+/**
+ * @brief Own and retain the bot state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     BaiduErnieBot bot;
+/**
+ * @brief Own and retain the mml state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     MiniMaxLlm mml;
 
 private:
+/**
+ * @brief Own and retain the _inputText state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     String _inputText = "none";
+/**
+ * @brief Own and retain the _outputText state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     String _outputText = "none";
 };
 

@@ -13,6 +13,7 @@ static volatile uint8_t lpm_status = 0; // 0: 正常运行, 1: 进入低功耗�
 static volatile uint8_t is_touched = 0;
 static TaskHandle_t lpm_task_handle = NULL;
 
+/** @brief GPIO41 触摸中断服务函数，只执行 ISR 安全的标志和任务通知。 */
 static void touch_isr_handler(void *arg)
 {
     BaseType_t *pxHigherPriorityTaskWoken = NULL;
@@ -26,6 +27,7 @@ static void touch_isr_handler(void *arg)
     }
 }
 
+/** @brief 低功耗状态机：超时关背光降频，等待触摸中断后恢复。 */
 static void lpm_task(void *arg)
 {
     int16_t count = 0;
@@ -70,6 +72,7 @@ static void lpm_task(void *arg)
     }
 }
 
+/** @brief 初始化低功耗唤醒 GPIO、中断服务和可选的低功耗任务。 */
 void lpm_init(void)
 {
     gpio_config_t io_conf = {};
@@ -85,6 +88,7 @@ void lpm_init(void)
     }
 }
 
+/** @brief 注册唤醒中断并创建低功耗监测任务。 */
 void lpm_enable(void)
 {
     gpio_isr_handler_add(GPIO_NUM_41, touch_isr_handler, NULL);
@@ -94,6 +98,7 @@ void lpm_enable(void)
     }
 }
 
+/** @brief 删除低功耗任务、移除中断并清除运行状态。 */
 void lpm_disable(void)
 {
     if (lpm_task_handle != NULL)

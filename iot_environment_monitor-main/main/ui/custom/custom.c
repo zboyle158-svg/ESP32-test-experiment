@@ -35,6 +35,11 @@
  * Create a demo application
  */
 
+/**
+ * @brief 初始化用户自定义 LVGL 控件和事件。
+ * @param[in,out] ui SquareLine 生成的界面对象集合。
+ * @note 当前工程没有额外自定义控件，函数保留为后续扩展入口。
+ */
 void custom_init(lv_ui *ui)
 {
     #if LV_USE_GUIDER_SIMULATOR
@@ -42,4 +47,3 @@ void custom_init(lv_ui *ui)
     #endif
     /* Add your codes here */
 }
-

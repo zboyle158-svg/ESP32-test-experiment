@@ -2,32 +2,84 @@
 
 using namespace Page;
 
+/**
+ * @brief Construct or destroy the BLEKeyboard object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 BLEKeyboard::BLEKeyboard()
+/**
+ * @brief Execute the timer operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param nullptr Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     : timer(nullptr)
 {
 }
 
+/**
+ * @brief Release resources owned by the BLEKeyboard object.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 BLEKeyboard::~BLEKeyboard()
 {
 }
 
+/**
+ * @brief Execute the onCustomAttrConfig operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ */
 void BLEKeyboard::onCustomAttrConfig()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onCustomAttrConfig");
     // SetCustomCacheEnable(true);
+/**
+ * @brief Change the CustomLoadAnimType configuration of the object.
+ * @param LOAD_ANIM_NONE Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     SetCustomLoadAnimType(PageManager::LOAD_ANIM_NONE); // 设置当前的动画样式（？
 }
 
+/**
+ * @brief Handle the onViewLoad page lifecycle callback.
+ */
 void BLEKeyboard::onViewLoad()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewLoad");
+/**
+ * @brief Execute the Model.Init operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Model.Init();
+/**
+ * @brief Execute the View.Create operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param _root Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     View.Create(_root);
 
     /* Be sure the fist button is in the middle */
     lv_obj_scroll_to_view(lv_obj_get_child(View.ui.cont, 0), LV_ANIM_ON);
 
     // 添加事件回调
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     AttachEvent(lv_scr_act());
     // AttachEvent(View.ui.mouseMoveCtrlCont.btnMouse);
     // AttachEvent(View.ui.mouseMoveCtrlCont.cont);
@@ -58,21 +110,54 @@ void BLEKeyboard::onViewLoad()
     lv_obj_add_event_cb(View.ui.mouseClickCtrlCont.btnPageDown.btn, (lv_event_cb_t)mouseClickCtrlBtnHandler, LV_EVENT_SHORT_CLICKED, this);
 }
 
+/**
+ * @brief Handle the onViewDidLoad page lifecycle callback.
+ */
 void BLEKeyboard::onViewDidLoad()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewDidLoad");
 }
 
+/**
+ * @brief Handle the onViewWillAppear page lifecycle callback.
+ */
 void BLEKeyboard::onViewWillAppear()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewWillAppear");
 
     // lv_group_t *group = lv_group_get_default(); // 用于获取LittlevGL中默认的组对象
     // LV_ASSERT_NULL(group);
 
+/**
+ * @brief Execute the Model.SetStatusBarStyle operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param STATUS_BAR_STYLE_TRANSP Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Model.SetStatusBarStyle(DataProc::STATUS_BAR_STYLE_TRANSP);
+/**
+ * @brief Execute the Model.SetStatusBarAppear operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param true Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Model.SetStatusBarAppear(true);
 
+/**
+ * @brief Refresh the BLEKeyboard state without blocking the scheduler.
+ * @details The function consumes the latest cached DataProc/HAL snapshot and updates presentation state; it does not own or free the source data.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Update(); // 刷新，第一次加载界面，需要刷新一下，不然数值不显示会卡一下才显示
 
     lv_obj_fade_in(_root, 350, 0);
@@ -80,17 +165,39 @@ void BLEKeyboard::onViewWillAppear()
     // View.AppearAnimStart(); // 开始加载进入该page的动画，出场动画 // 填flase是动画正着放，true是反着放
 }
 
+/**
+ * @brief Handle the onViewDidAppear page lifecycle callback.
+ */
 void BLEKeyboard::onViewDidAppear()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewDidAppear");
     timer = lv_timer_create(onTimerUpdate, 2000, this); // 这里设置一个2s的定时器，软定时器，用于在onTimerUpdate里update
 }
 
+/**
+ * @brief Handle the onViewWillDisappear page lifecycle callback.
+ */
 void BLEKeyboard::onViewWillDisappear()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewWillDisappear");
 
     lv_group_t *group = lv_group_get_default();
+/**
+ * @brief Execute the LV_ASSERT_NULL operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param group Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_ASSERT_NULL(group);
 
     lv_group_remove_all_objs(group);
@@ -100,41 +207,89 @@ void BLEKeyboard::onViewWillDisappear()
     lv_obj_fade_out(_root, 350, 0);
 }
 
+/**
+ * @brief Handle the onViewDidDisappear page lifecycle callback.
+ */
 void BLEKeyboard::onViewDidDisappear()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewDidDisappear");
 }
 
+/**
+ * @brief Handle the onViewUnload page lifecycle callback.
+ */
 void BLEKeyboard::onViewUnload()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewUnload");
 
     // View.Delete(); // 删除该页面的UI指针，释放容器的内存
+/**
+ * @brief Execute the Model.Deinit operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     Model.Deinit();
 
     lv_obj_remove_event_cb(lv_scr_act(), onEvent); // 移除屏幕手势回调函数
 }
 
+/**
+ * @brief Handle the onViewDidUnload page lifecycle callback.
+ */
 void BLEKeyboard::onViewDidUnload()
 {
+/**
+ * @brief Execute the LV_LOG_USER operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_LOG_USER("onViewDidUnload");
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param obj Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::AttachEvent(lv_obj_t *obj)
 {
     lv_obj_add_event_cb(obj, onEvent, LV_EVENT_ALL, this);
 }
 
+/**
+ * @brief Refresh the BLEKeyboard state without blocking the scheduler.
+ * @details The function consumes the latest cached DataProc/HAL snapshot and updates presentation state; it does not own or free the source data.
+ */
 void BLEKeyboard::Update()
 {
     // printf("[BLE] Hi!\n");
     if (lv_obj_get_state(View.ui.mouseMoveCtrlCont.btnMouse) != LV_STATE_PRESSED)
     {
         lv_obj_add_flag(View.ui.cont, LV_OBJ_FLAG_SCROLLABLE);
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         AttachEvent(lv_scr_act());
     }
 }
 
+/**
+ * @brief Refresh the BLEKeyboard state without blocking the scheduler.
+ * @details The function consumes the latest cached DataProc/HAL snapshot and updates presentation state; it does not own or free the source data.
+ * @param timer Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::onTimerUpdate(lv_timer_t *timer)
 {
     BLEKeyboard *instance = (BLEKeyboard *)timer->user_data;
@@ -142,9 +297,20 @@ void BLEKeyboard::onTimerUpdate(lv_timer_t *timer)
     instance->Update();
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param event Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::onEvent(lv_event_t *event)
 {
     BLEKeyboard *instance = (BLEKeyboard *)lv_event_get_user_data(event);
+/**
+ * @brief Execute the LV_ASSERT_NULL operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param instance Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_ASSERT_NULL(instance);
 
     lv_obj_t *obj = lv_event_get_current_target(event);
@@ -224,14 +390,29 @@ void BLEKeyboard::onEvent(lv_event_t *event)
     }
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param event Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::musicCtrlBtnHandler(lv_event_t *event)
 {
     BLEKeyboard *instance = (BLEKeyboard *)lv_event_get_user_data(event);
+/**
+ * @brief Execute the LV_ASSERT_NULL operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param instance Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_ASSERT_NULL(instance);
 
     lv_obj_t *obj = lv_event_get_current_target(event);
     lv_event_code_t code = lv_event_get_code(event);
 
+/**
+ * @brief Own and retain the Val state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     uint8_t Val[2] = {0, 0};
 
     if (code == LV_EVENT_SHORT_CLICKED)
@@ -288,14 +469,29 @@ void BLEKeyboard::musicCtrlBtnHandler(lv_event_t *event)
     }
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param event Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::directionCtrlBtnHandler(lv_event_t *event)
 {
     BLEKeyboard *instance = (BLEKeyboard *)lv_event_get_user_data(event);
+/**
+ * @brief Execute the LV_ASSERT_NULL operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param instance Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_ASSERT_NULL(instance);
 
     lv_obj_t *obj = lv_event_get_current_target(event);
     lv_event_code_t code = lv_event_get_code(event);
 
+/**
+ * @brief Own and retain the Val state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     uint8_t Val[2] = {0xff, 0xff};
 
     if (code == LV_EVENT_SHORT_CLICKED)
@@ -355,9 +551,20 @@ void BLEKeyboard::directionCtrlBtnHandler(lv_event_t *event)
     }
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param event Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::mouseMoveCtrlBtnHandler(lv_event_t *event)
 {
     BLEKeyboard *instance = (BLEKeyboard *)lv_event_get_user_data(event);
+/**
+ * @brief Execute the LV_ASSERT_NULL operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param instance Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_ASSERT_NULL(instance);
 
     lv_obj_t *obj = lv_event_get_current_target(event);
@@ -365,10 +572,30 @@ void BLEKeyboard::mouseMoveCtrlBtnHandler(lv_event_t *event)
 
     if (code == LV_EVENT_PRESSING)
     {
+/**
+ * @brief Own and retain the pointLast state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         static lv_point_t pointLast = {140, 120};
+/**
+ * @brief Own and retain the pointNow state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         lv_point_t pointNow = {140, 120};
+/**
+ * @brief Own and retain the Val state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         uint8_t Val[4] = {0};
+/**
+ * @brief Own and retain the x state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         lv_coord_t x = 0;
+/**
+ * @brief Own and retain the y state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
         lv_coord_t y = 0;
         if (obj == instance->View.ui.mouseMoveCtrlCont.btnMouse)
         {
@@ -403,13 +630,28 @@ void BLEKeyboard::mouseMoveCtrlBtnHandler(lv_event_t *event)
     }
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param event Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 void BLEKeyboard::mouseClickCtrlBtnHandler(lv_event_t *event)
 {
     BLEKeyboard *instance = (BLEKeyboard *)lv_event_get_user_data(event);
+/**
+ * @brief Execute the LV_ASSERT_NULL operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param instance Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
     LV_ASSERT_NULL(instance);
 
     lv_obj_t *obj = lv_event_get_current_target(event);
     lv_event_code_t code = lv_event_get_code(event);
+/**
+ * @brief Own and retain the Val state required by this module.
+ * @details The value remains valid for the lifetime of its enclosing object or task.  Access is limited to the module unless the declaration explicitly documents a public interface.
+ */
     uint8_t Val[4] = {0};
 
     /** Click Value

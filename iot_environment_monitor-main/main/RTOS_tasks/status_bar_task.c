@@ -70,6 +70,7 @@ static void status_bar_update_wifi_icon_task(void *args)
     }
 }
 
+/** @brief 状态栏任务入口，创建电量、时间和 Wi-Fi 图标更新子任务。 */
 void status_bar_init_task(void *pvParameter)
 {
     status_bar_create();

@@ -2,10 +2,21 @@
 #include "../HAL/HAL.h"
 #include "App/Config/Config.h"
 
+/**
+ * @brief Process the periodic timer or FreeRTOS task callback.
+ * @param account Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ */
 static void onTimer(Account *account)
 {
 }
 
+/**
+ * @brief Decode a UI or system event and forward it to the responsible model or view.
+ * @details Event callbacks execute on the LVGL/UI context; they must remain short and defer blocking work to the corresponding data-processing task.
+ * @param account Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @param param Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 static int onEvent(Account *account, Account::EventParam_t *param)
 {
 
@@ -29,6 +40,12 @@ static int onEvent(Account *account, Account::EventParam_t *param)
     {
         HAL::Saa_Info_t *info = (HAL::Saa_Info_t *)param->data_p;
 
+/**
+ * @brief Execute the SmartAssistant_GetInfo operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param info Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         HAL::SmartAssistant_GetInfo(info);
 
         printf("[DP] SmartAssistantPULL\r\n");
@@ -36,6 +53,12 @@ static int onEvent(Account *account, Account::EventParam_t *param)
     else if (param->event == Account::EVENT_NOTIFY)
     {
 
+/**
+ * @brief Execute the SmartAssistant_SetBegin operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param true Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
         HAL::SmartAssistant_SetBegin(true); 
 
         printf("[DP] SmartAssistantNOTOFIY\r\n");
@@ -44,6 +67,12 @@ static int onEvent(Account *account, Account::EventParam_t *param)
     return Account::RES_OK;
 }
 
+/**
+ * @brief Execute the DATA_PROC_INIT_DEF operation and update the owning module state.
+ * @details This interface is the module boundary: callers provide the documented inputs, while the implementation performs the hardware, model, or view operation without transferring ownership of caller-managed objects.
+ * @param SmartAssistant Input/output argument for this operation; the caller retains ownership unless the function contract states otherwise.
+ * @return Operation result or status; inspect it before using dependent state.
+ */
 DATA_PROC_INIT_DEF(SmartAssistant)
 {
     account->SetEventCallback(onEvent);

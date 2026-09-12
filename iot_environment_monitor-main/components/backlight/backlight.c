@@ -7,6 +7,7 @@
 
 volatile uint8_t backlight_duty = DEFAULT_BACKLIGHT_DUTY; // 当前背光亮度
 // 初始化PWM调光引脚
+/** @brief 初始化 LEDC 背光 PWM 定时器、通道和 GPIO。 */
 void lcd_backlight_init(void)
 {
     ESP_LOGI(TAG, "Initializing LCD backlight PWM, Frequency: %dHz", CONFIG_LCD_BACKLIGHT_FREQUENCY);
@@ -30,6 +31,7 @@ void lcd_backlight_init(void)
 }
 
 // 设置PWM占空比
+/** @brief 设置背光占空比；输入值按 $0$ 到 $100$ 百分比限制。 @param duty 目标占空比。 */
 void lcd_backlight_set_duty(uint8_t duty)
 {
     // 限制占空比
@@ -40,6 +42,7 @@ void lcd_backlight_set_duty(uint8_t duty)
     ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0));
 }
 
+/** @brief 读取当前背光占空比。 @param[out] duty 输出占空比指针。 */
 void lcd_backlight_get_duty(uint8_t *duty)
 {
     *duty = ledc_get_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0) / 81;
