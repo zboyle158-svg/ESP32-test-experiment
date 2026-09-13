@@ -59,6 +59,7 @@
 */
 
 
+/** @brief 返回由 eFuse MAC 地址折叠得到的 32 位芯片标识。 */
 uint32_t get_uint32_chip_id(void) {
     uint32_t chipid = 0L;
     for (int i = 0; i < 17; i = i + 8) {
@@ -67,6 +68,7 @@ uint32_t get_uint32_chip_id(void) {
     return chipid;
 }
 
+/** @brief 返回由 eFuse MAC 地址转换得到的 64 位芯片标识。 */
 uint64_t get_uint64_chip_id(void) {
     uint64_t chipid = 0LL;
     for (int i = 0; i < 63; i = i + 8) {
@@ -75,12 +77,14 @@ uint64_t get_uint64_chip_id(void) {
     return chipid;
 }
 
+/** @brief 读取 ESP 芯片出厂烧录的 48 位 MAC 地址。 */
 uint64_t get_efuse_mac(void) {
     uint64_t chipmacid = 0LL;
     esp_efuse_mac_get_default((uint8_t *)(&chipmacid));
     return chipmacid;
 }
 
+/** @brief 将无符号 8 位整数格式化为二进制字符串；返回值使用静态缓冲区。 */
 const char* uint8_to_binary(const uint8_t value) {
     static bin8_char_buffer_t buffer;
     buffer[8] = '\0';
@@ -94,6 +98,7 @@ const char* uint8_to_binary(const uint8_t value) {
     return buffer;
 }
 
+/** @brief 将有符号 8 位整数按补码格式化为二进制字符串；返回值不可跨线程共享。 */
 const char* int8_to_binary(const int8_t value) {
     static bin8_char_buffer_t buffer;
     buffer[8] = '\0';
@@ -107,6 +112,7 @@ const char* int8_to_binary(const int8_t value) {
     return buffer;
 }
 
+/** @brief 将无符号 16 位整数格式化为二进制字符串；返回值使用静态缓冲区。 */
 const char* uint16_to_binary(const uint16_t value) {
     static bin16_char_buffer_t buffer;
     buffer[16] = '\0';
@@ -120,6 +126,7 @@ const char* uint16_to_binary(const uint16_t value) {
     return buffer;
 }
 
+/** @brief 将有符号 16 位整数按补码格式化为二进制字符串。 */
 const char* int16_to_binary(const int16_t value) {
     static bin16_char_buffer_t buffer;
     buffer[16] = '\0';
@@ -133,6 +140,7 @@ const char* int16_to_binary(const int16_t value) {
     return buffer;
 }
 
+/** @brief 将无符号 32 位整数格式化为二进制字符串。 */
 const char* uint32_to_binary(const uint32_t value) {
     static bin32_char_buffer_t buffer;
     buffer[32] = '\0';
@@ -146,6 +154,7 @@ const char* uint32_to_binary(const uint32_t value) {
     return buffer;
 }
 
+/** @brief 将有符号 32 位整数按补码格式化为二进制字符串。 */
 const char* int32_to_binary(const int32_t value) {
     static bin32_char_buffer_t buffer;
     buffer[32] = '\0';
@@ -159,6 +168,7 @@ const char* int32_to_binary(const int32_t value) {
     return buffer;
 }
 
+/** @brief 将无符号 64 位整数格式化为二进制字符串。 */
 const char* uint64_to_binary(const uint64_t value) {
     static bin64_char_buffer_t buffer;
     buffer[64] = '\0';
@@ -172,6 +182,7 @@ const char* uint64_to_binary(const uint64_t value) {
     return buffer;
 }
 
+/** @brief 将有符号 64 位整数按补码格式化为二进制字符串。 */
 const char* int64_to_binary(const int64_t value) {
     static bin64_char_buffer_t buffer;
     buffer[64] = '\0';
@@ -185,6 +196,7 @@ const char* int64_to_binary(const int64_t value) {
     return buffer;
 }
 
+/** @brief 按指定字节序将 2 字节数组解码为无符号 16 位整数。 */
 uint16_t bytes_to_uint16(const uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         return  (uint16_t)(bytes[0] | 
@@ -195,6 +207,7 @@ uint16_t bytes_to_uint16(const uint8_t* bytes, const bool little_endian) {
     }
 }
 
+/** @brief 按指定字节序将 4 字节数组解码为无符号 32 位整数。 */
 uint32_t bytes_to_uint32(const uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         return  (uint32_t)bytes[0] | 
@@ -209,6 +222,7 @@ uint32_t bytes_to_uint32(const uint8_t* bytes, const bool little_endian) {
     }
 }
 
+/** @brief 按指定字节序将 8 字节数组解码为无符号 64 位整数。 */
 uint64_t bytes_to_uint64(const uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         return  (uint64_t)bytes[0] | 
@@ -231,6 +245,7 @@ uint64_t bytes_to_uint64(const uint8_t* bytes, const bool little_endian) {
     }
 }
 
+/** @brief 按指定字节序将 2 字节数组解码为有符号 16 位整数。 */
 int16_t bytes_to_int16(const uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         return  (int16_t)(bytes[0] | 
@@ -240,6 +255,7 @@ int16_t bytes_to_int16(const uint8_t* bytes, const bool little_endian) {
     }
 }
 
+/** @brief 按指定字节序将 4 字节数组解码为有符号 32 位整数。 */
 int32_t bytes_to_int32(const uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         return  (int32_t)bytes[0] | 
@@ -254,6 +270,7 @@ int32_t bytes_to_int32(const uint8_t* bytes, const bool little_endian) {
     }
 }
 
+/** @brief 按指定字节序将 8 字节数组解码为有符号 64 位整数。 */
 int64_t bytes_to_int64(const uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         return  (int64_t)bytes[0] | 
@@ -276,6 +293,7 @@ int64_t bytes_to_int64(const uint8_t* bytes, const bool little_endian) {
     }
 }
 
+/** @brief 按指定字节序将无符号 16 位整数编码到至少 2 字节的输出数组。 */
 void uint16_to_bytes(const uint16_t value, uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         bytes[0] = (uint8_t)(value & 0xff);        // lsb
@@ -286,6 +304,7 @@ void uint16_to_bytes(const uint16_t value, uint8_t* bytes, const bool little_end
     }
 }
 
+/** @brief 按指定字节序将无符号 32 位整数编码到至少 4 字节的输出数组。 */
 void uint32_to_bytes(const uint32_t value, uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         bytes[0] = (uint8_t)(value & 0xff);    
@@ -300,6 +319,7 @@ void uint32_to_bytes(const uint32_t value, uint8_t* bytes, const bool little_end
     }
 }
 
+/** @brief 按指定字节序将无符号 64 位整数编码到至少 8 字节的输出数组。 */
 void uint64_to_bytes(const uint64_t value, uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         bytes[0] = (uint8_t)(value & 0xff);   
@@ -322,6 +342,7 @@ void uint64_to_bytes(const uint64_t value, uint8_t* bytes, const bool little_end
     }
 }
 
+/** @brief 按指定字节序将有符号 16 位整数编码到输出数组。 */
 void int16_to_bytes(const int16_t value, uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         bytes[0] = (uint8_t)(value & 0xff);        // lsb
@@ -332,6 +353,7 @@ void int16_to_bytes(const int16_t value, uint8_t* bytes, const bool little_endia
     }
 }
 
+/** @brief 按指定字节序将有符号 32 位整数编码到输出数组。 */
 void int32_to_bytes(const int32_t value, uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         bytes[0] = (uint8_t)(value & 0xff);    
@@ -346,6 +368,7 @@ void int32_to_bytes(const int32_t value, uint8_t* bytes, const bool little_endia
     }
 }
 
+/** @brief 按指定字节序将有符号 64 位整数编码到输出数组。 */
 void int64_to_bytes(const int64_t value, uint8_t* bytes, const bool little_endian) {
     if(little_endian == true) {
         bytes[0] = (uint8_t)(value & 0xff);   
@@ -368,6 +391,7 @@ void int64_to_bytes(const int64_t value, uint8_t* bytes, const bool little_endia
     }
 }
 
+/** @brief 将 IEEE-754 单精度浮点数按指定字节序编码到 4 字节数组。 */
 void float_to_bytes(const float value, uint8_t* bytes, const bool little_endian) {
     const union { uint32_t u32_value; float float32; } tmp = { .float32 = value };
     if(little_endian == true) {
@@ -377,6 +401,7 @@ void float_to_bytes(const float value, uint8_t* bytes, const bool little_endian)
     }
 }
 
+/** @brief 将 IEEE-754 双精度浮点数按指定字节序编码到 8 字节数组。 */
 void double_to_bytes(const double value, uint8_t* bytes, const bool little_endian) {
     const union { uint64_t u64_value; double double64; } tmp = { .double64 = value };
     if(little_endian == true) {
@@ -386,14 +411,17 @@ void double_to_bytes(const double value, uint8_t* bytes, const bool little_endia
     }
 }
 
+/** @brief 将指定数量的字节从源缓冲区复制到目标缓冲区，调用者负责保证空间有效。 */
 void copy_bytes(const uint8_t* source, uint8_t* destination, const size_t size) {
     memcpy(destination, source, size);
 }
 
+/** @brief 返回 type_utils 组件的版本字符串。 */
 const char* type_utils_get_fw_version(void) {
     return TYPE_UTILS_FW_VERSION_STR;
 }
 
+/** @brief 返回 type_utils 组件的整数版本号。 */
 int32_t type_utils_get_fw_version_number(void) {
     return TYPE_UTILS_FW_VERSION_INT32;
 }

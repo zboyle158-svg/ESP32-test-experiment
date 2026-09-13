@@ -1,0 +1,2 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=J:\Espressif\tools\python\v5.5.5\venv\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 J:\github\ESP32-test-experiment\iot_environment_monitor-main
+info: Trying to set symbol ESP_DEFAULT_CPU_FREQ_MHZ_160 to n, but it is currently selected by choice ESP_DEFAULT_CPU_FREQ_MHZ. For setting it to n, set another choice symbol to y instead.

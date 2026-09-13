@@ -1,0 +1,1509 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The target system is: Generic -  - 
+      The host system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags:  
+      
+      The output was:
+      1
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-closer.o): in function `_close_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/closer.c:47:(.text._close_r+0x14): warning: _close is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x18): warning: _lseek is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-readr.o): in function `_read_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/readr.c:49:(.text._read_r+0x18): warning: _read is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-writer.o): in function `_write_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/writer.c:49:(.text._write_r+0x18): warning: _write is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-fclose.o): in function `fclose':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/stdio/fclose.c:125:(.text.fclose+0x6): warning: __getreent is not implemented and will always fail
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags:  
+      
+      The output was:
+      1
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '-mlongcalls'
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '--c++'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '-mlongcalls'
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '-mlongcalls'
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      riscv32-esp-elf-g++.exe: error: unrecognized command-line option '-mlongcalls'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-g++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-closer.o): in function `_close_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/closer.c:47:(.text._close_r+0x14): warning: _close is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-lseekr.o): in function `_lseek_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x18): warning: _lseek is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-readr.o): in function `_read_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/readr.c:49:(.text._read_r+0x18): warning: _read is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-writer.o): in function `_write_r':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/reent/writer.c:49:(.text._write_r+0x18): warning: _write is not implemented and will always fail
+      I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib\\libc.a(libc_a-fclose.o): in function `fclose':
+      /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/newlib/newlib/libc/stdio/fclose.c:125:(.text.fclose+0x6): warning: __getreent is not implemented and will always fail
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:1192 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      riscv32-esp-elf-gcc.exe (crosstool-NG esp-14.2.0_20260121) 14.2.0
+      Copyright (C) 2024 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-dd4xw9"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-dd4xw9"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-dd4xw9'
+        
+        Run Build Command(s): I:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_6a9ca
+        [1/2] I:\\Espressif\\tools\\riscv32-esp-elf\\esp-14.2.0_20260121\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_6a9ca.dir/CMakeCCompilerABI.c.obj -c I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_6a9ca.dir/CMakeCCompilerABI.c.obj 
+        I:\\Espressif\\tools\\riscv32-esp-elf\\esp-14.2.0_20260121\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_6a9ca.dir/CMakeCCompilerABI.c.obj -c I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=I:\\Espressif\\tools\\riscv32-esp-elf\\esp-14.2.0_20260121\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe
+        riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+        Target: riscv32-esp-elf
+        Configured with: /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-host_w64-mingw32 --target=riscv32-esp-elf --prefix=/builds/idf/crosstool-NG/builds/riscv32-esp-elf --exec_prefix=/builds/idf/crosstool-NG/builds/riscv32-esp-elf --with-local-prefix=/builds/idf/crosstool-NG/builds/riscv32-esp-elf/riscv32-esp-elf --with-sysroot=/builds/idf/crosstool-NG/builds/riscv32-esp-elf/riscv32-esp-elf --with-native-system-header-dir=/include --with-headers=/builds/idf/crosstool-NG/builds/riscv32-esp-elf/riscv32-esp-elf/include --with-newlib --enable-threads=no --disable-shared --with-arch=rv32gc --with-abi=ilp32 --with-pkgversion='crosstool-NG esp-14.2.0_20260121' --disable-__cxa_atexit --enable-cxx-flags='-ffunction-sections -fdata-sections' --disable-libgomp --disable-libmudflap --disable-libmpx --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libstdcxx-verbose --with-gmp=/builds/idf/crosstool-NG/.build/riscv32-esp-elf/buildtools/complibs-host --with-mpfr=/builds/idf/crosstool-NG/.build/riscv32-esp-elf/buildtools/complibs-host --with-mpc=/builds/idf/crosstool-NG/.build/riscv32-esp-elf/buildtools/complibs-host --with-isl=/builds/idf/crosstool-NG/.build/riscv32-esp-elf/buildtools/complibs-host --enable-lto --enable-target-optspace --without-long-double-128 --disable-plugin --disable-nls --enable-multiarch --enable-languages=c,c++ --disable-libstdcxx-verbose --enable-threads=posix --enable-libstdcxx-time=yes --with-gnu-ld\x0d
+        Thread model: posix\x0d
+        Supported LTO compression algorithms: zlib zstd\x0d
+        gcc version 14.2.0 (crosstool-NG esp-14.2.0_20260121) \x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Check for working C compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes'
+        
+        Run Build Command(s): I:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_4fde1
+        [1/2] I:\\Espressif\\tools\\riscv32-esp-elf\\esp-14.2.0_20260121\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_4fde1.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_4fde1.dir/testCCompiler.c.obj 
+        I:\\Espressif\\tools\\riscv32-esp-elf\\esp-14.2.0_20260121\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_4fde1.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes/testCCompiler.c
+        riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The target system is: Generic -  - 
+      The host system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags:  
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-mcpu=cortex-m3'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags:  
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--c++'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-mcpu=cortex-m3'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:1192 (message)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      xtensa-esp-elf-gcc.exe (crosstool-NG esp-14.2.0_20260121) 14.2.0
+      Copyright (C) 2024 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-8350fh"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-8350fh"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-8350fh'
+        
+        Run Build Command(s): I:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_0fc44
+        [1/2] I:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_0fc44.dir/CMakeCCompilerABI.c.obj -c I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_0fc44.dir/CMakeCCompilerABI.c.obj 
+        I:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_0fc44.dir/CMakeCCompilerABI.c.obj -c I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=I:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp-elf-gcc.exe
+        xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+        Target: xtensa-esp-elf
+        Configured with: /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-host_w64-mingw32 --target=xtensa-esp-elf --prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf --exec_prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf --with-local-prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf --with-sysroot=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf --with-native-system-header-dir=/include --with-headers=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf/include --with-newlib --enable-threads=no --disable-shared --with-pkgversion='crosstool-NG esp-14.2.0_20260121' --disable-__cxa_atexit --enable-cxx-flags='-ffunction-sections -fdata-sections' --disable-libgomp --disable-libmudflap --disable-libmpx --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libstdcxx-verbose --with-gmp=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-mpfr=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-mpc=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-isl=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --enable-lto --enable-target-optspace --without-long-double-128 --enable-plugin --disable-nls --enable-multiarch --enable-languages=c,c++ --disable-libstdcxx-verbose --enable-threads=posix --enable-libstdcxx-time=yes --disable-win32-utf8-manifest --with-gnu-ld\x0d
+        Thread model: posix\x0d
+        Supported LTO compression algorithms: zlib zstd\x0d
+        gcc version 14.2.0 (crosstool-NG esp-14.2.0_20260121) \x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Check for working C compiler: I:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-jznt0k"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-jznt0k"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-jznt0k'
+        
+        Run Build Command(s): I:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_07e76
+        [1/2] I:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_07e76.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-jznt0k/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_07e76.dir/testCCompiler.c.obj 
+        I:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_07e76.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-jznt0k/testCCompiler.c
+        xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The target system is: Generic -  - 
+      The host system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags:  
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-mcpu=cortex-m3'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags:  
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--c++'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-mcpu=cortex-m3'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:1192 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      xtensa-esp-elf-gcc.exe (crosstool-NG esp-14.2.0_20260121) 14.2.0
+      Copyright (C) 2024 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-eml961"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-eml961"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-eml961'
+        
+        Run Build Command(s): J:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_37e54
+        [1/2] J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_37e54.dir/CMakeCCompilerABI.c.obj -c J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_37e54.dir/CMakeCCompilerABI.c.obj 
+        J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_37e54.dir/CMakeCCompilerABI.c.obj -c J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp-elf-gcc.exe
+        xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+        Target: xtensa-esp-elf
+        Configured with: /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-host_w64-mingw32 --target=xtensa-esp-elf --prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf --exec_prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf --with-local-prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf --with-sysroot=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf --with-native-system-header-dir=/include --with-headers=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf/include --with-newlib --enable-threads=no --disable-shared --with-pkgversion='crosstool-NG esp-14.2.0_20260121' --disable-__cxa_atexit --enable-cxx-flags='-ffunction-sections -fdata-sections' --disable-libgomp --disable-libmudflap --disable-libmpx --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libstdcxx-verbose --with-gmp=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-mpfr=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-mpc=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-isl=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --enable-lto --enable-target-optspace --without-long-double-128 --enable-plugin --disable-nls --enable-multiarch --enable-languages=c,c++ --disable-libstdcxx-verbose --enable-threads=posix --enable-libstdcxx-time=yes --disable-win32-utf8-manifest --with-gnu-ld\x0d
+        Thread model: posix\x0d
+        Supported LTO compression algorithms: zlib zstd\x0d
+        gcc version 14.2.0 (crosstool-NG esp-14.2.0_20260121) \x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Check for working C compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-wm2tp8"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-wm2tp8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-wm2tp8'
+        
+        Run Build Command(s): J:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_60ad3
+        [1/2] J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_60ad3.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-wm2tp8/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_60ad3.dir/testCCompiler.c.obj 
+        J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_60ad3.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-wm2tp8/testCCompiler.c
+        xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags:  
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-mcpu=cortex-m3'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags:  
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--c++'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--ec++'; did you mean '-Weffc++'?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-mcpu=cortex-m3'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: @J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cxxflags
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      xtensa-esp-elf-g++.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/3.30.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake:1192 (message)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      xtensa-esp-elf-gcc.exe (crosstool-NG esp-14.2.0_20260121) 14.2.0
+      Copyright (C) 2024 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-bged37"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-bged37"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-bged37'
+        
+        Run Build Command(s): J:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_853ce
+        [1/2] J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_853ce.dir/CMakeCCompilerABI.c.obj -c J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_853ce.dir/CMakeCCompilerABI.c.obj 
+        J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags"    -v -o CMakeFiles/cmTC_853ce.dir/CMakeCCompilerABI.c.obj -c J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp-elf-gcc.exe
+        xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+        Target: xtensa-esp-elf
+        Configured with: /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-host_w64-mingw32 --target=xtensa-esp-elf --prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf --exec_prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf --with-local-prefix=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf --with-sysroot=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf --with-native-system-header-dir=/include --with-headers=/builds/idf/crosstool-NG/builds/xtensa-esp-elf/xtensa-esp-elf/include --with-newlib --enable-threads=no --disable-shared --with-pkgversion='crosstool-NG esp-14.2.0_20260121' --disable-__cxa_atexit --enable-cxx-flags='-ffunction-sections -fdata-sections' --disable-libgomp --disable-libmudflap --disable-libmpx --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libstdcxx-verbose --with-gmp=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-mpfr=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-mpc=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --with-isl=/builds/idf/crosstool-NG/.build/xtensa-esp-elf/buildtools/complibs-host --enable-lto --enable-target-optspace --without-long-double-128 --enable-plugin --disable-nls --enable-multiarch --enable-languages=c,c++ --disable-libstdcxx-verbose --enable-threads=posix --enable-libstdcxx-time=yes --disable-win32-utf8-manifest --with-gnu-ld\x0d
+        Thread model: posix\x0d
+        Supported LTO compression algorithms: zlib zstd\x0d
+        gcc version 14.2.0 (crosstool-NG esp-14.2.0_20260121) \x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Check for working C compiler: J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe"
+    directories:
+      source: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7"
+      binary: "J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags\""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: "@\"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/ldflags\""
+      CMAKE_MODULE_PATH: "J:/esp/v5.5.5/esp-idf/tools/cmake;J:/esp/v5.5.5/esp-idf/tools/cmake/third_party"
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7'
+        
+        Run Build Command(s): J:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_77cb9
+        [1/2] J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_77cb9.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_77cb9.dir/testCCompiler.c.obj 
+        J:\\Espressif\\tools\\xtensa-esp-elf\\esp-14.2.0_20260121\\xtensa-esp-elf\\bin\\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_77cb9.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7/testCCompiler.c
+        xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...

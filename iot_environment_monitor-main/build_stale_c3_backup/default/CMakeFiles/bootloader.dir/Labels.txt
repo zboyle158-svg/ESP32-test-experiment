@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/CMakeFiles/bootloader
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/CMakeFiles/bootloader.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/CMakeFiles/bootloader-complete.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/default/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

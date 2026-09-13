@@ -1,0 +1,29 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=J:\Espressif\tools\python\v5.5.5\venv\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 J:\github\ESP32-test-experiment\iot_environment_monitor-main
+CMake Error at J:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:67 (message):
+  The C compiler
+
+    "J:/Espressif/tools/xtensa-esp-elf/esp-14.2.0_20260121/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7'
+    
+    Run Build Command(s): J:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_77cb9
+    [1/2] J:\Espressif\tools\xtensa-esp-elf\esp-14.2.0_20260121\xtensa-esp-elf\bin\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_77cb9.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7/testCCompiler.c
+    FAILED: CMakeFiles/cmTC_77cb9.dir/testCCompiler.c.obj 
+    J:\Espressif\tools\xtensa-esp-elf\esp-14.2.0_20260121\xtensa-esp-elf\bin\xtensa-esp32s3-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_77cb9.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-hftaq7/testCCompiler.c
+    xtensa-esp-elf-gcc.exe: error: unrecognized command-line option '-march=rv32imc_zicsr_zifencei'
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)
+  CMakeLists.txt:6 (project)
+
+

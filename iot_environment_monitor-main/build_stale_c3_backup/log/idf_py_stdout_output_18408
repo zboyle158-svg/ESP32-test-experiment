@@ -1,0 +1,15 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=I:\Espressif\python_env\idf5.1_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 J:\github\ESP32-test-experiment\iot_environment_monitor-main
+-- IDF_TARGET is not set, guessed 'esp32c3' from sdkconfig 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/sdkconfig'
+-- Found Git: I:/git/Git/cmd/git.exe (found version "2.55.0.windows.4")
+-- Component directory J:/esp/v5.5.5/esp-idf/components/esp_blockdev does not contain a CMakeLists.txt file. No component will be added
+-- Minimal build - ON
+-- ccache will be used for faster recompilation
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - failed
+-- Check for working C compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe
+-- Check for working C compiler: I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe - broken
+-- Configuring incomplete, errors occurred!

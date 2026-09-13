@@ -7,11 +7,13 @@ extern STCC4_t stcc4;
 extern int32_t voc_index;
 
 /**
- * @brief Triggers sensor sampling and updates the historical chart windows.
- *
- * A sample is collected every five seconds. Twelve samples form the minute
- * window, twelve minute summaries form the hour window, and twenty-four hour
- * summaries form the day window. LVGL is notified after the cache changes.
+ * @brief Periodically triggers sensor sampling and maintains history windows.
+ * @details Wakes sensor tasks by notification, shifts samples into
+ *          minute/hour/day arrays, and notifies the chart task. Blocks for
+ *          5 seconds between iterations.
+ * @param[in] arg FreeRTOS task argument; unused and expected to be NULL.
+ * @note Twelve samples represent one minute, twelve minutes one hour, and
+ *       twenty-four hours one day. Temperature and humidity are stored x10.
  */
 /** @brief 每 $5\text{ s}$ 触发传感器采样，并维护分钟/小时/天历史数据窗口。 */
 void get_data_task(void *arg)

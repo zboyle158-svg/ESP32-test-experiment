@@ -1,0 +1,29 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=I:\Espressif\python_env\idf5.1_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=1 J:\github\ESP32-test-experiment\iot_environment_monitor-main
+CMake Error at I:/Espressif/tools/cmake/3.30.2/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake:67 (message):
+  The C compiler
+
+    "I:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: 'J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes'
+    
+    Run Build Command(s): I:/Espressif/tools/ninja/1.12.1/ninja.exe -v cmTC_4fde1
+    [1/2] I:\Espressif\tools\riscv32-esp-elf\esp-14.2.0_20260121\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_4fde1.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes/testCCompiler.c
+    FAILED: CMakeFiles/cmTC_4fde1.dir/testCCompiler.c.obj 
+    I:\Espressif\tools\riscv32-esp-elf\esp-14.2.0_20260121\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe   @"J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/toolchain/cflags" -o CMakeFiles/cmTC_4fde1.dir/testCCompiler.c.obj -c J:/github/ESP32-test-experiment/iot_environment_monitor-main/build/CMakeFiles/CMakeScratch/TryCompile-cvvyes/testCCompiler.c
+    riscv32-esp-elf-gcc.exe: error: unrecognized command-line option '-mlongcalls'
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  J:/esp/v5.5.5/esp-idf/tools/cmake/project.cmake:601 (__project)
+  CMakeLists.txt:6 (project)
+
+

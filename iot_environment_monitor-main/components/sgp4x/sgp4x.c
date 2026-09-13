@@ -278,6 +278,13 @@ static inline esp_err_t sgp4x_get_serial_number_register(sgp4x_handle_t handle, 
     return ESP_OK;
 }
 
+/**
+ * @brief 在指定 I2C 总线上探测并初始化 SGP4X 设备。
+ * @param master_handle 已初始化的 I2C 主总线句柄。
+ * @param sgp4x_config 设备地址和时钟等配置。
+ * @param[out] sgp4x_handle 成功时返回新分配的设备句柄。
+ * @return ESP_OK 初始化成功；否则返回 ESP-IDF 错误码。
+ */
 esp_err_t sgp4x_init(i2c_master_bus_handle_t master_handle, const sgp4x_config_t *sgp4x_config, sgp4x_handle_t *sgp4x_handle)
 {
     /* validate arguments */
@@ -339,6 +346,7 @@ err:
     return ret;
 }
 
+/** @brief 使用温湿度补偿执行 SGP VOC 调理并返回原始信号。 */
 esp_err_t sgp4x_execute_compensated_conditioning(sgp4x_handle_t handle, const float temperature, const float humidity, uint16_t *sraw_voc)
 {
     const uint8_t rx_retry_max = 5;
@@ -414,6 +422,7 @@ esp_err_t sgp4x_execute_compensated_conditioning(sgp4x_handle_t handle, const fl
     return ESP_OK;
 }
 
+/** @brief 使用默认温湿度参数执行 VOC 调理。 */
 esp_err_t sgp4x_execute_conditioning(sgp4x_handle_t handle, uint16_t *sraw_voc)
 {
     /* validate arguments */
@@ -425,6 +434,7 @@ esp_err_t sgp4x_execute_conditioning(sgp4x_handle_t handle, uint16_t *sraw_voc)
     return ESP_OK;
 }
 
+/** @brief 读取 SGP40 经温湿度补偿后的原始 VOC 信号。 */
 // new: sgp40 measurement
 esp_err_t sgp40_measure_raw_signal(sgp4x_handle_t handle, const float temperature, const float humidity, uint16_t *sraw_voc)
 {
@@ -502,6 +512,7 @@ esp_err_t sgp40_measure_raw_signal(sgp4x_handle_t handle, const float temperatur
     return ESP_OK;
 }
 
+/** @brief 读取 SGP4X VOC/NOx 双通道经补偿后的原始信号。 */
 esp_err_t sgp4x_measure_compensated_signals(sgp4x_handle_t handle, const float temperature, const float humidity, uint16_t *sraw_voc, uint16_t *sraw_nox)
 {
     const uint8_t rx_retry_max = 5;
@@ -583,6 +594,7 @@ esp_err_t sgp4x_measure_compensated_signals(sgp4x_handle_t handle, const float t
     return ESP_OK;
 }
 
+/** @brief 使用默认温湿度参数读取 SGP40 VOC 原始信号。 */
 // new: sgp40 measure signal
 esp_err_t sgp40_measure_signals(sgp4x_handle_t handle, uint16_t *sraw_voc)
 {
@@ -595,6 +607,7 @@ esp_err_t sgp40_measure_signals(sgp4x_handle_t handle, uint16_t *sraw_voc)
     return ESP_OK;
 }
 
+/** @brief 使用默认温湿度参数读取 SGP4X VOC/NOx 原始信号。 */
 esp_err_t sgp4x_measure_signals(sgp4x_handle_t handle, uint16_t *sraw_voc, uint16_t *sraw_nox)
 {
     /* validate arguments */
@@ -606,6 +619,7 @@ esp_err_t sgp4x_measure_signals(sgp4x_handle_t handle, uint16_t *sraw_voc, uint1
     return ESP_OK;
 }
 
+/** @brief 执行 SGP4X 内置自检并返回完整性结果。 */
 esp_err_t sgp4x_execute_self_test(sgp4x_handle_t handle, sgp4x_self_test_result_t *const result)
 {
     const uint8_t rx_retry_max = 5;
@@ -647,6 +661,7 @@ esp_err_t sgp4x_execute_self_test(sgp4x_handle_t handle, sgp4x_self_test_result_
     return ESP_OK;
 }
 
+/** @brief 关闭 SGP4X 内部加热器。 */
 esp_err_t sgp4x_turn_heater_off(sgp4x_handle_t handle)
 {
     /* validate arguments */
@@ -661,6 +676,7 @@ esp_err_t sgp4x_turn_heater_off(sgp4x_handle_t handle)
     return ESP_OK;
 }
 
+/** @brief 向 SGP4X 发送软复位命令。 */
 esp_err_t sgp4x_reset(sgp4x_handle_t handle)
 {
     /* validate arguments */
@@ -675,6 +691,7 @@ esp_err_t sgp4x_reset(sgp4x_handle_t handle)
     return ESP_OK;
 }
 
+/** @brief 从 I2C 主总线移除设备句柄（不释放句柄内存）。 */
 esp_err_t sgp4x_remove(sgp4x_handle_t handle)
 {
     /* validate arguments */
@@ -683,6 +700,7 @@ esp_err_t sgp4x_remove(sgp4x_handle_t handle)
     return i2c_master_bus_rm_device(handle->i2c_handle);
 }
 
+/** @brief 移除设备并释放 SGP4X 句柄。 */
 esp_err_t sgp4x_delete(sgp4x_handle_t handle)
 {
     /* validate arguments */
@@ -700,11 +718,13 @@ esp_err_t sgp4x_delete(sgp4x_handle_t handle)
     return ESP_OK;
 }
 
+/** @brief 返回驱动固件版本字符串（静态存储区）。 */
 const char *sgp4x_get_fw_version(void)
 {
     return SGP4X_FW_VERSION_STR;
 }
 
+/** @brief 返回驱动固件版本的整数编码。 */
 int32_t sgp4x_get_fw_version_number(void)
 {
     return SGP4X_FW_VERSION_INT32;

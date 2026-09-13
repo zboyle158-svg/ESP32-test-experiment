@@ -11,6 +11,9 @@
 extern float bat_level;
 
 TaskHandle_t update_battery_task = NULL;
+/** @brief Waits for battery notifications and refreshes battery widgets.
+ * @param[in] args Unused FreeRTOS task argument.
+ */
 static void status_bar_update_battery_task(void *args)
 {
     status_bar_set_battery_level(bat_level);
@@ -24,6 +27,9 @@ static void status_bar_update_battery_task(void *args)
     }
 }
 
+/** @brief Updates the clock each second and after SNTP synchronization.
+ * @param[in] args Unused FreeRTOS task argument.
+ */
 static void status_bar_update_time_task(void *args)
 {
     char time_buffer[24], last_minute[3], now_minute[3];
@@ -59,6 +65,9 @@ static void status_bar_update_time_task(void *args)
 }
 
 TaskHandle_t update_wifi_icon_task_handle = NULL;
+/** @brief Waits for Wi-Fi notifications and updates the status icon.
+ * @param[in] args Unused FreeRTOS task argument.
+ */
 static void status_bar_update_wifi_icon_task(void *args)
 {
     while (1)

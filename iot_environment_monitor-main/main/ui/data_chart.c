@@ -33,6 +33,12 @@ static lv_obj_t *value_label = NULL;
 static lv_obj_t *main_cont;
 
 /** @brief 计算数组尾部窗口内的最大值。 */
+/** @brief Returns the maximum value among the newest @p size samples.
+ * @param[in] array Source sample array.
+ * @param[in] total_size Number of valid elements in @p array.
+ * @param[in] size Number of trailing elements to inspect.
+ * @return Maximum sample value, or zero when no elements are selected.
+ */
 static int32_t get_max_value(int32_t *array, int8_t total_size, int8_t size)
 {
     int32_t max = array[total_size - 1];
@@ -47,6 +53,12 @@ static int32_t get_max_value(int32_t *array, int8_t total_size, int8_t size)
 }
 
 /** @brief 计算数组尾部窗口内的最小值。 */
+/** @brief Returns the minimum value among the newest @p size samples.
+ * @param[in] array Source sample array.
+ * @param[in] total_size Number of valid elements in @p array.
+ * @param[in] size Number of trailing elements to inspect.
+ * @return Minimum sample value, or zero when no elements are selected.
+ */
 static int32_t get_min_value(int32_t *array, int8_t total_size, int8_t size)
 {
     int32_t min = array[total_size - 1];
@@ -62,6 +74,9 @@ static int32_t get_min_value(int32_t *array, int8_t total_size, int8_t size)
 
 // 图表事件回调函数
 /** @brief 处理图表数据点按下和释放事件。 */
+/** @brief Handles chart touch events and updates the selected-point label.
+ * @param[in] e LVGL chart event object.
+ */
 static void chart_event_cb(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -166,6 +181,7 @@ static void chart_event_cb(lv_event_t *e)
 }
 
 /** @brief 根据时间范围更新 X 轴刻度文本。 */
+/** @brief Rebuilds X-axis labels according to the active time window. */
 void update_chart_x_scale_text()
 {
     switch (current_time_frame)
@@ -192,6 +208,7 @@ void update_chart_x_scale_text()
 }
 
 /** @brief 根据时间范围设置图表点数和 X 轴刻度数。 */
+/** @brief Adjusts chart tick count to match the selected history window. */
 void set_x_tick_count()
 {
     switch (current_time_frame)
@@ -212,6 +229,9 @@ void set_x_tick_count()
 }
 
 /** @brief 后台刷新图表曲线、坐标范围和标签。 */
+/** @brief LVGL worker that redraws chart data after task notifications.
+ * @param[in] arg Unused FreeRTOS task argument.
+ */
 void update_chart_task(void *arg)
 {
     int32_t max = 0, min = 0, mid = 0;
@@ -404,6 +424,7 @@ void update_chart_task(void *arg)
 }
 
 /** @brief 创建图表控件、坐标轴和刷新任务。 */
+/** @brief Creates chart widgets, series, scales, and event callbacks. */
 void create_chart()
 {
     main_cont = lv_obj_create(guider_ui.data_chart_screen);
@@ -497,6 +518,7 @@ void create_chart()
 }
 
 /** @brief 删除图表控件并停止刷新任务。 */
+/** @brief Deletes chart widgets and releases the active chart resources. */
 void delete_chart()
 {
     if (update_chart_task_handle != NULL)
